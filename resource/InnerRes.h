@@ -1,16 +1,47 @@
 #pragma once
 
-#ifndef _RESOURCES_INNER_RES_H_
-#define _RESOURCES_INNER_RES_H_
+#ifndef _RESOURCE_INNER_RES_H_
+#define _RESOURCE_INNER_RES_H_
 
 #include <string.h>
 
-#include "../utility/nJson/json.h"
+#include "../nJson/def.h"
 
-#define SET(M) _SET(root_obj,M)
-#define GET(M) _GET(root_obj,M)
+struct Super{
+public:
+	Super():
+		id(DEFAULT_VALUE_INT){
+	}
+	bool serialize(JSON_Value *_doc_,const char *_key_ = NULL) const {
+		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+		{
+			if(_key_ == NULL){
+				SET(id);
+			} else {
+				SET_IF_KEY(id)
+				{
+					return false;
+				}
+			}
+		}
 
-struct InnerRes{
+		return true;
+	}
+	void deserialize(JSON_Value *_doc_){
+		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+		{
+			GET(id);
+		}
+	}
+
+	int &get_id(){return id;}
+	void set_id(int id){this->id=id;}
+
+private:
+	int id;
+};
+
+struct InnerRes : public Super{
 public:
 	InnerRes():
 		type(DEFAULT_VALUE_INT){
@@ -20,21 +51,31 @@ public:
 	// 	return type==DEFAULT_VALUE_INT && key==DEFAULT_VALUE_CSTR && val == DEFAULT_VALUE_CSTR;
 	// }
 
-	JSON_Value *serialize() const {
-		JSON_Value *doc = json_value_init_object();
+	bool serialize(JSON_Value *_doc_ ,const char *_key_ = NULL) const {
+		SERIALIZE_SUPER_CLASS(Super);
+
+		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
-			JSON_Object *root_obj = json_value_get_object(doc);
-			{
+			if(_key_ == NULL){
 				SET(type);
 				SET(key);
 				SET(val);
+			} else {
+				SET_IF_KEY(type)
+				SET_IF_KEY(key)
+				SET_IF_KEY(val)
+				{
+					return false;
+				}
 			}
 		}
-		
-		return doc;
+
+		return true;
 	}
-	void deserialize(JSON_Value *doc){
-		JSON_Object *root_obj = json_value_get_object(doc);
+	void deserialize(JSON_Value *_doc_){
+		Super::deserialize(_doc_);
+
+		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
 			GET(type);
 			GET(key);
@@ -59,4 +100,4 @@ private:
 	std::string											val;
 };
 
-#endif//_RESOURCES_INNER_RES_H_
+#endif//_RESOURCE_INNER_RES_H_

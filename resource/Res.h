@@ -1,15 +1,12 @@
 #pragma once
 
-#ifndef _RESOURCES_RES_H_
-#define _RESOURCES_RES_H_
+#ifndef _RESOURCE_RES_H_
+#define _RESOURCE_RES_H_
 
 #include <string.h>
 
-#include "../utility/nJson/json.h"
 #include "InnerRes.h"
-
-#define SET(M) _SET(root_obj,M)
-#define GET(M) _GET(root_obj,M)
+#include "../nJson/def.h"
 
 struct Res{
 public:
@@ -27,12 +24,11 @@ public:
 			/*init bool*/
 			memset(&b,-1,sizeof(bool));
 		}
-	
-	JSON_Value *serialize() const {
-		JSON_Value *doc = json_value_init_object();
+
+	bool serialize(JSON_Value *_doc_,const char *_key_ = NULL) const {
+		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
-			JSON_Object *root_obj = json_value_get_object(doc);
-			{
+			if(_key_==NULL){
 				SET(c);
 				SET(b);
 				SET(s);
@@ -48,13 +44,33 @@ public:
 				SET(pir);
 				SET(ppir);
 				SET(mir);
+			} else {
+				SET_IF_KEY(c)
+				SET_IF_KEY(b)
+				SET_IF_KEY(s)
+				SET_IF_KEY(i)
+				SET_IF_KEY(f)
+				SET_IF_KEY(ll)
+				SET_IF_KEY(d)
+				SET_IF_KEY(pc)
+				SET_IF_KEY(m)
+				SET_IF_KEY(l)
+				SET_IF_KEY(lm)
+				SET_IF_KEY(ir)
+				SET_IF_KEY(pir)
+				SET_IF_KEY(ppir)
+				SET_IF_KEY(mir)
+				{
+					//TODO:error
+					return false;
+				}
 			}
 		}
-		
-		return doc;
+
+		return true;
 	}
-	void deserialize(JSON_Value *doc){
-		JSON_Object *root_obj = json_value_get_object(doc);
+	void deserialize(JSON_Value *_doc_){
+		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
 			GET(c);
 			GET(b);
@@ -107,7 +123,7 @@ public:
 	void set_ppir(InnerRes **ppir){this->ppir = ppir;}
 	void set_mir(const std::map<std::string,InnerRes> &mir){this->mir = mir;}
 	void set_mpir(const std::map<std::string,InnerRes*> &mpir){this->mpir = mpir;}
-	
+
 	~Res(){
 		if(pc)delete[] pc;
 		if(pir)delete pir;
@@ -115,7 +131,7 @@ public:
 		if(ppir)delete ppir;
 		//TODO free mpir
 	}
-	
+
 private:
 	//basic types test
 	char 											c;
@@ -128,12 +144,12 @@ private:
 
 	//const char * test
 	const char 										*pc;
-	
+
 	//map list test
 	std::map<std::string,std::string> 				m;
 	std::list<int>									l;
 	std::list<std::map<std::string,std::string> >	lm;
-	
+
 	//inner object test
 	InnerRes 										ir;
 	InnerRes 										*pir;
@@ -142,4 +158,4 @@ private:
 	std::map<std::string,InnerRes*>					mpir;
 };
 
-#endif//_RESOURCES_RES_H_
+#endif//_RESOURCE_RES_H_
