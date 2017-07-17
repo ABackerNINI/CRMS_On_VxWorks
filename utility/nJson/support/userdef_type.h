@@ -26,11 +26,15 @@ inline bool is_default_value(const _T &res){
 
 template<typename _T>
 inline void set_key_value(JSON_Object *obj,const char *key,const _T &res){
-	json_object_set_value(obj,key,res.serialize());
+	JSON_Value *doc = json_value_init_object();
+	res.serialize(doc);
+	json_object_set_value(obj,key,doc);
 }
 template<typename _T>
 inline void set_key_value(JSON_Array *arr,const _T &res){
-	json_array_append_value(arr,res.serialize());
+	JSON_Value *doc = json_value_init_object();
+	res.serialize(doc);
+	json_array_append_value(arr,doc);
 }
 
 template<typename _T>
