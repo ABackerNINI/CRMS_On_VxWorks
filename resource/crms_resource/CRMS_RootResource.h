@@ -3,10 +3,12 @@
 #ifndef _CRMS_RESOURCE_ROOT_RESOURCE_H_
 #define _CRMS_RESOURCE_ROOT_RESOURCE_H_
 
-#include "CRMS_Resource.h"
+#include "../Resource.h"
 
-class CRMS_RootResource : public CRMS_Resource
-{
+#include "CRMS_Resource.h"
+#include "CRMS_Children.h"
+
+class CRMS_RootResource : public CRMS_Resource {
 public:
 	CRMS_RootResource(){
 	}
@@ -17,9 +19,9 @@ public:
 		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
 			if(_key_==NULL){
-				// SET(children);
+				SET(children);
 			} else {
-				//SET_IF_KEY(children)
+				SET_IF_KEY(children)
 				{
 					return false;
 				}
@@ -33,7 +35,7 @@ public:
 
 		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
-			// GET(children);
+			GET(children);
 		}
 	}
 
@@ -41,7 +43,7 @@ public:
 	}
 
 private:
-	// CRMS_Children	children;
+	CRMS_Children					children;
 };
 
 #endif//_CRMS_RESOURCE_ROOT_RESOURCE_H_

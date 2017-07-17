@@ -15,8 +15,12 @@ nJson.o:
 main.o:
 	$(cc) $(cflags) -c main.cpp -o $(obj_dir)/main.o
 
-out.o: $(obj_dir)/main.o $(obj_dir)/parson.o
+out.o: $(obj_dir)/main.o $(obj_dir)/nJson.o
 	$(cc) $(cflags) -o $(bin_dir)/out $^
+
+test_enum:nJson.o
+	$(cc) $(cflags) -o $(bin_dir)/test_enum test/test_serialization/test_enumeration.cpp $(obj_dir)/nJson.o
+	$(bin_dir)/test_enum.exe
 
 clean:
 	rd /S/Q $(root_dir)/$(obj_dir)
