@@ -1,27 +1,24 @@
 cc=g++
 cflags='-std=gnu++0x'
-root_dir=$(shell cd)
-obj_dir=debug\obj
+root_dir=$(shell pwd)
+obj_dir=debug/obj
 bin_dir=debug
 
 export cc cflags root_dir obj_dir bin_dir
 
-all:pre.o utility.o cur.o debug.o
+all: nJson.o main.o out.o
+	$(bin_dir)/out.exe
 
-pre.o:
-	if not exist $(obj_dir) (md $(obj_dir))
-	if not exist $(bin_dir) (md $(bin_dir))
+nJson.o:
+	cd utility/nJson && $(MAKE)
 
-utility.o:
-	cd utility && $(MAKE)
+main.o:
+	$(cc) $(cflags) -c main.cpp -o $(obj_dir)/main.o
 
-cur.o:
-	$(cc) $(cflags) -c main.cpp -o $(root_dir)\$(obj_dir)\cur.o
-
-debug.o:
-	cd debug && $(MAKE)
+out.o: $(obj_dir)/main.o $(obj_dir)/parson.o
+	$(cc) $(cflags) -o $(bin_dir)/out $^
 
 clean:
-	rd  /S/Q $(root_dir)\$(obj_dir)
-	del $(root_dir)\$(bin_dir)\*.exe
+	rd /S/Q $(root_dir)/$(obj_dir)
+	del $(root_dir)/$(bin_dir)/*.exe
 
