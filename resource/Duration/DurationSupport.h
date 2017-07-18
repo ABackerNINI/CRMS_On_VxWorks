@@ -6,7 +6,7 @@
 #include "Duration.h"
 
 inline bool is_default_value(const Duration &res){
-	return false;
+	return true;
 }
 
 inline void set_key_value(JSON_Object *obj,const char *key,const Duration &res){
@@ -17,7 +17,9 @@ inline void set_key_value(JSON_Array *arr,const Duration &res){
 }
 
 inline void get_value(JSON_Object *obj,const char *key,Duration *res){
-	//TODO
+	if(json_object_has_value(obj,key)){
+		//TODO
+	}
 }
 inline void get_value(JSON_Array *arr,size_t index,Duration *res){
 	//TODO

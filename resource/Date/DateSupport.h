@@ -6,7 +6,7 @@
 #include "Date.h"
 
 inline bool is_default_value(const Date &res){
-	return false;
+	return true;
 }
 
 inline void set_key_value(JSON_Object *obj,const char *key,const Date &res){
@@ -17,7 +17,9 @@ inline void set_key_value(JSON_Array *arr,const Date &res){
 }
 
 inline void get_value(JSON_Object *obj,const char *key,Date *res){
-	//TODO
+	if(json_object_has_value(obj,key)){
+		//TODO
+	}
 }
 inline void get_value(JSON_Array *arr,size_t index,Date *res){
 	//TODO

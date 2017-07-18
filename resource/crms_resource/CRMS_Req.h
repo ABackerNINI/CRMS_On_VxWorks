@@ -15,8 +15,7 @@
 class CRMS_Req {
 public:
 	CRMS_Req():
-		ty(DEFAULT_VALUE_INT),
-		/*proxy(DEFAULT_VALUE_BOOL)*/{
+		ty(DEFAULT_VALUE_INT){
 		memset(&proxy,-1,sizeof(bool));
 	}
 

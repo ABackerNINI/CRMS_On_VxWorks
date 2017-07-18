@@ -16,7 +16,7 @@ public:
 	}
 
 	_DEFINE_MEMBER(protected,val,short)
-	
+
 // 	short &get_val() {return val;}
 // 	const short &get_val() const {return val;}
 // 	//GETTER(val)

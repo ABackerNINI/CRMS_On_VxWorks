@@ -15,7 +15,7 @@
 
 #define SUPPORT_ENUMERATION(ENUM) 																			\
 inline bool is_default_value(const ENUM &res){																\
-	return false;																							\
+	return res.get_val() == DEFAULT_VALUE_SHORT;															\
 }																											\
 inline void set_key_value(JSON_Object *obj,const char *key,const ENUM &res){								\
 	json_object_set(obj,key,res.get_val());																	\
@@ -24,7 +24,8 @@ inline void set_key_value(JSON_Array *arr,const ENUM &res){													\
 	json_array_append(arr,res.get_val());																	\
 }																											\
 inline void get_value(JSON_Object *obj,const char *key,ENUM *res){											\
-	res->set_val(json_object_get<short>(obj,key));															\
+	if(json_object_has_value(obj,key))																		\
+		res->set_val(json_object_get<short>(obj,key));														\
 }																											\
 inline void get_value(JSON_Array *arr,size_t index,ENUM *res){												\
 	res->set_val(json_array_get<short>(arr,index));															\
