@@ -22,6 +22,10 @@ test_enum:nJson.o
 	$(cc) $(cflags) -o $(bin_dir)/test_enum test/test_serialization/test_enumeration.cpp $(obj_dir)/nJson.o
 	$(bin_dir)/test_enum.exe
 
+test_req:nJson.o
+	$(cc) $(cflags) -o $(bin_dir)/test_req test/test_serialization/test_req.cpp $(obj_dir)/nJson.o
+	$(bin_dir)/test_req.exe
+
 clean:
 	rd /S/Q $(root_dir)/$(obj_dir)
 	del $(root_dir)/$(bin_dir)/*.exe
