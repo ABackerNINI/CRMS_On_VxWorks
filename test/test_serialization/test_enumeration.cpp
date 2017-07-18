@@ -1,5 +1,6 @@
 
-#include "../../resource/Resource.h"
+#include "../../resource/Serialization.h"
+#include "../../resource/DefMem.h"
 
 struct Foo{
 public:
@@ -43,29 +44,37 @@ public:
 		}
 	}
 
-	CRMS_ConsistencyStrategy &get_cs(){return cs;}
-	CRMS_MemberType &get_mt(){return mt;}
-	CRMS_NodeExecutionState &get_nes(){return nes;}
-	CRMS_Operation &get_o(){return o;}
-	CRMS_ResponseStatusCodeType &get_rsct(){return rsct;}
-	CRMS_ResultContent &get_rc(){return rc;}
-	CRMS_SubscriptionOperation &get_so(){return so;}
-	void set_cs(CRMS_ConsistencyStrategy cs){this->cs=cs;}
-	void set_mt(CRMS_MemberType mt){this->mt=mt;}
-	void set_nes(CRMS_NodeExecutionState nes){this->nes=nes;}
-	void set_o(CRMS_Operation o){this->o=o;}
-	void set_rsct(CRMS_ResponseStatusCodeType rsct){this->rsct=rsct;}
-	void set_rc(CRMS_ResultContent rc){this->rc=rc;}
-	void set_so(CRMS_SubscriptionOperation so){this->so=so;}
+	DEFINE_MEMBER(cs,CRMS_ConsistencyStrategy)
+	DEFINE_MEMBER(mt,CRMS_MemberType)
+	DEFINE_MEMBER(nes,CRMS_NodeExecutionState)
+	DEFINE_MEMBER(o,CRMS_Operation)
+	DEFINE_MEMBER(rsct,CRMS_ResponseStatusCodeType)
+	DEFINE_MEMBER(rc,CRMS_ResultContent)
+	DEFINE_MEMBER(so,CRMS_SubscriptionOperation)
 
-private:
-	CRMS_ConsistencyStrategy		cs;
-	CRMS_MemberType					mt;
-	CRMS_NodeExecutionState			nes;
-	CRMS_Operation 					o;
-	CRMS_ResponseStatusCodeType 	rsct;
-	CRMS_ResultContent 				rc;
-	CRMS_SubscriptionOperation 		so;
+// 	CRMS_ConsistencyStrategy &get_cs(){return cs;}
+// 	CRMS_MemberType &get_mt(){return mt;}
+// 	CRMS_NodeExecutionState &get_nes(){return nes;}
+// 	CRMS_Operation &get_o(){return o;}
+// 	CRMS_ResponseStatusCodeType &get_rsct(){return rsct;}
+// 	CRMS_ResultContent &get_rc(){return rc;}
+// 	CRMS_SubscriptionOperation &get_so(){return so;}
+// 	void set_cs(CRMS_ConsistencyStrategy cs){this->cs=cs;}
+// 	void set_mt(CRMS_MemberType mt){this->mt=mt;}
+// 	void set_nes(CRMS_NodeExecutionState nes){this->nes=nes;}
+// 	void set_o(CRMS_Operation o){this->o=o;}
+// 	void set_rsct(CRMS_ResponseStatusCodeType rsct){this->rsct=rsct;}
+// 	void set_rc(CRMS_ResultContent rc){this->rc=rc;}
+// 	void set_so(CRMS_SubscriptionOperation so){this->so=so;}
+
+// private:
+// 	CRMS_ConsistencyStrategy		cs;
+// 	CRMS_MemberType					mt;
+// 	CRMS_NodeExecutionState			nes;
+// 	CRMS_Operation 					o;
+// 	CRMS_ResponseStatusCodeType 	rsct;
+// 	CRMS_ResultContent 				rc;
+// 	CRMS_SubscriptionOperation 		so;
 };
 
 int main(){
