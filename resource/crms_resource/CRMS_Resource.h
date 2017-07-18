@@ -3,7 +3,8 @@
 #ifndef _CRMS_RESOURCE_RESOURCE_H_
 #define _CRMS_RESOURCE_RESOURCE_H_
 
-#include "../Resource.h"
+#include "../Serialization.h"
+#include "../DefMem.h"
 
 #include "../Date/Date.h"
 #include "../crms_attribute/CRMS_Subscription.h"
@@ -57,35 +58,44 @@ public:
 		}
 	}
 
-	std::string &get_ri(){return ri;}
-	std::string &get_pa(){return pa;}
-	std::string &get_rn(){return rn;}
-	int &get_ty(){return ty;}
-	Date &get_ct(){return ct;}
-	Date &get_lt(){return lt;}
-	std::string &get_onto(){return onto;}
-	std::map<std::string,CRMS_Subscription> &get_subs(){return subs;}
-
-	void set_ri(const std::string &ri){this->ri = ri;}
-	void set_pa(const std::string &pa){this->pa = pa;}
-	void set_rn(const std::string &rn){this->rn = rn;}
-	void set_ty(int ty){this->ty = ty;}
-	void set_ct(const Date &ct){this->ct = ct;}
-	void set_lt(const Date &lt){this->lt = lt;}
-	void set_onto(const std::string &onto){this->onto = onto;}
-	void set_subs(const std::map<std::string,CRMS_Subscription>&subs){this->subs = subs;}
-
 	~CRMS_Resource(){}
 
-private:
-	std::string 								ri;
-	std::string 								pa;
-	std::string 								rn;
-	int											ty;
-	Date										ct;
-	Date										lt;
-	std::string 								onto;
-	std::map<std::string,CRMS_Subscription> 	subs;
+	DEFINE_MEMBER(ri,std::string)
+	DEFINE_MEMBER(pa,std::string)
+	DEFINE_MEMBER(rn,std::string)
+	DEFINE_MEMBER(ty,int)
+	DEFINE_MEMBER(ct,Date)
+	DEFINE_MEMBER(lt,Date)
+	DEFINE_MEMBER(onto,std::string)
+	DEFINE_MEMBER(subs,std::map<std::string,CRMS_Subscription>)
+
+	// std::string &get_ri(){return ri;}
+	// std::string &get_pa(){return pa;}
+	// std::string &get_rn(){return rn;}
+	// int &get_ty(){return ty;}
+	// Date &get_ct(){return ct;}
+	// Date &get_lt(){return lt;}
+	// std::string &get_onto(){return onto;}
+	// std::map<std::string,CRMS_Subscription> &get_subs(){return subs;}
+
+	// void set_ri(const std::string &ri){this->ri = ri;}
+	// void set_pa(const std::string &pa){this->pa = pa;}
+	// void set_rn(const std::string &rn){this->rn = rn;}
+	// void set_ty(int ty){this->ty = ty;}
+	// void set_ct(const Date &ct){this->ct = ct;}
+	// void set_lt(const Date &lt){this->lt = lt;}
+	// void set_onto(const std::string &onto){this->onto = onto;}
+	// void set_subs(const std::map<std::string,CRMS_Subscription>&subs){this->subs = subs;}
+
+// private:
+// 	std::string 								ri;
+// 	std::string 								pa;
+// 	std::string 								rn;
+// 	int											ty;
+// 	Date										ct;
+// 	Date										lt;
+// 	std::string 								onto;
+// 	std::map<std::string,CRMS_Subscription> 	subs;
 };
 
 #endif//_CRMS_RESOURCE_RESOURCE_H_

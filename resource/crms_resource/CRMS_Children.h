@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_CHILDREN_H_
 #define _CRMS_RESOURCE_CHILDREN_H_
 
-#include "../Resource.h"
+#include "../Serialization.h"
 
 class CRMS_Children {
 public:

@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_PRIMITIVE_CONTENT_TYPE_H_
 #define _CRMS_RESOURCE_PRIMITIVE_CONTENT_TYPE_H_
 
-#include "../Resource.h"
+#include "../Serialization.h"
 
 class CRMS_PrimitiveContentType {
 public:

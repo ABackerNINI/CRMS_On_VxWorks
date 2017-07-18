@@ -3,7 +3,8 @@
 #ifndef _CRMS_RESOURCE_REQ_H_
 #define _CRMS_RESOURCE_REQ_H_
 
-#include "../Resource.h"
+#include "../Serialization.h"
+#include "../DefMem.h"
 
 #include "CRMS_PrimitiveContentType.h"
 #include "../crms_enumeration/CRMS_Operation.h"
@@ -92,24 +93,42 @@ public:
 	~CRMS_Req(){
 	}
 
-private:
-	CRMS_Operation					op;
-	std::string						to;
-	std::string						fr;
-	std::string						rqi;
-	int								ty;
-	std::string						rn;
-	CRMS_PrimitiveContentType 		pc;
-	Date							ot;
-	Date							rqet;
-	Date							rset;
-	Date							oet;
-	CRMS_ResultContent				rcn;
-	std::string						da;
-	std::string						gid;
-	CRMS_FilterCriteria				fc;
-	CRMS_SubscriptionOperation 		so;
-	bool							proxy;
+	DEFINE_MEMBER(op,CRMS_Operation)
+	DEFINE_MEMBER(to,std::string)
+	DEFINE_MEMBER(fr,std::string)
+	DEFINE_MEMBER(rqi,std::string)
+	DEFINE_MEMBER(ty,int)
+	DEFINE_MEMBER(rn,std::string)
+	DEFINE_MEMBER(pc,CRMS_PrimitiveContentType)
+	DEFINE_MEMBER(ot,Date)
+	DEFINE_MEMBER(rqet,Date)
+	DEFINE_MEMBER(rset,Date)
+	DEFINE_MEMBER(oet,Date)
+	DEFINE_MEMBER(rcn,CRMS_ResultContent)
+	DEFINE_MEMBER(da,std::string)
+	DEFINE_MEMBER(gid,std::string)
+	DEFINE_MEMBER(fc,CRMS_FilterCriteria)
+	DEFINE_MEMBER(so,CRMS_SubscriptionOperation)
+	DEFINE_MEMBER(proxy,bool)
+
+// private:
+// 	CRMS_Operation					op;
+// 	std::string						to;
+// 	std::string						fr;
+// 	std::string						rqi;
+// 	int								ty;
+// 	std::string						rn;
+// 	CRMS_PrimitiveContentType 		pc;
+// 	Date							ot;
+// 	Date							rqet;
+// 	Date							rset;
+// 	Date							oet;
+// 	CRMS_ResultContent				rcn;
+// 	std::string						da;
+// 	std::string						gid;
+// 	CRMS_FilterCriteria				fc;
+// 	CRMS_SubscriptionOperation 		so;
+// 	bool							proxy;
 };
 
 #endif//_CRMS_RESOURCE_REQ_H_

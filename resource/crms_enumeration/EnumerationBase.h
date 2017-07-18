@@ -4,13 +4,7 @@
 #define _CRMS_RESOURCE_ENUMERATION_ENUMERATION_BASE_H_
 
 #include "../../utility/nJson/DEF.h"
-
-#define GETTER(M) 				\
-template<typename _T>			\
-const _T &get_##M() const {		\
-	return M;					\
-}
-
+#include "../DefMem.h"
 
 struct EnumerationBase {
 public:
@@ -21,13 +15,15 @@ public:
 		this->val=(short)val;
 	}
 
-	short &get_val() {return val;}
-	const short &get_val() const {return val;}
-	//GETTER(val)
-	void set_val(short val){this->val=val;}
+	_DEFINE_MEMBER(protected,val,short)
+	
+// 	short &get_val() {return val;}
+// 	const short &get_val() const {return val;}
+// 	//GETTER(val)
+// 	void set_val(short val){this->val=val;}
 
-protected:
-	short val;
+// protected:
+// 	short val;
 };
 
 #endif//_CRMS_RESOURCE_ENUMERATION_ENUMERATION_BASE_H_

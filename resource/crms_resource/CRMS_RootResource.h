@@ -3,7 +3,8 @@
 #ifndef _CRMS_RESOURCE_ROOT_RESOURCE_H_
 #define _CRMS_RESOURCE_ROOT_RESOURCE_H_
 
-#include "../Resource.h"
+#include "../Serialization.h"
+#include "../DefMem.h"
 
 #include "CRMS_Resource.h"
 #include "CRMS_Children.h"
@@ -42,8 +43,10 @@ public:
 	~CRMS_RootResource(){
 	}
 
-private:
-	CRMS_Children					children;
+	DEFINE_MEMBER(children,CRMS_Children)
+
+// private:
+// 	CRMS_Children					children;
 };
 
 #endif//_CRMS_RESOURCE_ROOT_RESOURCE_H_
