@@ -6,7 +6,7 @@
 #include "../Serialization.h"
 #include "../DefMem.h"
 
-#include "../Duration/Duration.h"
+#include "../../utility/DateTime/Duration.h"
 
 class CRMS_BatchNotify {
 public:

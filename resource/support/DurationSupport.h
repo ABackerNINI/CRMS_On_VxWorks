@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_DURATION_SUPPORT_H_
 #define _CRMS_RESOURCE_DURATION_SUPPORT_H_
 
-#include "Duration.h"
+#include "../../utility/DateTime/Duration.h"
 
 inline bool is_default_value(const Duration &res){
 	return true;

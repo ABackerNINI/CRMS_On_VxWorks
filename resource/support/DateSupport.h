@@ -3,26 +3,30 @@
 #ifndef _CRMS_RESOURCE_DATE_SUPPORT_H_
 #define _CRMS_RESOURCE_DATE_SUPPORT_H_
 
-#include "Date.h"
+#include "../../utility/DateTime/Date.h"
 
 inline bool is_default_value(const Date &res){
-	return true;
+	return res.isUninitialized();
 }
 
 inline void set_key_value(JSON_Object *obj,const char *key,const Date &res){
-	json_object_set(obj,key,"");//TODO
+	json_object_set(obj,key,res.to_string().c_str());
 }
 inline void set_key_value(JSON_Array *arr,const Date &res){
-	json_array_append(arr,"");//TODO
+	json_array_append(arr,res.to_string().c_str());
 }
 
 inline void get_value(JSON_Object *obj,const char *key,Date *res){
 	if(json_object_has_value(obj,key)){
-		//TODO
+		const char *s;
+		s = json_object_get<const char *>(obj,key);
+		*res = Date(s);
 	}
 }
 inline void get_value(JSON_Array *arr,size_t index,Date *res){
-	//TODO
+	const char *s;
+	s = json_array_get<const char *>(arr,index);
+	*res = Date(s);
 }
 
 #endif//_CRMS_RESOURCE_DATE_SUPPORT_H_

@@ -6,7 +6,7 @@
 #include "../Serialization.h"
 #include "../DefMem.h"
 
-#include "../Date/Date.h"
+#include "../../utility/DateTime/Date.h"
 #include "../crms_attribute/CRMS_BatchNotify.h"
 // #include "../crms_enumeration/CRMS_SubscriptionEventType.h"
 // #include "../crms_enumeration/CRMS_NotificationContentType.h"
@@ -36,7 +36,7 @@ public:
 				// SET(nct);
 				SET(cr);
 				SET(su);
-			} else {				
+			} else {
 				SET_IF_KEY(ri)
 				SET_IF_KEY(id)
 				SET_IF_KEY(ct)
@@ -60,7 +60,7 @@ public:
 	}
 	void deserialize(JSON_Value *_doc_){
 		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-		{				
+		{
 			GET(ri);
 			GET(id);
 			GET(ct);

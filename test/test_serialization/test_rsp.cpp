@@ -6,16 +6,14 @@ int main(){
 
 	CRMS_Rsp Res;
 	{
-		Res.set_cs(1);
-		Res.set_mt(1);
-		Res.set_nes(1);
-		Res.set_o(1);
-		Res.set_rsct(1);
-		Res.set_rc(1);
-		Res.set_so(1);
-
-		Res.set_cs(CRMS_ConsistencyStrategy::ABANDON_GROUP);
+		Res.set_to("rsp_to");
+		Res.set_fr("rsp_fr");
+		Res.set_rqi("rsp_rqi");
+		Res.set_ot(DateTime::now());
+		Res.set_rsc(CRMS_ResponseStatusCodeType::Success);
 	}
+
+	printf("%s\n", DateTime::now().to_string().c_str());
 
 	const char *s = serialize(Res,NULL);
 	{

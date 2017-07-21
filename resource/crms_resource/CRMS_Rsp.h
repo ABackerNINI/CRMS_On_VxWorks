@@ -6,7 +6,7 @@
 #include "../Serialization.h"
 #include "../DefMem.h"
 
-#include "../Date/Date.h"
+#include "../../utility/DateTime/Date.h"
 #include "CRMS_PrimitiveContentType.h"
 #include "../crms_enumeration/CRMS_ResponseStatusCodeType.h"
 
@@ -16,8 +16,6 @@ public:
 	}
 
 	bool serialize(JSON_Value *_doc_,const char *_key_ = NULL) const {
-		SERIALIZE_SUPER_CLASS(CRMS_Resource);
-
 		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
 			if(_key_==NULL){
@@ -45,8 +43,6 @@ public:
 		return true;
 	}
 	void deserialize(JSON_Value *_doc_){
-		DESERIALIZE_SUPER_CLASS(CRMS_Resource);
-
 		JSON_Object *_root_obj_ = json_value_get_object(_doc_);
 		{
 			GET(to);

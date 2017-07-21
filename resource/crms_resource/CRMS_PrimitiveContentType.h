@@ -7,7 +7,8 @@
 
 class CRMS_PrimitiveContentType {
 public:
-	CRMS_PrimitiveContentType(){
+	CRMS_PrimitiveContentType():
+		foo(DEFAULT_VALUE_INT){
 	}
 
 	bool serialize(JSON_Value *_doc_,const char *_key_ = NULL) const {
