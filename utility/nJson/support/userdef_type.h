@@ -39,7 +39,8 @@ inline void set_key_value(JSON_Array *arr,const _T &res){
 
 template<typename _T>
 inline void get_value(JSON_Object *obj,const char *key,_T *res){
-	res->deserialize(json_object_get_value(obj,key));
+	if(json_object_has_value(obj,key))
+		res->deserialize(json_object_get_value(obj,key));
 }
 template<typename _T>
 inline void get_value(JSON_Array *arr,size_t index,_T *res){

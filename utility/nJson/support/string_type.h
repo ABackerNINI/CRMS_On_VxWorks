@@ -41,9 +41,11 @@ inline void set_key_value(JSON_Array *arr,const std::string &val){
 
 /*get_value*/
 inline void get_value(JSON_Object *obj,const char *key,std::string *val){
-	const char *s;
-	s = json_object_get<const char *>(obj,key);
-	if(s)*val = s;
+	if(json_object_has_value(obj,key)){
+		const char *s;
+		s = json_object_get<const char *>(obj,key);
+		if(s)*val = s;
+	}
 }
 inline void	get_value(JSON_Array *arr,size_t index,std::string *val){
 	const char *s;
