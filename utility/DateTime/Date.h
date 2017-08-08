@@ -82,7 +82,7 @@ inline unsigned long long GetCpuCycleCount() {
 	    tm.tm_sec     = wtm.wSecond;
 	    tm. tm_isdst    = -1;
 	    clock = mktime(&tm);
-	    tp->tv_sec = clock;
+	    tp->tv_sec = (long)clock;
 	    tp->tv_usec = wtm.wMilliseconds * 1000;
 
 	    return 0;
@@ -143,12 +143,12 @@ public:
 #endif
 
     //DateTime formate is like "2016-09-17T16:55:42.403+08:00 42345677345234234"
-    //or ellipsis last one or two or three like "2014/4/30 20:55:25"
+    //or ellipsis last one or two or three like "2014-4-30T20:55:25"
     DateTime(const std::string &dateTime) {
         DateTime(dateTime.c_str());
     }
 
-    DateTime(/*_UNSAFE*/ const char *dateTime) {
+    DateTime(const char *dateTime) {
         tm time;
         int millisec = 0, microsec = 0;
         unsigned long long cpuCycleCount = 0;
@@ -159,7 +159,7 @@ public:
         time.tm_mon -= 1;
         time.tm_isdst = -1;
 
-        this->dateTime = (mktime(&time) * 1000 + millisec);
+        this->dateTime = ((unsigned long long)mktime(&time) * 1000 + millisec);
 #if (FEATURE_GET_CPU_CYCLE_COUNT)
         this->cpuCycleCount = cpuCycleCount;
 #endif
@@ -174,15 +174,22 @@ public:
 #if defined(__unix__)
         struct timeval t;
         gettimeofday(&t, NULL);
-        dateTime.dateTime = time(NULL) * 1000 + t.tv_usec / 1000;
+        dateTime.dateTime = (unsigned long long)time(NULL) * 1000 + t.tv_usec / 1000;
 #elif defined(_WIN32)
         struct timeval t;
 		gettimeofday(&t,NULL);
-		dateTime.dateTime = (long long)time(NULL) * 1000 + t.tv_usec / 1000;
-		printf("%d\n", time(NULL));
+		dateTime.dateTime = (unsigned long long)time(NULL) * 1000 + t.tv_usec / 1000;
 #endif
 
         return dateTime;
+    }
+
+    bool isUninitialized() const {
+        return dateTime == DEFAULT_DATETIME_DATETIME
+#if (FEATURE_GET_CPU_CYCLE_COUNT)
+       	&& cpuCycleCount == DEFAULT_DATETIME_CPUCYCLECOUNT
+#endif
+        ;
     }
 
     //return time interval in micro second,if>0 means dateTime1 is after dateTime2
@@ -216,77 +223,69 @@ public:
 //        return diffTime(*this, dateTime) == 0 && cpuCycleCount == dateTime.cpuCycleCount;
 //    }
 
-    bool isUninitialized() const {
-#if (FEATURE_GET_CPU_CYCLE_COUNT)
-        return dateTime == DEFAULT_DATETIME_DATETIME && cpuCycleCount == DEFAULT_DATETIME_CPUCYCLECOUNT;
-#else
-        return dateTime == DEFAULT_DATETIME_DATETIME;
-#endif
+    std::string to_string_with_milli_sec() const {
+        if (isUninitialized())return std::string();
+
+        time_t _dateTime = dateTime / 1000;
+        tm t = *localtime(&_dateTime);
+        
+        char dateTime[30];
+        sprintf(dateTime, "%d-%02d-%02dT%02d:%02d:%02d.%03d%s", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour,
+                t.tm_min, t.tm_sec, int(this->dateTime % 1000), get_local_timezone().c_str());
+
+        return std::string(dateTime);
     }
 
-//    std::string toString_with_sec() const {
+    std::string to_string() const {
+        return to_string_with_milli_sec();
+    }
+
+//    std::string to_string_with_sec() const {
 //        time_t _dateTime = dateTime / 1000;
 //        tm t = *localtime(&_dateTime);
-//
+
 //        char dateTime[30];
 //        sprintf(dateTime, "%d/%02d/%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min,
 //                t.tm_sec);
-//
+
 //        return std::string(dateTime);
 //    }
-//
-//    std::string toString_with_date() const {
+
+//    std::string to_string_with_date() const {
 //        time_t _dateTime = dateTime / 1000;
 //        tm t = *localtime(&_dateTime);
-//
+
 //        char dateTime[30];
 //        sprintf(dateTime, "%d-%02d-%02dT%02d:%02d:%02d+08:00", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour,
 //                t.tm_min, t.tm_sec);
 //        return std::string(dateTime);
 //    }
 
-    std::string toString_with_milli_sec() const {
-        if (isUninitialized())return std::string();
-
-        time_t _dateTime = dateTime / 1000;
-        printf("2 %d\n",_dateTime);
-        tm t = *localtime(&_dateTime);
-        std::string timezone = get_timezone();
-
-        char dateTime[30];
-        sprintf(dateTime, "%d-%02d-%02dT%02d:%02d:%02d.%03d%s", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour,
-                t.tm_min, t.tm_sec, int(this->dateTime % 1000), timezone.c_str());
-
-        return std::string(dateTime);
-    }
-
-    std::string to_string() const {
-        return toString_with_milli_sec();
-    }
-
-//    std::string toString_with_micro_sec() const {
+//    std::string to_string_with_micro_sec() const {
 //        time_t _dateTime = dateTime / 1000000;
 //        tm t = *localtime(&_dateTime);
-//
+
 //        char dateTime[30];
 //        sprintf(dateTime, "%d-%02d-%02dT%02d:%02d:%02d.%03d.%03d+08:00", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
 //                t.tm_hour,
 //                t.tm_min, t.tm_sec, int((this->dateTime % 1000000) / 1000), int(this->dateTime % 1000));
-//
+
 //        return std::string(dateTime);
 //    }
-//
-//    std::string toString_with_cpu_cycle_count() const {
+
+// #if(FEATURE_GET_CPU_CYCLE_COUNT)
+//    std::string to_string_with_cpu_cycle_count() const {
 //        time_t _dateTime = dateTime / 1000000;
 //        tm t = *localtime(&_dateTime);
-//
+
 //        char dateTime[50];
 //        sprintf(dateTime, "%d-%02d-%02dT%02d:%02d:%02d.%03d.%03d+08:00 %llu", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
 //                t.tm_hour,
 //                t.tm_min, t.tm_sec, int((this->dateTime % 1000000) / 1000), int(this->dateTime % 1000), cpuCycleCount);
-//
+
 //        return std::string(dateTime);
 //    }
+// #endif
 
     void getFormat(/*in*/  tmFormat *format) const {
         time_t _dateTime = (time_t) dateTime / 1000;
@@ -310,7 +309,7 @@ public:
 #endif
     }
 
-    const std::string &get_timezone() const {
+    const std::string &get_local_timezone() const {
         static std::string timezone_string;
 
         if (timezone_string.empty()) {
@@ -322,8 +321,9 @@ public:
             time_t LOC_time = mktime(&LOC_tm);
             time_t UTC_time = mktime(&UTC_tm);
 
-            auto timezone = (LOC_time - UTC_time) / 3600;
-            timezone_string = DateTime::to_string(timezone);
+            unsigned long long timezone = (LOC_time - UTC_time) / 3600;
+            char tmp[10];
+            timezone_string = itoa((int)timezone,tmp,10);
             if (timezone >= 0) timezone_string = "+0" + timezone_string + ":00";
             else {
                 timezone_string.insert(1, "0");
@@ -335,41 +335,7 @@ public:
     }
 
 private:
-
-    template<class _Ty>
-    static std::string to_string(_Ty _Val,
-                                 typename std::enable_if<std::is_arithmetic<_Ty>::value &&
-                                                         std::is_integral<_Ty>::value &&
-                                                         std::is_signed<_Ty>::value, _Ty>::type _T = 0) {
-        if (_Val == 0)return "0";
-
-        char _Tmp[33];
-        char *_Tp = _Tmp;
-        bool sign = false;
-        _Ty _V = _Val < 0 ? (_Ty) (-_Val) : _Val;
-
-        if (_Val < 0) {
-            sign = true;
-        }
-
-        while (_V) {
-            *(_Tp++) = (char) (_V % 10 + '0');
-            _V /= 10;
-        }
-
-        if (sign)*(_Tp++) = '-';
-
-        *_Tp = '\0';
-
-        --_Tp;
-        for (char *_Sp = _Tmp; _Tp > _Sp; ++_Sp, --_Tp) {
-            std::swap(*_Sp, *_Tp);
-        }
-
-        return std::string(_Tmp);
-    }
-
-    unsigned long long dateTime;                    //second * 1000
+    unsigned long long dateTime;                    //second * 1000 + msec
 
 #if (FEATURE_GET_CPU_CYCLE_COUNT)
     unsigned long long cpuCycleCount;
@@ -380,15 +346,3 @@ typedef DateTime Date;
 typedef DateTime LocalDateTime;
 
 #endif//_ABACKER_TIME_H_
-
-
-//long GetCPUFreq()//in MHZ
-//{
-//	unsigned __int64 start1, start2;
-//	_asm rdtsc
-//	_asm mov start1, eax
-//
-//	_asm rdtsc
-//	_asm mov start2, eax
-//	return ((start2 - start1) / 50) / (1024);
-//}
