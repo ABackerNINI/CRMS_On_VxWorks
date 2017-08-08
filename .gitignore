@@ -1,3 +1,9 @@
+debug
 debug/obj
 *.o
 *.exe
+
+#vs
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
