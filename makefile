@@ -18,7 +18,7 @@ nJson.o:
 
 main.o:
 	$(cc) $(cflags) -c main.cpp -o $(obj_dir)/main.o
-	
+
 out.o: $(obj_dir)/main.o $(obj_dir)/nJson.o
 	$(cc) $(cflags) -o $(bin_dir)/out $^
 
