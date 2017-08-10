@@ -4,7 +4,7 @@
 #include <list>
 #include <string>
 #include <string.h>
-#include "resource/crms_resource/CRMS_RootResource.h"
+#include "protocol/resource/crms_resource/CRMS_RootResource.h"
 
 int main(){
 	printf("debug begin\n");

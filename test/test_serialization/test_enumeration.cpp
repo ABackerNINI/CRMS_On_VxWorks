@@ -1,6 +1,6 @@
 
-#include "../../resource/Serialization.h"
-#include "../../resource/DefMem.h"
+#include "../../protocol/resource/Serialization.h"
+#include "../../protocol/resource/DefMem.h"
 
 struct Foo{
 public:

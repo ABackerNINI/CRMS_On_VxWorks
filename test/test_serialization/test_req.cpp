@@ -1,5 +1,5 @@
 
-#include "../../resource/crms_resource/CRMS_Req.h"
+#include "../../protocol/resource/crms_resource/CRMS_Req.h"
 
 int main(){
 	printf("debug begin\n");
