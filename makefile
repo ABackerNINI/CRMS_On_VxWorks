@@ -1,5 +1,5 @@
 cc=g++
-cflags='-std=gnu++0x'
+cflags=-std=gnu++0x -g
 root_dir=$(shell pwd)
 obj_dir=debug/obj
 bin_dir=debug
