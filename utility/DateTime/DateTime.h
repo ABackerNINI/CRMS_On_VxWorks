@@ -228,7 +228,7 @@ public:
 
         time_t _dateTime = dateTime / 1000;
         tm t = *localtime(&_dateTime);
-        
+
         char dateTime[30];
         sprintf(dateTime, "%d-%02d-%02dT%02d:%02d:%02d.%03d%s", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour,
                 t.tm_min, t.tm_sec, int(this->dateTime % 1000), get_local_timezone().c_str());
@@ -341,8 +341,5 @@ private:
     unsigned long long cpuCycleCount;
 #endif
 };
-
-typedef DateTime Date;
-typedef DateTime LocalDateTime;
 
 #endif//_ABACKER_TIME_H_
