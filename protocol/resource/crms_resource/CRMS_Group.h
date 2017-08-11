@@ -68,13 +68,13 @@ public:
 	}
 
 	DEFINE_MEMBER(mt, CRMS_MemberType)
-	DEFINE_MEMBER(cnm, int)
-	DEFINE_MEMBER(mnm, int)
-	DEFINE_MEMBER(mid, std::list<std::string>)
-	DEFINE_MEMBER(mtv, bool)
+	DEFINE_MEMBER(cnm, _INT)
+	DEFINE_MEMBER(mnm, _INT)
+	DEFINE_MEMBER(mid, _LIST<_STRING>)
+	DEFINE_MEMBER(mtv, _BOOL)
 	DEFINE_MEMBER(csy,CRMS_ConsistencyStrategy)
-	DEFINE_MEMBER(gn,std::string)
-	DEFINE_MEMBER(cr,std::string)
+	DEFINE_MEMBER(gn,_STRING)
+	DEFINE_MEMBER(cr,_STRING)
 };
 
 #endif//_CRMS_RESOURCE_GROUP_H_

@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_DEF_H_
 #define _CRMS_RESOURCE_DEF_H_
 
-#include "AttributeType.h"
+#include "Type.h"
 #include "Serialization.h"
 #include "DefMem.h"
 

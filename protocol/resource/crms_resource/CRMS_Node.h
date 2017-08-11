@@ -55,10 +55,10 @@ public:
 	~CRMS_Node() {
 	}
 
-	DEFINE_MEMBER(desc, std::string)
-	DEFINE_MEMBER(params, std::string)//Object
-	DEFINE_MEMBER(nno, std::string)
-	DEFINE_MEMBER(re, std::string)//Object
+	DEFINE_MEMBER(desc, _STRING)
+	DEFINE_MEMBER(params, _STRING)//Object
+	DEFINE_MEMBER(nno, _STRING)
+	DEFINE_MEMBER(re, _STRING)//Object
 	DEFINE_MEMBER(st, CRMS_NodeExecutionState)
 };
 

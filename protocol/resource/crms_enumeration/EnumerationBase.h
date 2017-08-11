@@ -5,6 +5,7 @@
 
 #include "../../../utility/nJson/DEF.h"
 #include "../DefMem.h"
+#include "../Type.h"
 
 struct EnumerationBase {
 public:
@@ -12,18 +13,10 @@ public:
 		val(DEFAULT_VALUE_SHORT){
 		}
 	EnumerationBase(int val){
-		this->val=(short)val;
+		this->val=(_SHORT)val;
 	}
 
-	_DEFINE_MEMBER(protected,val,short)
-
-// 	short &get_val() {return val;}
-// 	const short &get_val() const {return val;}
-// 	//GETTER(val)
-// 	void set_val(short val){this->val=val;}
-
-// protected:
-// 	short val;
+	_DEFINE_MEMBER(protected,val,_SHORT)
 };
 
 #endif//_CRMS_RESOURCE_ENUMERATION_ENUMERATION_BASE_H_

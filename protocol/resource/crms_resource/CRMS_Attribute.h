@@ -47,9 +47,9 @@ public:
 	~CRMS_Attribute(){
 	}
 
-	DEFINE_MEMBER(nm,std::string)
-	DEFINE_MEMBER(ro,bool)
-	DEFINE_MEMBER(data,std::string)
+	DEFINE_MEMBER(nm,_STRING)
+	DEFINE_MEMBER(ro,_BOOL)
+	DEFINE_MEMBER(data,_STRING)
 };
 
 #endif//_CRMS_RESOURCE_ATTRIBUTE_H_

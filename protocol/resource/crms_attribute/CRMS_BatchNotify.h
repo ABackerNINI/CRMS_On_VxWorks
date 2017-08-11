@@ -5,6 +5,8 @@
 
 #include "../DEF.h"
 
+#include "../../../utility/DateTime/Duration.h"
+
 class CRMS_BatchNotify {
 public:
 	CRMS_BatchNotify():
@@ -39,8 +41,8 @@ public:
 	~CRMS_BatchNotify(){
 	}
 
-	DEFINE_MEMBER(num,int)
-	DEFINE_MEMBER(dur,Duration)
+	DEFINE_MEMBER(num,_INT)
+	DEFINE_MEMBER(dur,_DURATION)
 };
 
 #endif//_CRMS_RESOURCE_ATTRIBUTE_BATCH_NOTIFY_H_

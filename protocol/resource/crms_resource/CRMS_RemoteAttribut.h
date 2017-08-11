@@ -50,9 +50,9 @@ public:
 	~CRMS_RemoteAttribute() {
 	}
 
-	DEFINE_MEMBER(rm, int)
-	DEFINE_MEMBER(rri, std::string)
-	DEFINE_MEMBER(proxy, bool)
+	DEFINE_MEMBER(rm, _INT)
+	DEFINE_MEMBER(rri, _STRING)
+	DEFINE_MEMBER(proxy, _BOOL)
 };
 
 #endif//_CRMS_RESOURCE_REMOTE_ATTRIBUTE_H_

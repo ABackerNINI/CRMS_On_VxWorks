@@ -78,19 +78,19 @@ public:
 	~CRMS_Subscription(){
 	}
 
-	DEFINE_MEMBER(ri,std::string)
-	DEFINE_MEMBER(id,int)
-	DEFINE_MEMBER(ct,Date)
+	DEFINE_MEMBER(ri,_STRING)
+	DEFINE_MEMBER(id,_INT)
+	DEFINE_MEMBER(ct,_DATETIME)
 	// DEFINE_MEMBER(ety,std::list<CRMS_SubscriptionEventType>)
-	DEFINE_MEMBER(exc,int)
-	DEFINE_MEMBER(nu,std::list<std::string>)
-	DEFINE_MEMBER(nfu,std::list<std::string>)
-	DEFINE_MEMBER(gi,std::string)
+	DEFINE_MEMBER(exc,_INT)
+	DEFINE_MEMBER(nu,_LIST<_STRING>)
+	DEFINE_MEMBER(nfu,_LIST<_STRING>)
+	DEFINE_MEMBER(gi,_STRING)
 	DEFINE_MEMBER(bn,CRMS_BatchNotify)
-	DEFINE_MEMBER(ln,bool)
+	DEFINE_MEMBER(ln,_BOOL)
 	// DEFINE_MEMBER(nct,CRMS_NotificationContentType)
-	DEFINE_MEMBER(cr,std::string)
-	DEFINE_MEMBER(su,std::string)
+	DEFINE_MEMBER(cr,_STRING)
+	DEFINE_MEMBER(su,_STRING)
 };
 
 #endif//_CRMS_RESOURCE_ATTRIBUTE_SUBSCRIPTION_H_

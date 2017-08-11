@@ -54,10 +54,10 @@ public:
 	~CRMS_RemoteResouceObject() {
 	}
 
-	DEFINE_MEMBER(rm, int)
-	DEFINE_MEMBER(rri, std::string)
-	DEFINE_MEMBER(alive, bool)
-	DEFINE_MEMBER(proxy, bool)
+	DEFINE_MEMBER(rm, _INT)
+	DEFINE_MEMBER(rri, _STRING)
+	DEFINE_MEMBER(alive, _BOOL)
+	DEFINE_MEMBER(proxy, _BOOL)
 };
 
 #endif//_CRMS_RESOURCE_REMOTE_RESOURCE_OBJECT_H_

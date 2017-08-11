@@ -10,15 +10,15 @@ public:
 	CRMS_MemberType(){}
 	CRMS_MemberType(int val){this->val=val;}
 
-	static const short rootResource 			= 1;
-	static const short resourceObject  			= 2;
-	static const short attribute	  			= 3;
-	static const short command	  				= 4;
-	static const short node	  					= 5;
-	static const short group	  				= 6;
-	static const short remoteResourceObject		= 7;
-	static const short remoteAttribute	  		= 8;
-	static const short remoteCommand	  		= 9;
+	static const _SHORT rootResource 			= 1;
+	static const _SHORT resourceObject  		= 2;
+	static const _SHORT attribute	  			= 3;
+	static const _SHORT command	  				= 4;
+	static const _SHORT node	  				= 5;
+	static const _SHORT group	  				= 6;
+	static const _SHORT remoteResourceObject	= 7;
+	static const _SHORT remoteAttribute	  		= 8;
+	static const _SHORT remoteCommand	  		= 9;
 };
 
 #endif//_CRMS_RESOURCE_ENUMERATION_MEMBER_TYPE_H_

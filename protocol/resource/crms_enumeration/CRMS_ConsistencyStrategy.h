@@ -10,9 +10,9 @@ public:
 	CRMS_ConsistencyStrategy(){}
 	CRMS_ConsistencyStrategy(int val){this->val=val;}
 
-	static const short ABANDON_MEMBER = 1;
-	static const short ABANDON_GROUP  = 2;
-	static const short MODIFY_TYPE	  = 3;
+	static const _SHORT ABANDON_MEMBER 	= 1;
+	static const _SHORT ABANDON_GROUP  	= 2;
+	static const _SHORT MODIFY_TYPE	  	= 3;
 };
 
 #endif//_CRMS_RESOURCE_ENUMERATION_CONSISTENCY_STRATEGY_H_

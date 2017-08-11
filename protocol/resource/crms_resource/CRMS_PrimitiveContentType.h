@@ -38,8 +38,8 @@ public:
 	~CRMS_PrimitiveContentType(){
 	}
 
-	DEFINE_MEMBER(value, std::string)
-	DEFINE_MEMBER(type, std::string)
+	DEFINE_MEMBER(value, _STRING)
+	DEFINE_MEMBER(type, _STRING)
 };
 
 #endif//_CRMS_RESOURCE_PRIMITIVE_CONTENT_TYPE_H_

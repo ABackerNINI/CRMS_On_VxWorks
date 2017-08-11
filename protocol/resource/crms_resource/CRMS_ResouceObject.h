@@ -42,7 +42,7 @@ public:
 	~CRMS_ResourceObject(){
 	}
 
-	DEFINE_MEMBER(children,std::list<CRMS_ChildResourceRef>)
+	DEFINE_MEMBER(children,_LIST<CRMS_ChildResourceRef>)
 };
 
 #endif//_CRMS_RESOURCE_RESOURCE_OBJECT_H_

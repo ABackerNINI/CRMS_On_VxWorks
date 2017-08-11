@@ -5,6 +5,7 @@
 
 #include "../DEF.h"
 
+#include "../../../utility/DateTime/DateTime.h"
 #include "CRMS_PrimitiveContentType.h"
 #include "../crms_enumeration/CRMS_ResponseStatusCodeType.h"
 
@@ -56,12 +57,12 @@ public:
 	~CRMS_Rsp(){
 	}
 
-	DEFINE_MEMBER(to,std::string)
-	DEFINE_MEMBER(fr,std::string)
-	DEFINE_MEMBER(rqi,std::string)
+	DEFINE_MEMBER(to,_STRING)
+	DEFINE_MEMBER(fr,_STRING)
+	DEFINE_MEMBER(rqi,_STRING)
 	DEFINE_MEMBER(pc,CRMS_PrimitiveContentType)
-	DEFINE_MEMBER(ot,Date)
-	DEFINE_MEMBER(rset,Date)
+	DEFINE_MEMBER(ot,_DATETIME)
+	DEFINE_MEMBER(rset,_DATETIME)
 	DEFINE_MEMBER(rsc,CRMS_ResponseStatusCodeType)
 };
 

@@ -9,9 +9,9 @@ struct CRMS_SubscriptionOperation : public EnumerationBase {
 	CRMS_SubscriptionOperation(){}
 	CRMS_SubscriptionOperation(int val){this->val=val;}
 
-	static const short Create = 1;
-	static const short Update = 2;
-	static const short Delete = 3;
+	static const _SHORT Create = 1;
+	static const _SHORT Update = 2;
+	static const _SHORT Delete = 3;
 };
 
 #endif//_CRMS_RESOURCE_ENUMERATION_SUBSCRIPTION_OPERATION_H_

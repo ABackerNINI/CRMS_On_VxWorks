@@ -48,9 +48,9 @@ public:
 	~CRMS_Command(){
 	}
 
-	DEFINE_MEMBER(desc,std::string)
-	DEFINE_MEMBER(con,std::string)
-	DEFINE_MEMBER(children,std::list<CRMS_ChildResourceRef>)
+	DEFINE_MEMBER(desc,_STRING)
+	DEFINE_MEMBER(con,_STRING)
+	DEFINE_MEMBER(children,_LIST<CRMS_ChildResourceRef>)
 };
 
 #endif//_CRMS_RESOURCE_COMMAND_H_

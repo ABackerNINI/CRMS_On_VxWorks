@@ -43,9 +43,9 @@ public:
 	}
 
 private:
-	DEFINE_MEMBER(v,std::string)
-	DEFINE_MEMBER(ty,int)
-	DEFINE_MEMBER(rn,std::string)
+	DEFINE_MEMBER(v,_STRING)
+	DEFINE_MEMBER(ty,_INT)
+	DEFINE_MEMBER(rn,_STRING)
 };
 
 #endif//_CRMS_RESOURCE_CHILD_RESOURCE_REF_H_

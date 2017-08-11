@@ -21,13 +21,13 @@ public:
 			if (_key_ == NULL) {
 				SET(desc);
 				SET(columns);
-				SET(con, std::list<std::map<std::string);
+				SET(con);
 				SET(count);
 			}
 			else {
 				SET_IF_KEY(desc)
 				SET_IF_KEY(columns)
-				SET_IF_KEY(con, std::list<std::map<std::string)
+				SET_IF_KEY(con)
 				SET_IF_KEY(count)
 				{
 					return false;
@@ -44,7 +44,7 @@ public:
 		{
 			GET(desc);
 			GET(columns);
-			GET(con, std::list<std::map<std::string);
+			GET(con);
 			GET(count);
 		}
 	}
@@ -52,10 +52,10 @@ public:
 	~CRMS_DataTable() {
 	}
 
-	DEFINE_MEMBER(desc, std::string)
-	DEFINE_MEMBER(columns, std::list<std::string>)
-	DEFINE_MEMBER(con, std::list<std::map<std::string,std::string>)//std::list<std::map<std::string,Object>
-	DEFINE_MEMBER(count, int)
+	DEFINE_MEMBER(desc, _STRING)
+	DEFINE_MEMBER(columns, _LIST<_STRING>)
+	DEFINE_MEMBER(con, _LIST<_MAP<_STRING,_STRING>)//std::list<std::map<_STRING,Object>
+	DEFINE_MEMBER(count, _INT)
 };
 
 #endif//_CRMS_RESOURCE_DATA_TABLE_H_
