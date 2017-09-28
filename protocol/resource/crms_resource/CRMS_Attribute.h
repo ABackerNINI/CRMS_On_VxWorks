@@ -58,7 +58,7 @@ namespace crms {
 
                 DEFINE_MEMBER(ro, _BOOL)
 
-                DEFINE_MEMBER(data, _STRING)
+                DEFINE_MEMBER(data, _STRING)////mark:byte[]
                 };
             }
         }
