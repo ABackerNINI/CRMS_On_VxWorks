@@ -4,6 +4,7 @@
 #define _UTILITIES_JSON_SUPPORT_TO_STRING_H_
 
 #include <string>
+#include <stdio.h>
 #include "../parson.h"
 
 /*
