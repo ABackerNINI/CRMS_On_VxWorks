@@ -7,16 +7,19 @@
 #include "../DefMem.h"
 #include "../Type.h"
 
+
 struct EnumerationBase {
 public:
-	EnumerationBase():
-		val(DEFAULT_VALUE_SHORT){
-		}
-	EnumerationBase(int val){
-		this->val=(_SHORT)val;
-	}
+    EnumerationBase() :
+            val(DEFAULT_VALUE_SHORT) {
+    }
 
-	_DEFINE_MEMBER(protected,val,_SHORT)
+    EnumerationBase(int val) {
+        this->val = (_SHORT) val;
+    }
+
+_DEFINE_MEMBER(protected, val, _SHORT)
 };
+
 
 #endif//_CRMS_RESOURCE_ENUMERATION_ENUMERATION_BASE_H_

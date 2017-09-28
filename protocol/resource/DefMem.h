@@ -8,7 +8,7 @@ A:													\
 	__VA_ARGS__ M;									\
 public:												\
 	const __VA_ARGS__ &get_##M()const{return M;}	\
-	__VA_ARGS__ &get_##M(){return M;}				\
+	__VA_ARGS__ &get_##M(){return this->M;}				\
 	void set_##M(const __VA_ARGS__ &M){this->M=M;}
 
 #define DEFINE_MEMBER(M,...) _DEFINE_MEMBER(private,M,__VA_ARGS__)

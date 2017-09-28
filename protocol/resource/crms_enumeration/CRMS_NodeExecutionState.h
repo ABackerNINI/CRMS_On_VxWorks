@@ -5,13 +5,26 @@
 
 #include "EnumerationBase.h"
 
-struct CRMS_NodeExecutionState : public EnumerationBase {
-	CRMS_NodeExecutionState(){}
-	CRMS_NodeExecutionState(int val){this->val=val;}
+namespace crms {
 
-	static const _SHORT RUN 		= 1;
-	static const _SHORT PAUSE 		= 2;
-	static const _SHORT RESTART 	= 3;
-};
+    namespace protocol {
+
+        namespace resource {
+
+            namespace enumeration {
+
+                struct CRMS_NodeExecutionState : public EnumerationBase {
+                    CRMS_NodeExecutionState() {}
+
+                    CRMS_NodeExecutionState(int val) { this->val = val; }
+
+                    static const _SHORT RUN = 1;
+                    static const _SHORT PAUSE = 2;
+                    static const _SHORT RESTART = 3;
+                };
+            }
+        }
+    }
+}
 
 #endif//_CRMS_RESOURCE_ENUMERATION_NODE_EXECUTION_STATE_H_

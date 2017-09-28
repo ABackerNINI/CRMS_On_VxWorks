@@ -31,12 +31,12 @@ inline void njson_get_value(JSON_Array *arr,size_t index,ENUM *res){							\
 	res->set_val(json_array_get<short>(arr,index));												\
 }
 
-SUPPORT_ENUMERATION(CRMS_ConsistencyStrategy)
-SUPPORT_ENUMERATION(CRMS_MemberType)
-SUPPORT_ENUMERATION(CRMS_NodeExecutionState)
-SUPPORT_ENUMERATION(CRMS_Operation)
-SUPPORT_ENUMERATION(CRMS_ResponseStatusCodeType)
-SUPPORT_ENUMERATION(CRMS_ResultContent)
-SUPPORT_ENUMERATION(CRMS_SubscriptionOperation)
+SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ConsistencyStrategy)
+SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_MemberType)
+SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_NodeExecutionState)
+SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_Operation)
+SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType)
+SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResultContent)
+SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_SubscriptionOperation)
 
 #endif//_CRMS_RESOURCE_ENUMERATION_ENUMERATION_SUPPORT_H_
