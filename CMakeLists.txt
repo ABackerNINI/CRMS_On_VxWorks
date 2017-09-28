@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.6)
 project(CRMS_On_VxWOrks)
 
 set(CMAKE_CXX_STANDARD 98)
@@ -178,5 +178,13 @@ add_executable(test_root_resource test/test_crud/test_root_resource.cpp
         ${UTILITY}
         )
 target_link_libraries(test_root_resource pthread)
+
+##############################################################################################
+
+add_executable(testt test/test_crud/test.cpp
+        ${PROTOCOL}
+        ${UTILITY}
+        )
+target_link_libraries(testt pthread)
 
 ##############################################################################################
