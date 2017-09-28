@@ -13,6 +13,7 @@
 #include <stdio.h>
 
 #if defined(__unix__)
+
 #include <sys/time.h>
 
 #define FEATURE_GET_CPU_CYCLE_COUNT 0
@@ -44,49 +45,49 @@ inline unsigned long long GetCpuCycleCount() {
 
 #if (FEATURE_GET_CPU_CYCLE_COUNT)
 
-	inline unsigned long long GetCpuCycleCount() {
-		__asm{
-			_emit 0x0F;
-			_emit 0x31;
-		}//rdtsc
-	}
+inline unsigned long long GetCpuCycleCount() {
+    __asm{
+        _emit 0x0F;
+        _emit 0x31;
+    }//rdtsc
+}
 
 #endif
 
-	// #if !defined(_WINSOCK2API_) && !defined(_WINSOCKAPI_)
-	// 	struct timeval {
-	// 		long tv_sec;
-	// 		long tv_usec;
-	// 	};
-	// #endif
+// #if !defined(_WINSOCK2API_) && !defined(_WINSOCKAPI_)
+// 	struct timeval {
+// 		long tv_sec;
+// 		long tv_usec;
+// 	};
+// #endif
 
-	// void gettimeofday(struct timeval* tv) {
-	// 	union {
-	// 		long long ns100;
-	// 		FILETIME ft;
-	// 	} now;
-	// 	GetSystemTimeAsFileTime(&now.ft);
-	// 	tv->tv_usec = (long)((now.ns100 / 10LL) % 1000000LL);
-	// 	tv->tv_sec = (long)((now.ns100 - 116444736000000000LL) / 10000000LL);
-	// }
-	int gettimeofday(struct timeval *tp, void *tzp){
-	    time_t clock;
-	    struct tm tm;
-	    SYSTEMTIME wtm;
-	    GetLocalTime(&wtm);
-	    tm.tm_year     = wtm.wYear - 1900;
-	    tm.tm_mon     = wtm.wMonth - 1;
-	    tm.tm_mday     = wtm.wDay;
-	    tm.tm_hour     = wtm.wHour;
-	    tm.tm_min     = wtm.wMinute;
-	    tm.tm_sec     = wtm.wSecond;
-	    tm. tm_isdst    = -1;
-	    clock = mktime(&tm);
-	    tp->tv_sec = (long)clock;
-	    tp->tv_usec = wtm.wMilliseconds * 1000;
+// void gettimeofday(struct timeval* tv) {
+// 	union {
+// 		long long ns100;
+// 		FILETIME ft;
+// 	} now;
+// 	GetSystemTimeAsFileTime(&now.ft);
+// 	tv->tv_usec = (long)((now.ns100 / 10LL) % 1000000LL);
+// 	tv->tv_sec = (long)((now.ns100 - 116444736000000000LL) / 10000000LL);
+// }
+int gettimeofday(struct timeval *tp, void *tzp){
+    time_t clock;
+    struct tm tm;
+    SYSTEMTIME wtm;
+    GetLocalTime(&wtm);
+    tm.tm_year     = wtm.wYear - 1900;
+    tm.tm_mon     = wtm.wMonth - 1;
+    tm.tm_mday     = wtm.wDay;
+    tm.tm_hour     = wtm.wHour;
+    tm.tm_min     = wtm.wMinute;
+    tm.tm_sec     = wtm.wSecond;
+    tm. tm_isdst    = -1;
+    clock = mktime(&tm);
+    tp->tv_sec = (long)clock;
+    tp->tv_usec = wtm.wMilliseconds * 1000;
 
-	    return 0;
-	}
+    return 0;
+}
 #endif
 
 //class Duration;
@@ -159,7 +160,7 @@ public:
         time.tm_mon -= 1;
         time.tm_isdst = -1;
 
-        this->dateTime = ((unsigned long long)mktime(&time) * 1000 + millisec);
+        this->dateTime = ((unsigned long long) mktime(&time) * 1000 + millisec);
 #if (FEATURE_GET_CPU_CYCLE_COUNT)
         this->cpuCycleCount = cpuCycleCount;
 #endif
@@ -174,11 +175,11 @@ public:
 #if defined(__unix__)
         struct timeval t;
         gettimeofday(&t, NULL);
-        dateTime.dateTime = (unsigned long long)time(NULL) * 1000 + t.tv_usec / 1000;
+        dateTime.dateTime = (unsigned long long) time(NULL) * 1000 + t.tv_usec / 1000;
 #elif defined(_WIN32)
         struct timeval t;
-		gettimeofday(&t,NULL);
-		dateTime.dateTime = (unsigned long long)time(NULL) * 1000 + t.tv_usec / 1000;
+        gettimeofday(&t,NULL);
+        dateTime.dateTime = (unsigned long long)time(NULL) * 1000 + t.tv_usec / 1000;
 #endif
 
         return dateTime;
@@ -187,9 +188,9 @@ public:
     bool isUninitialized() const {
         return dateTime == DEFAULT_DATETIME_DATETIME
 #if (FEATURE_GET_CPU_CYCLE_COUNT)
-       	&& cpuCycleCount == DEFAULT_DATETIME_CPUCYCLECOUNT
+            && cpuCycleCount == DEFAULT_DATETIME_CPUCYCLECOUNT
 #endif
-        ;
+                ;
     }
 
     //return time interval in micro second,if>0 means dateTime1 is after dateTime2
@@ -224,6 +225,19 @@ public:
 //    }
 
     std::string to_string_with_milli_sec() const {
+        if (isUninitialized())return std::string();
+
+        time_t _dateTime = dateTime / 1000;
+        tm t = *localtime(&_dateTime);
+
+        char dateTime[30];
+        sprintf(dateTime, "%d-%02d-%02d %02d:%02d:%02d.%03d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour,
+                t.tm_min, t.tm_sec, int(this->dateTime % 1000));
+
+        return std::string(dateTime);
+    }
+
+    std::string to_string_with_milli_sec_with_local_timezone() const {
         if (isUninitialized())return std::string();
 
         time_t _dateTime = dateTime / 1000;
@@ -323,7 +337,8 @@ public:
 
             unsigned long long timezone = (LOC_time - UTC_time) / 3600;
             char tmp[10];
-            timezone_string = itoa((int)timezone,tmp,10);
+            sprintf(tmp, "%llu", timezone);
+            timezone_string = tmp;
             if (timezone >= 0) timezone_string = "+0" + timezone_string + ":00";
             else {
                 timezone_string.insert(1, "0");
