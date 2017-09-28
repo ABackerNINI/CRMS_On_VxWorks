@@ -3,6 +3,10 @@ debug/obj
 *.o
 *.exe
 
+#clion_linux
+cmake-build-debug
+.idea
+
 #vs
 *.vcxproj
 *.vcxproj.filters
