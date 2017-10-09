@@ -148,69 +148,6 @@ deserialize_resource(int ty, const char *s, crms::protocol::resource::resource::
     return req_rsp.get_val();
 }
 
-//char *itoa(int value,char *string,int radix)
-//{
-//    char zm[37]="0123456789abcdefghijklmnopqrstuvwxyz";
-//    char aa[100]={0};
-//
-//    int sum=value;
-//    char *cp=string;
-//    int i=0;
-//
-//    if(radix<2||radix>36)
-//    {
-//        cout<<"error data!"<<endl;
-//        return string;
-//    }
-//
-//    if(value<0)
-//    {
-//        cout<<"error data!"<<endl;
-//        return string;
-//    }
-//
-//
-//    while(sum>0)
-//    {
-//        aa[i++]=zm[sum%radix];
-//        sum/=radix;
-//    }
-//
-//    for(int j=i-1;j>=0;j--)
-//    {
-//        *cp++=aa[j];
-//    }
-//    *cp='\0';
-//
-//    return string;
-//}
-//
-//char *itoa(int num, char *str, int radix)
-//{
-//    char* ptr = str;
-//    int i;
-//    int j;
-//    while (num)
-//    {
-//        *ptr++  = str[num % radix];
-//        num    /= radix;
-//        if (num < radix)
-//        {
-//            *ptr++  = str[num];
-//            *ptr    = '\0';
-//            break;
-//        }
-//    }
-//    j = ptr - str - 1;
-//    for (i = 0; i < (ptr - str) / 2; i++)
-//    {
-//        int temp = str[i];
-//        str[i]  = str[j];
-//        str[j--] = temp;
-//    }
-//    return str;
-//}
-
 char *uitoa(unsigned int value, char *str, int base) {
     static char zm[37] = "0123456789abcdefghijklmnopqrstuvwxyz";
 
@@ -247,15 +184,17 @@ int register_resource(crms::protocol::resource::resource::CRMS_HasChildren *pare
         }
 
         resource->set_rn(rn);
+        resource->set_ri(ri);
+
         parent->set_acid(acid);
     } else {
         ri = parent->get_ri() + "/" + resource->get_rn();
 
+        resource->set_ri(ri);
+
         return resource_pool::get_instance().register_resource(ri, resource);
     }
-
-    resource->set_ri(ri);
-
+    
     return 0;
 }
 
