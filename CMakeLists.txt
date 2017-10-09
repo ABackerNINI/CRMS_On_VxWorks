@@ -111,7 +111,13 @@ set(PROTOCOL_RESOURCE_CRMS_ENUMERATION
         protocol/resource/crms_enumeration/CRMS_SubscriptionOperation.h
         protocol/resource/crms_enumeration/EnumerationBase.h
         )
-set(PROTOCOL_RESOURCE_RESOURCE
+set(PROTOCOL_RESOURCE_CRMS_PRIMITIVE
+        protocol/resource/crms_primitive/CRMS_PrimitiveContentType.h
+        protocol/resource/crms_primitive/CRMS_Req.h
+        protocol/resource/crms_primitive/CRMS_Req_Rsp.h
+        protocol/resource/crms_primitive/CRMS_Rsp.h
+        )
+set(PROTOCOL_RESOURCE_CRMS_RESOURCE
         protocol/resource/crms_resource/CRMS_Attribute.h
         protocol/resource/crms_resource/CRMS_ChildResourceRef.h
         protocol/resource/crms_resource/CRMS_Command.h
@@ -119,16 +125,12 @@ set(PROTOCOL_RESOURCE_RESOURCE
         protocol/resource/crms_resource/CRMS_Group.h
         protocol/resource/crms_resource/CRMS_HasChildren.h
         protocol/resource/crms_resource/CRMS_Node.h
-        protocol/resource/crms_resource/CRMS_PrimitiveContentType.h
         protocol/resource/crms_resource/CRMS_RemoteAttribut.h
         protocol/resource/crms_resource/CRMS_RemoteCommand.h
         protocol/resource/crms_resource/CRMS_RemoteResourceObject.h
-        protocol/resource/crms_resource/CRMS_Req.h
-        protocol/resource/crms_resource/CRMS_Req_Rsp.h
         protocol/resource/crms_resource/CRMS_ResourceObject.h
         protocol/resource/crms_resource/CRMS_Resource.h
         protocol/resource/crms_resource/CRMS_RootResource.h
-        protocol/resource/crms_resource/CRMS_Rsp.h
         )
 set(PROTOCOL_RESOURCE_SUPPORT
         protocol/resource/support/DateSupport.h
@@ -143,7 +145,8 @@ set(PROTOCOL_RESOURCE
         ${PROTOCOL_RESOURCE}
         ${PROTOCOL_RESOURCE_CRMS_ATTRIBUTE}
         ${PROTOCOL_RESOURCE_CRMS_ENUMERATION}
-        ${PROTOCOL_RESOURCE_RESOURCE}
+        ${PROTOCOL_RESOURCE_CRMS_PRIMITIVE}
+        ${PROTOCOL_RESOURCE_CRMS_RESOURCE}
         ${PROTOCOL_RESOURCE_SUPPORT}
         )
 set(PROTOCOL

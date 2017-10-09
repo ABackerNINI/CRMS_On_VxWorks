@@ -18,7 +18,7 @@ namespace crms {
 
         namespace resource {
 
-            namespace resource {
+            namespace primitive {
 
                 class CRMS_Req {
                 public:

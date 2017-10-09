@@ -11,7 +11,7 @@ namespace crms {
 
         namespace resource {
 
-            namespace resource {
+            namespace primitive {
 
                 class CRMS_PrimitiveContentType {
                 public:

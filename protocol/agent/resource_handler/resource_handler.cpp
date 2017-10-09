@@ -32,8 +32,8 @@
 //
 //
 //template<typename T>
-//void handle_crud(T *resource_handler, crms::protocol::resource::resource::CRMS_Req *_Req,
-//                 crms::protocol::resource::resource::CRMS_Rsp *_Rsp,
+//void handle_crud(T *resource_handler, crms::protocol::resource::primitive::CRMS_Req *_Req,
+//                 crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,
 //                 crms::protocol::resource::resource::CRMS_Resource *_Res) {
 //    switch (_Req->get_op().get_val()) {
 //        case crms::protocol::resource::enumeration::CRMS_Operation::Create:
@@ -55,11 +55,11 @@
 
 void
 crms::protocol::agent::resource_handler::resource_handler::handle_crud(
-        crms::protocol::resource::resource::CRMS_Req *_Req,
-        crms::protocol::resource::resource::CRMS_Rsp *_Rsp,
+        crms::protocol::resource::primitive::CRMS_Req *_Req,
+        crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,
         crms::protocol::resource::resource::CRMS_Resource *_Res) {
-    typedef void (*handler_crud_type)(crms::protocol::resource::resource::CRMS_Req *_Req,
-                                      crms::protocol::resource::resource::CRMS_Rsp *_Rsp,
+    typedef void (*handler_crud_type)(crms::protocol::resource::primitive::CRMS_Req *_Req,
+                                      crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,
                                       crms::protocol::resource::resource::CRMS_Resource *_Res);
     static handler_crud_type handlers[] = {
             root_resource_handler::Create,

@@ -5,7 +5,7 @@
 #include "../../utility/HttpUtil/HttpUtil.h"
 #include "../../utility/HttpUtil/Client.h"
 #include "../../protocol/resource/crms_resource/CRMS_ResourceObject.h"
-#include "../../protocol/resource/crms_resource/CRMS_Req_Rsp.h"
+#include "../../protocol/resource/crms_primitive/CRMS_Req_Rsp.h"
 #include "../../protocol/keyword.h"
 #include "../../protocol/resource/crms_resource/CRMS_Attribute.h"
 #include "../../protocol/resource/crms_resource/CRMS_Command.h"
@@ -34,7 +34,7 @@ int main() {
         http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
         http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject);
 
-        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_ResourceObject> req_rsp;
+        crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_ResourceObject> req_rsp;
         {
             req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject);
             crms::protocol::resource::resource::CRMS_ResourceObject resource_object;
@@ -60,7 +60,7 @@ int main() {
         http_req.Uri = "http://localhost:8080/root/1";
         http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
         http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::attribute);
-        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute> req_rsp;
+        crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute> req_rsp;
         {
             req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::attribute);
             crms::protocol::resource::resource::CRMS_Attribute attribute;
@@ -85,7 +85,7 @@ int main() {
         http_req.Uri = "http://localhost:8080/root/1";
         http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
         http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::command);
-        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Command> req_rsp;
+        crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Command> req_rsp;
         {
             req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::command);
             crms::protocol::resource::resource::CRMS_Command command;
@@ -111,7 +111,7 @@ int main() {
         http_req.Uri = "http://localhost:8080/root/1";
         http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
         http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::dataTable);
-        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_DataTable> req_rsp;
+        crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_DataTable> req_rsp;
         {
             req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::dataTable);
             crms::protocol::resource::resource::CRMS_DataTable dataTable;

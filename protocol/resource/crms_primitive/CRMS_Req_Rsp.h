@@ -6,7 +6,7 @@
 #define CRMS_ON_VXWORKS_CRMS_REQ_RSP_H
 
 #include "../DEF.h"
-#include "CRMS_Resource.h"
+#include "../crms_resource/CRMS_Resource.h"
 #include "CRMS_Req.h"
 
 namespace crms {
@@ -15,7 +15,7 @@ namespace crms {
 
         namespace resource {
 
-            namespace resource {
+            namespace primitive {
                 template<typename T>
                 class CRMS_Req_Rsp {
                 public:

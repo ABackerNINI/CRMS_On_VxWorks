@@ -5,7 +5,7 @@
 #include "../../utility/HttpUtil/HttpUtil.h"
 #include "../../utility/HttpUtil/Client.h"
 #include "../../protocol/resource/crms_resource/CRMS_ResourceObject.h"
-#include "../../protocol/resource/crms_resource/CRMS_Req_Rsp.h"
+#include "../../protocol/resource/crms_primitive/CRMS_Req_Rsp.h"
 #include "../../protocol/keyword.h"
 
 void On_Response(HttpUtil::Http_Rsp *http_rsp) {

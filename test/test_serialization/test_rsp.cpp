@@ -1,5 +1,5 @@
 
-#include "../../protocol/resource/crms_resource/CRMS_Rsp.h"
+#include "../../protocol/resource/crms_primitive/CRMS_Rsp.h"
 
 int main(){
 	printf("debug begin\n");

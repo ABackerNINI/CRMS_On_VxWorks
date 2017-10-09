@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include "../../utility/nJson/DEF.h"
-#include "../../protocol/resource/crms_resource/CRMS_Req_Rsp.h"
+#include "../../protocol/resource/crms_primitive/CRMS_Req_Rsp.h"
 #include "../../protocol/resource/crms_resource/CRMS_RootResource.h"
 #include "../../protocol/resource/crms_resource/CRMS_Attribute.h"
 
