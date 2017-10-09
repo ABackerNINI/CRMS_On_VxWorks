@@ -2,6 +2,8 @@
 // Created by nini on 9/27/17.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include "resource_operator.h"
 #include "../../common.h"
@@ -36,7 +38,7 @@ void serialize_resource_to_pc(crms::protocol::resource::resource::CRMS_Rsp *rsp,
     switch (resource->get_ty()) {//switch:resources can be create or update or retrieve
         case crms::protocol::resource::enumeration::CRMS_MemberType::rootResource:
             s = serialize(
-                    *((crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RootResource> *)req_rsp));
+                    *((crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RootResource> *) req_rsp));
             break;
         case crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject:
             s = serialize(
@@ -146,31 +148,115 @@ deserialize_resource(int ty, const char *s, crms::protocol::resource::resource::
     return req_rsp.get_val();
 }
 
-std::string
-register_resource(const std::string &parent_ri, crms::protocol::resource::resource::CRMS_Resource *resource) {
+//char *itoa(int value,char *string,int radix)
+//{
+//    char zm[37]="0123456789abcdefghijklmnopqrstuvwxyz";
+//    char aa[100]={0};
+//
+//    int sum=value;
+//    char *cp=string;
+//    int i=0;
+//
+//    if(radix<2||radix>36)
+//    {
+//        cout<<"error data!"<<endl;
+//        return string;
+//    }
+//
+//    if(value<0)
+//    {
+//        cout<<"error data!"<<endl;
+//        return string;
+//    }
+//
+//
+//    while(sum>0)
+//    {
+//        aa[i++]=zm[sum%radix];
+//        sum/=radix;
+//    }
+//
+//    for(int j=i-1;j>=0;j--)
+//    {
+//        *cp++=aa[j];
+//    }
+//    *cp='\0';
+//
+//    return string;
+//}
+//
+//char *itoa(int num, char *str, int radix)
+//{
+//    char* ptr = str;
+//    int i;
+//    int j;
+//    while (num)
+//    {
+//        *ptr++  = str[num % radix];
+//        num    /= radix;
+//        if (num < radix)
+//        {
+//            *ptr++  = str[num];
+//            *ptr    = '\0';
+//            break;
+//        }
+//    }
+//    j = ptr - str - 1;
+//    for (i = 0; i < (ptr - str) / 2; i++)
+//    {
+//        int temp = str[i];
+//        str[i]  = str[j];
+//        str[j--] = temp;
+//    }
+//    return str;
+//}
+
+char *uitoa(unsigned int value, char *str, int base) {
+    static char zm[37] = "0123456789abcdefghijklmnopqrstuvwxyz";
+
+    unsigned int n = 0, tmp;
+    while (value > 0) {
+        tmp = value;
+        value /= base;
+
+        str[n++] = zm[tmp - value * base];//zm[value % base]
+    }
+
+    for (int i = (n + 1) >> 1; i < n; ++i) {
+        std::swap(str[i], str[n - i - 1]);
+    }
+
+    str[n] = '\0';
+
+    return str;
+}
+
+int register_resource(crms::protocol::resource::resource::CRMS_HasChildren *parent,
+                      crms::protocol::resource::resource::CRMS_Resource *resource) {
     std::string ri;
     if (resource->get_rn().empty()) {
-        ri = parent_ri + "/untitled";
-    } else {
-        ri = parent_ri + "/" + resource->get_rn();
-    }
+        char rn[10];
+        unsigned int acid = parent->get_acid();
 
-    int ret = resource_pool::get_instance().register_resource(ri, resource);
-    if (ret == -1) {
-        int affix = 1;
-        char affix_str[10];
-        std::string id;
-        id.reserve(ri.length() + 10);
+        int ret = -1;
         while (ret == -1) {
-            sprintf(affix_str, "%d", affix);
-            id = ri + affix_str;
-            ret = resource_pool::get_instance().register_resource(id, resource);
-            ++affix;
+            uitoa(acid++, rn, 36);
+            ri = parent->get_ri() + "/" + rn;
+
+            ret = resource_pool::get_instance().register_resource(ri, resource);
         }
-        ri = id;
+
+        resource->set_rn(rn);
+        parent->set_acid(acid);
+    } else {
+        ri = parent->get_ri() + "/" + resource->get_rn();
+
+        return resource_pool::get_instance().register_resource(ri, resource);
     }
 
-    return ri;
+    resource->set_ri(ri);
+
+    return 0;
 }
 
 void build_create_successful_rsp(crms::protocol::resource::resource::CRMS_Req *req,
@@ -178,7 +264,8 @@ void build_create_successful_rsp(crms::protocol::resource::resource::CRMS_Req *r
                                  crms::protocol::resource::resource::CRMS_Resource *resource) {
     build_successful_rsp(req, rsp);
 
-    crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(resource->get_ty(), resource);
+    crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
+            resource->get_ty(), resource);
     serialize_resource_to_pc(rsp, resource, &req_rsp);
 }
 
@@ -204,11 +291,8 @@ void crms::protocol::agent::resource_operator::resource_operator::create_resourc
     //e
     //TODO assign Any other RO (Read Only) attributes within the restriction of the Receiver policies a value.
 
-    //store the resource
-    std::string ri = register_resource(parent->get_ri(), resource);
-
-    //update its real ri
-    resource->set_ri(ri);
+    //store the resource & update its real rn and ri
+    register_resource((crms::protocol::resource::resource::CRMS_HasChildren *) parent, resource);
 
     //add to parent's ch list
     crms::protocol::resource::resource::CRMS_ChildResourceRef child_resource_ref;
@@ -227,7 +311,8 @@ void build_retrieve_successful_rsp(crms::protocol::resource::resource::CRMS_Req 
                                    crms::protocol::resource::resource::CRMS_Resource *resource) {
     build_successful_rsp(req, rsp);
 
-    crms::protocol::resource::resource::CRMS_Req_Rsp <crms::protocol::resource::resource::CRMS_Resource>req_rsp(resource->get_ty(), resource);
+    crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
+            resource->get_ty(), resource);
     req_rsp.retrieve_query = &(req->retrieve_query);
 
     serialize_resource_to_pc(rsp, resource, &req_rsp);
@@ -244,7 +329,8 @@ void build_update_successful_rsp(crms::protocol::resource::resource::CRMS_Req *r
                                  crms::protocol::resource::resource::CRMS_Resource *resource) {
     build_successful_rsp(req, rsp);
 
-    crms::protocol::resource::resource::CRMS_Req_Rsp <crms::protocol::resource::resource::CRMS_Resource>req_rsp(resource->get_ty(), resource);
+    crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
+            resource->get_ty(), resource);
     serialize_resource_to_pc(rsp, resource, &req_rsp);
 }
 

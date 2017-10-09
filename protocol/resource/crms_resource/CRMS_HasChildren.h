@@ -18,7 +18,7 @@ namespace crms {
 
                 class CRMS_HasChildren : public CRMS_Resource {
                 public:
-                    CRMS_HasChildren() {
+                    CRMS_HasChildren() : acid(1) {
                     }
 
                     bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
@@ -55,6 +55,8 @@ namespace crms {
                     }
 
                 DEFINE_MEMBER(children, _LIST < CRMS_ChildResourceRef >)
+
+                DEFINE_MEMBER(acid, _UINT)//automatic children id
                 };
             }
         }
