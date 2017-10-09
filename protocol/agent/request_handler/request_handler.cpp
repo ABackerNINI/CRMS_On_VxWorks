@@ -24,19 +24,24 @@ resource::resource::CRMS_Rsp request_dispatch(HttpUtil::Http_Req *http_req) {
 
     if (http_req->Method == HttpUtil::POST) {
         std::map<std::string, std::string>::const_iterator it_ty = http_req->Querys.find(KW_TYPE_SHORT);
+        std::map<std::string, std::string>::const_iterator it_rn = http_req->Querys.find(KW_RESOURCE_NAME_SHORT);
 
         if (it_ty == http_req->Querys.end()) {
-            LOGEVT("'ty' or 'rn' Not Found in URL @request_dispatch");
+            LOGEVT("'ty' Not Found in URL @request_dispatch");
 
             return resource::resource::CRMS_Rsp(&crms_req,
                                                 crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Bad_request);////mark
         }
+
         char *p = NULL;
         int ty = (int) strtol(it_ty->second.c_str(), &p, 10);
         ////TODO:handle error
         crms_req.set_ty(ty);
+        if (it_rn != http_req->Querys.end()) {
+            crms_req.set_rn(it_rn->second);
+        }
 
-        crms_req.set_pc(resource::resource::CRMS_PrimitiveContentType(http_req->Body.c_str()));
+        crms_req.set_pc(resource::resource::CRMS_PrimitiveContentType(http_req->Body));
         crms_req.set_op(resource::enumeration::CRMS_Operation::Create);
     } else if (http_req->Method == HttpUtil::GET) {
         std::map<std::string, std::string>::const_iterator it_q = http_req->Querys.find(KW_QUERY_Q);

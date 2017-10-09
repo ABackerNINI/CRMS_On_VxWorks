@@ -29,6 +29,7 @@ namespace crms {
                     static const _SHORT remoteResourceObject = 8;
                     static const _SHORT remoteAttribute = 9;
                     static const _SHORT remoteCommand = 10;
+                    static const _SHORT string = 11;
                 };
             }
         }

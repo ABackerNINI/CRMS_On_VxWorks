@@ -16,7 +16,6 @@ namespace crms {
         namespace resource {
 
             namespace resource {
-
                 template<typename T>
                 class CRMS_Req_Rsp {
                 public:
@@ -90,11 +89,15 @@ namespace crms {
                     int ty;
                     T *val;
 
-                public:
-                    CRMS_Req::retrieve_query_t *retrieve_query;
+                    const CRMS_Req::retrieve_query_t *retrieve_query;
 
+                public:
                     void set_ty(int ty) {
                         this->ty = ty;
+                    }
+
+                    int get_ty() const {
+                        return ty;
                     }
 
                     void set_val(T *val) {
@@ -106,6 +109,74 @@ namespace crms {
                     }
 
                     const T *get_val() const {
+                        return val;
+                    }
+
+                    void set_retrieve_query(const CRMS_Req::retrieve_query_t *retrieve_query) {
+                        this->retrieve_query = retrieve_query;
+                    }
+
+                    const CRMS_Req::retrieve_query_t *get_retrieve_query() const {
+                        return retrieve_query;
+                    }
+                };
+
+                template<>
+                class CRMS_Req_Rsp<std::string> {
+                public:
+                    CRMS_Req_Rsp() : ty(DEFAULT_VALUE_INT), val(NULL) {}
+
+                    CRMS_Req_Rsp(int ty, const std::string *val) : ty(ty), val(val) {}
+
+                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
+                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+                        {
+                            if (_key_ == NULL) {
+                                SET(ty);
+                                SET(val);
+                            } else {
+                                SET_IF_KEY(ty) SET_IF_KEY(val) {
+                                    return false;
+                                }
+                            }
+                        }
+
+                        return true;
+                    }
+
+//                    void deserialize(JSON_Value *_doc_) {
+//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+//                        {
+//                            GET(ty);
+//                            GET(val);
+//                        }
+//                    }
+
+                    ~CRMS_Req_Rsp() {
+                    }
+
+                private:
+                    int ty;
+                    const std::string *val;
+
+                public:
+                    void set_ty(int ty) {
+                        this->ty = ty;
+                    }
+
+                    int get_ty() const {
+                        return ty;
+                    }
+
+                    void set_val(std::string *val) {
+                        this->val = val;
+                    }
+
+//                    std::string *get_val() {
+//                        return val;
+//                    }
+
+                    const std::string *get_val() const {
                         return val;
                     }
                 };

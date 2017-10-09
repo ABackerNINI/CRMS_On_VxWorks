@@ -22,12 +22,32 @@
 #include "../../keyword.h"
 #include "../../resource/crms_resource/CRMS_Req.h"
 
-void build_successful_rsp(crms::protocol::resource::resource::CRMS_Req *req,
-                          crms::protocol::resource::resource::CRMS_Rsp *rsp) {
+void build_corresponding_rsp(crms::protocol::resource::resource::CRMS_Req *req,
+                             crms::protocol::resource::resource::CRMS_Rsp *rsp) {
     rsp->set_fr(req->get_to());
     rsp->set_to(req->get_fr());
     rsp->set_rqi(req->get_rqi());
+}
+
+void build_corresponding_successful_rsp(crms::protocol::resource::resource::CRMS_Req *req,
+                                        crms::protocol::resource::resource::CRMS_Rsp *rsp) {
+    build_corresponding_rsp(req, rsp);
     rsp->set_rsc(crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Success);
+}
+
+void build_failed_rsp(crms::protocol::resource::resource::CRMS_Req *req,
+                      crms::protocol::resource::resource::CRMS_Rsp *rsp,
+                      crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType rsc) {
+    build_corresponding_rsp(req, rsp);
+    rsp->set_rsc(rsc);
+
+    crms::protocol::resource::resource::CRMS_Req_Rsp<std::string> req_rsp(
+            crms::protocol::resource::enumeration::CRMS_MemberType::string,
+            &crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::get_msg(rsc.get_val()));
+
+    char *s = serialize(req_rsp);
+    rsp->set_pc(crms::protocol::resource::resource::CRMS_PrimitiveContentType(s));
+    delete[] s;
 }
 
 void serialize_resource_to_pc(crms::protocol::resource::resource::CRMS_Rsp *rsp,
@@ -194,14 +214,14 @@ int register_resource(crms::protocol::resource::resource::CRMS_HasChildren *pare
 
         return resource_pool::get_instance().register_resource(ri, resource);
     }
-    
+
     return 0;
 }
 
 void build_create_successful_rsp(crms::protocol::resource::resource::CRMS_Req *req,
                                  crms::protocol::resource::resource::CRMS_Rsp *rsp,
                                  crms::protocol::resource::resource::CRMS_Resource *resource) {
-    build_successful_rsp(req, rsp);
+    build_corresponding_successful_rsp(req, rsp);
 
     crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
             resource->get_ty(), resource);
@@ -231,7 +251,12 @@ void crms::protocol::agent::resource_operator::resource_operator::create_resourc
     //TODO assign Any other RO (Read Only) attributes within the restriction of the Receiver policies a value.
 
     //store the resource & update its real rn and ri
-    register_resource((crms::protocol::resource::resource::CRMS_HasChildren *) parent, resource);
+    if (register_resource((crms::protocol::resource::resource::CRMS_HasChildren *) parent, resource) == -1) {
+        build_failed_rsp(req, rsp,
+                         crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_already_exists);
+
+        return;
+    }
 
     //add to parent's ch list
     crms::protocol::resource::resource::CRMS_ChildResourceRef child_resource_ref;
@@ -248,11 +273,11 @@ void crms::protocol::agent::resource_operator::resource_operator::create_resourc
 void build_retrieve_successful_rsp(crms::protocol::resource::resource::CRMS_Req *req,
                                    crms::protocol::resource::resource::CRMS_Rsp *rsp,
                                    crms::protocol::resource::resource::CRMS_Resource *resource) {
-    build_successful_rsp(req, rsp);
+    build_corresponding_successful_rsp(req, rsp);
 
     crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
             resource->get_ty(), resource);
-    req_rsp.retrieve_query = &(req->retrieve_query);
+    req_rsp.set_retrieve_query(&(req->retrieve_query));
 
     serialize_resource_to_pc(rsp, resource, &req_rsp);
 }
@@ -266,7 +291,7 @@ void crms::protocol::agent::resource_operator::resource_operator::retrieve_resou
 void build_update_successful_rsp(crms::protocol::resource::resource::CRMS_Req *req,
                                  crms::protocol::resource::resource::CRMS_Rsp *rsp,
                                  crms::protocol::resource::resource::CRMS_Resource *resource) {
-    build_successful_rsp(req, rsp);
+    build_corresponding_successful_rsp(req, rsp);
 
     crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
             resource->get_ty(), resource);
@@ -291,7 +316,7 @@ void crms::protocol::agent::resource_operator::resource_operator::update_resourc
 void build_delete_successful_rsp(crms::protocol::resource::resource::CRMS_Req *req,
                                  crms::protocol::resource::resource::CRMS_Rsp *rsp,
                                  crms::protocol::resource::enumeration::CRMS_MemberType ty) {
-    build_successful_rsp(req, rsp);
+    build_corresponding_successful_rsp(req, rsp);
 
     char rsp_pc[50];
     sprintf(rsp_pc, KV_DELETE_RESPOND_FORMAT_STRING, (int) ty.get_val());

@@ -33,7 +33,30 @@ namespace crms {
                     static const _SHORT Delete_error_does_not_exist = 12;
                     static const _SHORT Delete_error_no_privilege = 13;
                     static const _SHORT Bad_request = 14;
+
+                    static const std::string &get_msg(_SHORT rsc) {
+                        static const std::string Msg[] = {
+                                "Success",
+                                "Accepted",
+                                "Unsupported_resource",
+                                "Unsupported_attribute",
+                                "Create_error_no_privilege",
+                                "Create_error_already_exists",
+                                "Create_error_missing_mandatory_parameter",
+                                "Retrieve_error_no_privilege",
+                                "Retrieve_error_does_not_exist",
+                                "Update_error_no_privilege",
+                                "Update_error_unacceptable_contents",
+                                "Delete_error_does_not_exist",
+                                "Delete_error_no_privilege",
+                                "Bad_request"
+                        };
+
+                        return Msg[rsc - 1];
+                    }
                 };
+
+
             }
         }
     }

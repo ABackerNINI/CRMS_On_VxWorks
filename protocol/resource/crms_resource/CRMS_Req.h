@@ -87,6 +87,7 @@ namespace crms {
                     ~CRMS_Req() {
                     }
 
+                public:
                     enum retrieve_query_type {
                         NON,
                         PR,
@@ -99,7 +100,7 @@ namespace crms {
                         EX
                     };
 
-                    struct retrieve_query_t{
+                    struct retrieve_query_t {
                         retrieve_query_type ty;
 
                         union {
@@ -118,6 +119,8 @@ namespace crms {
                             } retrieve_query_sr;
                         };
                     } retrieve_query;
+
+                public:
 
                 DEFINE_MEMBER(op, enumeration::CRMS_Operation)
 
