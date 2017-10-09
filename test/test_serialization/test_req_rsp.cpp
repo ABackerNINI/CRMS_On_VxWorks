@@ -11,7 +11,7 @@
 int main() {
     printf("debug begin\n");
 
-    crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute>Res;
+    crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute>Res;
     {
         Res.set_ty(0);
         crms::protocol::resource::resource::CRMS_Attribute attribute;
@@ -26,7 +26,7 @@ int main() {
     {
         printf("%s\n", s);
 
-        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute>Res2;
+        crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute>Res2;
         deserialize(&Res2, s);
 
         const char *s2 = serialize(Res2, NULL);
