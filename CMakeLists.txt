@@ -105,9 +105,13 @@ set(PROTOCOL_RESOURCE_CRMS_ENUMERATION
         protocol/resource/crms_enumeration/CRMS_ConsistencyStrategy.h
         protocol/resource/crms_enumeration/CRMS_MemberType.h
         protocol/resource/crms_enumeration/CRMS_NodeExecutionState.h
+        protocol/resource/crms_enumeration/CRMS_NotificationContentType.h
         protocol/resource/crms_enumeration/CRMS_Operation.h
+        protocol/resource/crms_enumeration/CRMS_ResourceStatus.h
+        protocol/resource/crms_enumeration/CRMS_ResourceType.h
         protocol/resource/crms_enumeration/CRMS_ResponseStatusCodeType.h
         protocol/resource/crms_enumeration/CRMS_ResultContent.h
+        protocol/resource/crms_enumeration/CRMS_SubscriptionEventType.h
         protocol/resource/crms_enumeration/CRMS_SubscriptionOperation.h
         protocol/resource/crms_enumeration/EnumerationBase.h
         )

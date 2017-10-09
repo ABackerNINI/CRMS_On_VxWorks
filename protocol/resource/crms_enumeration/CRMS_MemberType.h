@@ -23,13 +23,9 @@ namespace crms {
                     static const _SHORT resourceObject = 2;
                     static const _SHORT attribute = 3;
                     static const _SHORT command = 4;
-                    static const _SHORT node = 5;
-                    static const _SHORT dataTable = 6;
+                    static const _SHORT dataTable = 5;
+                    static const _SHORT node = 6;
                     static const _SHORT group = 7;
-                    static const _SHORT remoteResourceObject = 8;
-                    static const _SHORT remoteAttribute = 9;
-                    static const _SHORT remoteCommand = 10;
-                    static const _SHORT string = 11;
                 };
             }
         }

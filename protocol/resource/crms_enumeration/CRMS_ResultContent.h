@@ -20,9 +20,9 @@ namespace crms {
 
                     static const _SHORT Nothing = 1;
                     static const _SHORT Attributes = 2;
-                    static const _SHORT childResources = 3;
-                    static const _SHORT attribute_childResources = 4;
-                    static const _SHORT originalResources = 5;
+                    static const _SHORT ChildResources = 3;
+                    static const _SHORT Attribute_childResources = 4;
+                    static const _SHORT OriginalResources = 5;
                 };
             }
         }

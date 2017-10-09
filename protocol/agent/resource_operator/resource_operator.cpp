@@ -21,6 +21,7 @@
 #include "../../resource/crms_primitive/CRMS_Req_Rsp.h"
 #include "../../keyword.h"
 #include "../../resource/crms_primitive/CRMS_Req.h"
+#include "../../resource/crms_enumeration/CRMS_ResourceType.h"
 
 void build_corresponding_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
                              crms::protocol::resource::primitive::CRMS_Rsp *rsp) {
@@ -42,7 +43,7 @@ void build_failed_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
     rsp->set_rsc(rsc);
 
     crms::protocol::resource::primitive::CRMS_Req_Rsp<std::string> req_rsp(
-            crms::protocol::resource::enumeration::CRMS_MemberType::string,
+            crms::protocol::resource::enumeration::CRMS_ResourceType::string,
             &crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::get_msg(rsc.get_val()));
 
     char *s = serialize(req_rsp);
@@ -84,18 +85,18 @@ void serialize_resource_to_pc(crms::protocol::resource::primitive::CRMS_Rsp *rsp
             s = serialize(
                     *((crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Group> *) req_rsp));
             break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject:
-            s = serialize(
-                    *((crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteResourceObject> *) req_rsp));
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteAttribute:
-            s = serialize(
-                    *((crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteAttribute> *) req_rsp));
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand:
-            s = serialize(
-                    *((crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteCommand> *) req_rsp));
-            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject:
+//            s = serialize(
+//                    *((crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteResourceObject> *) req_rsp));
+//            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteAttribute:
+//            s = serialize(
+//                    *((crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteAttribute> *) req_rsp));
+//            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand:
+//            s = serialize(
+//                    *((crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteCommand> *) req_rsp));
+//            break;
         default:
             assert(false);
             break;
@@ -145,21 +146,21 @@ deserialize_resource(int ty, const char *s, crms::protocol::resource::resource::
                     (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Group> *) &req_rsp,
                     s);
             break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteResourceObject> *) &req_rsp,
-                    s);
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteAttribute:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteAttribute> *) &req_rsp,
-                    s);
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteCommand> *) &req_rsp,
-                    s);
-            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject:
+//            deserialize(
+//                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteResourceObject> *) &req_rsp,
+//                    s);
+//            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteAttribute:
+//            deserialize(
+//                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteAttribute> *) &req_rsp,
+//                    s);
+//            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand:
+//            deserialize(
+//                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteCommand> *) &req_rsp,
+//                    s);
+//            break;
         default:
             assert(false);
             break;
@@ -330,9 +331,9 @@ void delete_resource_instance(const std::string &_Id) {
     int ty = instance->get_ty();
     if (ty == crms::protocol::resource::enumeration::CRMS_MemberType::rootResource ||
         ty == crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject ||
-        ty == crms::protocol::resource::enumeration::CRMS_MemberType::command ||
+        ty == crms::protocol::resource::enumeration::CRMS_MemberType::command/* ||
         ty == crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject ||
-        ty == crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand) {//resources have children
+        ty == crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand*/) {//resources have children
         const std::list<crms::protocol::resource::resource::CRMS_ChildResourceRef> &childrenListRef = ((crms::protocol::resource::resource::CRMS_HasChildren *) instance)->get_children();
 
         //delete all children

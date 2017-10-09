@@ -23,7 +23,7 @@ namespace crms {
                     static const _SHORT Update = 3;
                     static const _SHORT Delete = 4;
                     static const _SHORT Notify = 5;
-                    static const _SHORT ForwardNotify = 6;
+                    static const _SHORT Patch = 6;
                 };
             }
         }
