@@ -1,0 +1,472 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CRMS",
+		"_postman_id": "323ea3dc-9680-cff2-649e-2e1dc9502765",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Attribute",
+			"description": "",
+			"item": [
+				{
+					"name": "createAttribute",
+					"request": {
+						"url": {
+							"raw": "localhost:8081/root/1?ty=3",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"root",
+								"1"
+							],
+							"query": [
+								{
+									"key": "ty",
+									"value": "3",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-crms-ri",
+								"value": "1111",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ty\" : 3,\n    \"val\": {\n    \t\"nm\":\"absaa\",\n    \t\"ro\":true,\n        \"subs\":[\n        \t{\n        \t\t\"desc\":\"AttributeSub1\",\n        \t\t\"nu\":\"192.168.10.111\",\n        \t\t\"nct\":1,\n        \t\t\"ety\":[1]\n        \t}\n        ]\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve Attribute",
+					"request": {
+						"url": "localhost:8081/root/1/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-crms-ri",
+								"value": "1111",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "update Attribute",
+					"request": {
+						"url": "localhost:9080/root/1/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-crms-ri",
+								"value": "1111",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ty\" : 3,\n    \"val\": {\n    \t\"onto\": \"dddd\"\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DataTable",
+			"description": "",
+			"item": [
+				{
+					"name": "create datatable",
+					"request": {
+						"url": {
+							"raw": "localhost:9080/root/1?ty=5",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"root",
+								"1"
+							],
+							"query": [
+								{
+									"key": "ty",
+									"value": "5",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-crms-ri",
+								"value": "1111",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ty\" : 5,\n    \"val\": {\n    \t\"desc\":\"AttributeSub1\",\n        \"col\":{\n        \t\"name\":\"text\",\n        \t\"num\":\"int\"\n       \t}\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve datatable",
+					"request": {
+						"url": "localhost:8081/root/1/2",
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-crms-ri",
+								"value": "1111",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "update datatable",
+					"request": {
+						"url": "localhost:9080/root/1/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-crms-ri",
+								"value": "1111",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ty\" : 5,\n    \"val\": {\n    \t\"desc\":\"updateDesc\",\n        \"con\":[\n        \t{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},\n        \t{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},\n        \t{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t},{\n        \t\"name\":\"dd\",\n        \t\"num\":3\n        \t}\n        \t]\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pagination",
+					"request": {
+						"url": {
+							"raw": "localhost:9080/root/1/1?q=pg",
+							"host": [
+								"localhost"
+							],
+							"port": "9080",
+							"path": [
+								"root",
+								"1",
+								"1"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "pg",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-crms-ri",
+								"value": "1111",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "retrieve resourceObject",
+			"request": {
+				"url": "localhost:9080/root/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-crms-ri",
+						"value": "1111",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "update resourceObject",
+			"request": {
+				"url": "localhost:9080/root/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-crms-ri",
+						"value": "1111",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ty\" : 2,\n    \"val\": {\n\t\t\"onto\":\"1231231231\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete resourceObject",
+			"request": {
+				"url": "localhost:9080/root/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-crms-ri",
+						"value": "1111",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "create resourceObject",
+			"request": {
+				"url": {
+					"raw": "localhost:9080/root?ty=2",
+					"host": [
+						"localhost"
+					],
+					"port": "9080",
+					"path": [
+						"root"
+					],
+					"query": [
+						{
+							"key": "ty",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-crms-ri",
+						"value": "1111",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ty\" : 2,\n    \"val\": {\n        \"onto\":\"dasdas\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "create a subscription",
+			"request": {
+				"url": {
+					"raw": "localhost:9080/root/1?so=1",
+					"host": [
+						"localhost"
+					],
+					"port": "9080",
+					"path": [
+						"root",
+						"1"
+					],
+					"query": [
+						{
+							"key": "so",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-crms-ri",
+						"value": "1111",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ty\" : 8,\n    \"val\": {\n       \t\"desc\":\"resourceObjectSub1\",\n       \t\"nu\":\"http://192.168.10.107:9999\",\n       \t\"nct\":3,\n     \t\"ety\":[1,2,3,4]\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "update a subscription",
+			"request": {
+				"url": {
+					"raw": "localhost:9080/root/1?so=2",
+					"host": [
+						"localhost"
+					],
+					"port": "9080",
+					"path": [
+						"root",
+						"1"
+					],
+					"query": [
+						{
+							"key": "so",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-crms-ri",
+						"value": "1111",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ty\" : 20,\n    \"val\": {\n    \t\"id\":\"53b1d806-eee5-40a3-a103-f7c7e1434adf\",\n       \t\"desc\":\"asdasdasdas\"\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve the subscription",
+			"request": {
+				"url": {
+					"raw": "localhost:9080/root/1?q=sr&id=0581ae9c-e530-4e57-afdd-9ec21597abe9",
+					"host": [
+						"localhost"
+					],
+					"port": "9080",
+					"path": [
+						"root",
+						"1"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "sr",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "id",
+							"value": "0581ae9c-e530-4e57-afdd-9ec21597abe9",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-crms-ri",
+						"value": "1111",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
