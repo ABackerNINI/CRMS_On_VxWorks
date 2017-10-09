@@ -1,11 +1,13 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_ATTRIBUTE_SUBSCRIPTION_H_
-#define _CRMS_RESOURCE_ATTRIBUTE_SUBSCRIPTION_H_
+#ifndef _CRMS_RESOURCE_COMMON_SUBSCRIPTION_H_
+#define _CRMS_RESOURCE_COMMON_SUBSCRIPTION_H_
 
 #include "../DEF.h"
 
-#include "../crms_attribute/CRMS_BatchNotify.h"
+#include "CRMS_BatchNotify.h"
+#include "../crms_enumeration/CRMS_SubscriptionEventType.h"
+#include "../crms_enumeration/CRMS_NotificationContentType.h"
 // #include "../crms_enumeration/CRMS_SubscriptionEventType.h"
 // #include "../crms_enumeration/CRMS_NotificationContentType.h"
 
@@ -15,7 +17,7 @@ namespace crms {
 
         namespace resource {
 
-            namespace attribute {
+            namespace common {
 
                 class CRMS_Subscription {
                 public:
@@ -32,14 +34,14 @@ namespace crms {
                                 SET(ri);
                                 SET(id);
                                 SET(ct);
-                                // SET(ety);
+                                SET(ety);
                                 SET(exc);
                                 SET(nu);
                                 SET(nfu);
                                 SET(gi);
                                 SET(bn);
                                 SET(ln);
-                                // SET(nct);
+                                SET(nct);
                                 SET(cr);
                                 SET(su);
                             } else {
@@ -63,14 +65,14 @@ namespace crms {
                             GET(ri);
                             GET(id);
                             GET(ct);
-                            // GET(ety);
+                            GET(ety);
                             GET(exc);
                             GET(nu);
                             GET(nfu);
                             GET(gi);
                             GET(bn);
                             GET(ln);
-                            // GET(nct);
+                            GET(nct);
                             GET(cr);
                             GET(su);
                         }
@@ -84,7 +86,9 @@ namespace crms {
                 DEFINE_MEMBER(id, _INT)
 
                 DEFINE_MEMBER(ct, _DATETIME)
-                    // DEFINE_MEMBER(ety,std::list<CRMS_SubscriptionEventType>)
+
+                DEFINE_MEMBER(ety, std::list<enumeration::CRMS_SubscriptionEventType>)
+
                 DEFINE_MEMBER(exc, _INT)
 
                 DEFINE_MEMBER(nu, _LIST < _STRING >)
@@ -96,7 +100,9 @@ namespace crms {
                 DEFINE_MEMBER(bn, CRMS_BatchNotify)
 
                 DEFINE_MEMBER(ln, _BOOL)
-                    // DEFINE_MEMBER(nct,CRMS_NotificationContentType)
+
+                DEFINE_MEMBER(nct, enumeration::CRMS_NotificationContentType)
+
                 DEFINE_MEMBER(cr, _STRING)
 
                 DEFINE_MEMBER(su, _STRING)
@@ -105,4 +111,4 @@ namespace crms {
         }
     }
 }
-#endif//_CRMS_RESOURCE_ATTRIBUTE_SUBSCRIPTION_H_
+#endif//_CRMS_RESOURCE_COMMON_SUBSCRIPTION_H_

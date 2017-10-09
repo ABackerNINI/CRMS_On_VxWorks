@@ -8,7 +8,7 @@
 #include "resource_operator.h"
 #include "../../common.h"
 #include "../../resource/crms_resource/CRMS_Attribute.h"
-#include "../../resource/crms_resource/CRMS_ChildResourceRef.h"
+#include "../../resource/crms_common/CRMS_ChildResourceRef.h"
 #include "../../resource/crms_resource/CRMS_Command.h"
 #include "../../resource/crms_resource/CRMS_DataTable.h"
 #include "../../resource/crms_resource/CRMS_Group.h"

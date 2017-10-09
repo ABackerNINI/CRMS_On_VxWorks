@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_ATTRIBUTE_FILTER_CRITERIA_H_
-#define _CRMS_RESOURCE_ATTRIBUTE_FILTER_CRITERIA_H_
+#ifndef _CRMS_RESOURCE_COMMON_FILTER_CRITERIA_H_
+#define _CRMS_RESOURCE_COMMON_FILTER_CRITERIA_H_
 
 #include "../DEF.h"
 
@@ -11,7 +11,7 @@ namespace crms {
 
         namespace resource {
 
-            namespace attribute {
+            namespace common {
 
                 class CRMS_FilterCriteria {
                 public:
@@ -114,4 +114,4 @@ namespace crms {
     }
 }
 
-#endif//_CRMS_RESOURCE_ATTRIBUTE_FILTER_CRITERIA_H_
+#endif//_CRMS_RESOURCE_COMMON_FILTER_CRITERIA_H_

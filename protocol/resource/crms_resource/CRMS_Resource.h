@@ -6,7 +6,7 @@
 #include "../DEF.h"
 
 #include "../../../utility/DateTime/DateTime.h"
-#include "../crms_attribute/CRMS_Subscription.h"
+#include "../crms_common/CRMS_Subscription.h"
 
 namespace crms {
 
@@ -75,7 +75,7 @@ namespace crms {
 
                 DEFINE_MEMBER(onto, _STRING)
 
-                DEFINE_MEMBER(subs, _MAP < _STRING, attribute::CRMS_Subscription >)
+                DEFINE_MEMBER(subs, _MAP < _STRING, common::CRMS_Subscription >)
                 };
             }
         }

@@ -8,6 +8,7 @@
 #include "../DEF.h"
 #include "../crms_resource/CRMS_Resource.h"
 #include "CRMS_Req.h"
+#include "../crms_common/CRMS_RetrieveQuery.h"
 
 namespace crms {
 
@@ -19,27 +20,27 @@ namespace crms {
                 template<typename T>
                 class CRMS_Req_Rsp {
                 public:
-                    CRMS_Req_Rsp() : ty(DEFAULT_VALUE_INT), val(NULL), retrieve_query(NULL) {}
+                    CRMS_Req_Rsp() : ty(DEFAULT_VALUE_INT), val(NULL), rq(NULL) {}
 
-                    CRMS_Req_Rsp(int ty, T *val) : ty(ty), val(val), retrieve_query(NULL) {}
+                    CRMS_Req_Rsp(int ty, T *val) : ty(ty), val(val), rq(NULL) {}
 
                     bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
-                            if (retrieve_query == NULL || retrieve_query->ty == CRMS_Req::NON) {//NON
+                            if (rq == NULL || rq->ty.get_val() == enumeration::CRMS_RetrieveQueryType::None) {//NON
                                 SET(ty);
                                 SET(val);
-                            } else if (retrieve_query->ty == CRMS_Req::PR) {//PR
-                                if (retrieve_query->retrieve_query_pr.ty == CRMS_Req::IN) {
+                            } else if (rq->ty.get_val() == enumeration::CRMS_RetrieveQueryType::PartialRetrieve) {//PR
+                                if (rq->rq.pr.ty.get_val() == enumeration::CRMS_PartialRetrieveType::In) {
                                     SET(ty);
 
                                     if (!is_default_value(val)) {
-                                        char *keys = strdup(retrieve_query->retrieve_query_pr.pr);
+                                        char *keys = strdup(rq->rq.pr.pr.in);
                                         JSON_Value *doc = serialize_to_doc(*val, keys);
                                         json_object_set_value(_root_obj_, "val", doc);
                                         delete[]keys;
                                     }
-                                } else if (retrieve_query->retrieve_query_pr.ty == CRMS_Req::EX) {
+                                } else if (rq->rq.pr.ty.get_val() == enumeration::CRMS_PartialRetrieveType::Ex) {
                                     SET(ty);
                                     SET(val);
 
@@ -47,7 +48,7 @@ namespace crms {
                                     JSON_Object *val_obj = json_value_get_object(val_val);
 
                                     bool cut = true;
-                                    char *keys = strdup(retrieve_query->retrieve_query_pr.pr);
+                                    char *keys = strdup(rq->rq.pr.pr.ex);
                                     int n = cut_string(keys, ',');
                                     if (n > 0) {
                                         for (char *key = keys; n > 0; ++key) {
@@ -64,9 +65,10 @@ namespace crms {
                                 } else {
                                     ////TODO:handle error
                                 }
-                            } else if (retrieve_query->ty == CRMS_Req::PG) {//PG
+                            } else if (rq->ty.get_val() == enumeration::CRMS_RetrieveQueryType::Pagination) {//PG
 
-                            } else if (retrieve_query->ty == CRMS_Req::SR) {//SR
+                            } else if (rq->ty.get_val() ==
+                                       enumeration::CRMS_RetrieveQueryType::SubscriptionRetrieve) {//SR
 
                             }
                         }
@@ -89,7 +91,7 @@ namespace crms {
                     int ty;
                     T *val;
 
-                    const CRMS_Req::retrieve_query_t *retrieve_query;
+                    const common::CRMS_RetrieveQuery *rq;
 
                 public:
                     void set_ty(int ty) {
@@ -112,21 +114,21 @@ namespace crms {
                         return val;
                     }
 
-                    void set_retrieve_query(const CRMS_Req::retrieve_query_t *retrieve_query) {
-                        this->retrieve_query = retrieve_query;
+                    void set_rq(const common::CRMS_RetrieveQuery *rq) {
+                        this->rq = rq;
                     }
 
-                    const CRMS_Req::retrieve_query_t *get_retrieve_query() const {
-                        return retrieve_query;
+                    const common::CRMS_RetrieveQuery *get_rq() const {
+                        return rq;
                     }
                 };
 
                 template<>
-                class CRMS_Req_Rsp<std::string> {
+                class CRMS_Req_Rsp<_STRING> {
                 public:
                     CRMS_Req_Rsp() : ty(DEFAULT_VALUE_INT), val(NULL) {}
 
-                    CRMS_Req_Rsp(int ty, const std::string *val) : ty(ty), val(val) {}
+                    CRMS_Req_Rsp(int ty, const _STRING *val) : ty(ty), val(val) {}
 
                     bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
@@ -157,7 +159,7 @@ namespace crms {
 
                 private:
                     int ty;
-                    const std::string *val;
+                    const _STRING *val;
 
                 public:
                     void set_ty(int ty) {
@@ -168,15 +170,15 @@ namespace crms {
                         return ty;
                     }
 
-                    void set_val(std::string *val) {
+                    void set_val(const _STRING *val) {
                         this->val = val;
                     }
 
-//                    std::string *get_val() {
+//                    _STRING *get_val() {
 //                        return val;
 //                    }
 
-                    const std::string *get_val() const {
+                    const _STRING *get_val() const {
                         return val;
                     }
                 };

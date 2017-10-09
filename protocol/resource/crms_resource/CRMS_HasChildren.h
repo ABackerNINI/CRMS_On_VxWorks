@@ -5,7 +5,7 @@
 #ifndef CRMS_ON_VXWORKS_CRMS_HASCHILDREN_H
 #define CRMS_ON_VXWORKS_CRMS_HASCHILDREN_H
 
-#include "CRMS_ChildResourceRef.h"
+#include "../crms_common/CRMS_ChildResourceRef.h"
 #include "CRMS_Resource.h"
 
 namespace crms {

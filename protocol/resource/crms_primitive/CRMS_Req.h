@@ -10,7 +10,8 @@
 #include "../crms_enumeration/CRMS_Operation.h"
 #include "../crms_enumeration/CRMS_ResultContent.h"
 #include "../crms_enumeration/CRMS_SubscriptionOperation.h"
-#include "../crms_attribute/CRMS_FilterCriteria.h"
+#include "../crms_common/CRMS_FilterCriteria.h"
+#include "../crms_common/CRMS_RetrieveQuery.h"
 
 namespace crms {
 
@@ -87,40 +88,43 @@ namespace crms {
                     ~CRMS_Req() {
                     }
 
+//                public:
+//                    enum retrieve_query_type {
+//                        NON,
+//                        PR,
+//                        PG,
+//                        SR
+//                    };
+//
+//                    enum retrieve_query_pr_type {
+//                        IN,
+//                        EX
+//                    };
+//
+//                    struct retrieve_query_t {
+//                        retrieve_query_type ty;
+//
+//                        union {
+//                            struct {
+//                                retrieve_query_pr_type ty;
+//                                const char *pr;
+//                            } retrieve_query_pr;
+//
+//                            struct {
+//                                int offset;
+//                                int len;
+//                            } retrieve_query_pg;
+//
+//                            struct {
+//                                const char *id;
+//                            } retrieve_query_sr;
+//                        };
+//                    } retrieve_query;
+//
+//                public:
+
                 public:
-                    enum retrieve_query_type {
-                        NON,
-                        PR,
-                        PG,
-                        SR
-                    };
-
-                    enum retrieve_query_pr_type {
-                        IN,
-                        EX
-                    };
-
-                    struct retrieve_query_t {
-                        retrieve_query_type ty;
-
-                        union {
-                            struct {
-                                retrieve_query_pr_type ty;
-                                const char *pr;
-                            } retrieve_query_pr;
-
-                            struct {
-                                int offset;
-                                int len;
-                            } retrieve_query_pg;
-
-                            struct {
-                                const char *id;
-                            } retrieve_query_sr;
-                        };
-                    } retrieve_query;
-
-                public:
+                    common::CRMS_RetrieveQuery rq;
 
                 DEFINE_MEMBER(op, enumeration::CRMS_Operation)
 
@@ -150,7 +154,7 @@ namespace crms {
 
                 DEFINE_MEMBER(gid, _STRING)
 
-                DEFINE_MEMBER(fc, attribute::CRMS_FilterCriteria)
+                DEFINE_MEMBER(fc, common::CRMS_FilterCriteria)
 
                 DEFINE_MEMBER(so, enumeration::CRMS_SubscriptionOperation)
 

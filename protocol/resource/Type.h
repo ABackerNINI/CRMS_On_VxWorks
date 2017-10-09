@@ -15,6 +15,7 @@
 
 //string & list & map & vector types
 #define _STRING         std::string
+#define _CSTR           char *
 #define _LIST           std::list
 #define _MAP            std::map
 #define _VECTOR         std::vector
