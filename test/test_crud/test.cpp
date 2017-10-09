@@ -28,105 +28,105 @@ int main() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     HttpUtil::Http_Req http_req;
-//    {
-//        http_req.Method = HttpUtil::POST;
-//        http_req.Uri = "http://localhost:8080/root";
-//        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
-//        http_req.Querys["ty"] = "2";
-//
-//        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_ResourceObject> req_rsp;
-//        {
-//            req_rsp.set_ty(2);
-//            crms::protocol::resource::resource::CRMS_ResourceObject resource_object;
-//            {
-//                resource_object.set_onto("dasdas");
-//            }
-//            req_rsp.set_val(&resource_object);
-//        };
-//        char *s = serialize(req_rsp);
-//
-//        http_req.Body = s;
-//
-//        delete[]s;
-//    }
-//    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
+    {
+        http_req.Method = HttpUtil::POST;
+        http_req.Uri = "http://localhost:8080/root";
+        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
+        http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject);
 
-//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//    std::cin.getline(cmd, 100);
-//
-//    {
-//        http_req.Method = HttpUtil::POST;
-//        http_req.Uri = "http://localhost:8080/root/untitled";
-//        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
-//        http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::attribute);
-//        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute> req_rsp;
-//        {
-//            req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::attribute);
-//            crms::protocol::resource::resource::CRMS_Attribute attribute;
-//            {
-//                attribute.set_nm("attr");
-//            }
-//            req_rsp.set_val(&attribute);
-//        };
-//        char *s = serialize(req_rsp);
-//
-//        http_req.Body = s;
-//
-//        delete[]s;
-//    }
-//    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
-//
-//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    std::cin.getline(cmd, 100);
-//
-//    {
-//        http_req.Method = HttpUtil::POST;
-//        http_req.Uri = "http://localhost:8080/root/untitled";
-//        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
-//        http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::command);
-//        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Command> req_rsp;
-//        {
-//            req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::command);
-//            crms::protocol::resource::resource::CRMS_Command command;
-//            {
-//                command.set_con("comman");
-//            }
-//            req_rsp.set_val(&command);
-//        };
-//        char *s = serialize(req_rsp);
-//
-//        http_req.Body = s;
-//
-//        delete[]s;
-//    }
-//    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
-//
-//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//    std::cin.getline(cmd, 100);
-//
-//    {
-//        http_req.Method = HttpUtil::POST;
-//        http_req.Uri = "http://localhost:8080/root/untitled";
-//        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
-//        http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::dataTable);
-//        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_DataTable> req_rsp;
-//        {
-//            req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::dataTable);
-//            crms::protocol::resource::resource::CRMS_DataTable dataTable;
-//            {
-//                dataTable.set_rn("dt");
-//            }
-//            req_rsp.set_val(&dataTable);
-//        };
-//        char *s = serialize(req_rsp);
-//
-//        http_req.Body = s;
-//
-//        delete[]s;
-//    }
-//    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
+        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_ResourceObject> req_rsp;
+        {
+            req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject);
+            crms::protocol::resource::resource::CRMS_ResourceObject resource_object;
+            {
+                resource_object.set_onto("dasdas");
+            }
+            req_rsp.set_val(&resource_object);
+        };
+        char *s = serialize(req_rsp);
+
+        http_req.Body = s;
+
+        delete[]s;
+    }
+    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    std::cin.getline(cmd, 100);
+
+    {
+        http_req.Method = HttpUtil::POST;
+        http_req.Uri = "http://localhost:8080/root/1";
+        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
+        http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::attribute);
+        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Attribute> req_rsp;
+        {
+            req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::attribute);
+            crms::protocol::resource::resource::CRMS_Attribute attribute;
+            {
+                attribute.set_nm("attr");
+            }
+            req_rsp.set_val(&attribute);
+        };
+        char *s = serialize(req_rsp);
+
+        http_req.Body = s;
+
+        delete[]s;
+    }
+    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    std::cin.getline(cmd, 100);
+
+    {
+        http_req.Method = HttpUtil::POST;
+        http_req.Uri = "http://localhost:8080/root/1";
+        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
+        http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::command);
+        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Command> req_rsp;
+        {
+            req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::command);
+            crms::protocol::resource::resource::CRMS_Command command;
+            {
+                command.set_con("command");
+            }
+            req_rsp.set_val(&command);
+        };
+        char *s = serialize(req_rsp);
+
+        http_req.Body = s;
+
+        delete[]s;
+    }
+    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    std::cin.getline(cmd, 100);
+
+    {
+        http_req.Method = HttpUtil::POST;
+        http_req.Uri = "http://localhost:8080/root/1";
+        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
+        http_req.Querys["ty"] = to_string(crms::protocol::resource::enumeration::CRMS_MemberType::dataTable);
+        crms::protocol::resource::resource::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_DataTable> req_rsp;
+        {
+            req_rsp.set_ty(crms::protocol::resource::enumeration::CRMS_MemberType::dataTable);
+            crms::protocol::resource::resource::CRMS_DataTable dataTable;
+            {
+                dataTable.set_rn("dt");
+            }
+            req_rsp.set_val(&dataTable);
+        };
+        char *s = serialize(req_rsp);
+
+        http_req.Body = s;
+
+        delete[]s;
+    }
+    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -134,7 +134,7 @@ int main() {
 
     {
         http_req.Method = HttpUtil::GET;
-        http_req.Uri = "http://localhost:8080/root/untitled";
+        http_req.Uri = "http://localhost:8080/root/1";
         http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
         http_req.Querys["q"] = "pr";
         http_req.Querys["ex"] = "ty,pa,lt";
