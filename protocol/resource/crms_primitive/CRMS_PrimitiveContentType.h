@@ -13,28 +13,21 @@ namespace crms {
 
             namespace primitive {
 
+                template<typename T>
                 class CRMS_PrimitiveContentType {
                 public:
-                    CRMS_PrimitiveContentType() {
-                    }
+                    CRMS_PrimitiveContentType() : ty(DEFAULT_VALUE_INT), val(NULL) {}
 
-                    CRMS_PrimitiveContentType(const _STRING &value) :
-                            value(value) {
-                    }
-
-                    CRMS_PrimitiveContentType(const _STRING &value, const _STRING &type) :
-                            value(value),
-                            type(type) {
-                    }
+                    CRMS_PrimitiveContentType(int ty, T *val) : ty(ty), val(val) {}
 
                     bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
                             if (_key_ == NULL) {
-                                SET(value);
-                                SET(type);
+                                SET(ty);
+                                SET(val);
                             } else {
-                                SET_IF_KEY(value) SET_IF_KEY(type) {
+                                SET_IF_KEY(ty) SET_IF_KEY(val) {
                                     return false;
                                 }
                             }
@@ -46,17 +39,17 @@ namespace crms {
                     void deserialize(JSON_Value *_doc_) {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
-                            GET(value);
-                            GET(type);
+                            GET(ty);
+                            GET(val);
                         }
                     }
 
-                    ~CRMS_PrimitiveContentType() {
+                    ~CRMS_Req_Rsp() {
                     }
 
-                DEFINE_MEMBER(value, _STRING)
+                DEFINE_MEMBER(ty, _INT)
 
-                DEFINE_MEMBER(type, _STRING)
+                DEFINE_MEMBER(val, T *)
                 };
             }
         }

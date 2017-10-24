@@ -105,7 +105,6 @@ set(PROTOCOL_RESOURCE_CRMS_COMMON
         protocol/resource/crms_common/CRMS_Notification.h
         protocol/resource/crms_common/CRMS_Pagination.h
         protocol/resource/crms_common/CRMS_PartialRetrieve.h
-        protocol/resource/crms_common/CRMS_RetrieveQuery.h
         protocol/resource/crms_common/CRMS_Subscription.h
         protocol/resource/crms_common/CRMS_SubscriptionRef.h
         protocol/resource/crms_common/CRMS_SubscriptionRetrieve.h
@@ -129,7 +128,6 @@ set(PROTOCOL_RESOURCE_CRMS_ENUMERATION
 set(PROTOCOL_RESOURCE_CRMS_PRIMITIVE
         protocol/resource/crms_primitive/CRMS_PrimitiveContentType.h
         protocol/resource/crms_primitive/CRMS_Req.h
-        protocol/resource/crms_primitive/CRMS_Req_Rsp.h
         protocol/resource/crms_primitive/CRMS_Rsp.h
         )
 set(PROTOCOL_RESOURCE_CRMS_RESOURCE

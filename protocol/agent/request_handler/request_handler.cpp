@@ -22,7 +22,7 @@ resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Req *http_req) {
 //    if (it != http_req->Headers.end())
 //        crms_req.set_fr(it->second);
 
-    if (http_req->Method == HttpUtil::POST) {
+    if (http_req->Method == HttpUtil::POST) {//CREATE
         std::map<std::string, std::string>::const_iterator it_ty = http_req->Querys.find(KW_TYPE_SHORT);
         std::map<std::string, std::string>::const_iterator it_rn = http_req->Querys.find(KW_RESOURCE_NAME_SHORT);
 
@@ -30,7 +30,7 @@ resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Req *http_req) {
             LOGEVT("'ty' Not Found in URL @request_dispatch");
 
             return resource::primitive::CRMS_Rsp(&crms_req,
-                                                crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Bad_request);////mark
+                                                 crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Bad_request);////mark
         }
 
         char *p = NULL;
@@ -43,7 +43,7 @@ resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Req *http_req) {
 
         crms_req.set_pc(resource::primitive::CRMS_PrimitiveContentType(http_req->Body));
         crms_req.set_op(resource::enumeration::CRMS_Operation::Create);
-    } else if (http_req->Method == HttpUtil::GET) {
+    } else if (http_req->Method == HttpUtil::GET) {//RETRIEVE
         std::map<std::string, std::string>::const_iterator it_q = http_req->Querys.find(KW_QUERY_Q);
         if (it_q != http_req->Querys.end()) {
             if (it_q->second.compare(KV_QUERY_Q_PR) == 0) {
@@ -87,14 +87,14 @@ resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Req *http_req) {
             }
         }
         crms_req.set_op(resource::enumeration::CRMS_Operation::Retrieve);
-    } else if (http_req->Method == HttpUtil::PUT) {
+    } else if (http_req->Method == HttpUtil::PUT) {//UPDATE
         crms_req.set_pc(resource::primitive::CRMS_PrimitiveContentType(http_req->Body.c_str()));
         crms_req.set_op(resource::enumeration::CRMS_Operation::Update);
-    } else if (http_req->Method == HttpUtil::DELETE) {
+    } else if (http_req->Method == HttpUtil::DELETE) {//DELETE
         crms_req.set_op(resource::enumeration::CRMS_Operation::Delete);
     } else {
         return resource::primitive::CRMS_Rsp(&crms_req,
-                                            resource::enumeration::CRMS_ResponseStatusCodeType::Bad_request);////mark
+                                             resource::enumeration::CRMS_ResponseStatusCodeType::Bad_request);////mark
     }
 
     resource::resource::CRMS_Resource *resource = NULL;
@@ -103,7 +103,7 @@ resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Req *http_req) {
         LOGEVT("Request Path Is NULL @request_dispatch");
 
         return resource::primitive::CRMS_Rsp(&crms_req,
-                                            resource::enumeration::CRMS_ResponseStatusCodeType::Bad_request);////mark
+                                             resource::enumeration::CRMS_ResponseStatusCodeType::Bad_request);////mark
     }
 
     resource = (resource::resource::CRMS_Resource *) resource_pool::get_instance().get_resource_from_id(http_req->Uri);
@@ -140,7 +140,12 @@ void cse::protocol::agent::request_handler::on_request(HttpUtil::Http_Req *http_
     if (check_req_headers(http_req)) {
         resource::primitive::CRMS_Rsp crms_rsp = request_dispatch(http_req);
 
-        http_rsp->Body = crms_rsp.get_pc().get_value();
+        char *s = serialize(crms_rsp.get_pc());////TODO:handle error
+
+        http_rsp->Body = s;
+
+        delete[]s;
+
         http_rsp->Headers[KW_HEADERS_HOST] = KV_HEADERS_HOST;
 
         std::map<std::string, std::string>::const_iterator X_M2M_RI_Iter = http_req->Headers.find(KW_HEADERS_X_CRMS_RI);
