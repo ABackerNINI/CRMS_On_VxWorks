@@ -195,11 +195,3 @@ add_executable(test_root_resource test/test_crud/test_root_resource.cpp
 target_link_libraries(test_root_resource pthread)
 
 ##############################################################################################
-
-add_executable(testt test/test_crud/test.cpp
-        ${PROTOCOL}
-        ${UTILITY}
-        )
-target_link_libraries(testt pthread)
-
-##############################################################################################
