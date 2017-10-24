@@ -18,7 +18,6 @@
 #include "../../resource/crms_resource/CRMS_RemoteResourceObject.h"
 #include "../../resource/crms_resource/CRMS_RootResource.h"
 #include "../../../utility/resource_pool/resource_pool.h"
-#include "../../resource/crms_primitive/CRMS_Req_Rsp.h"
 #include "../../keyword.h"
 #include "../../resource/crms_primitive/CRMS_Req.h"
 #include "../../resource/crms_enumeration/CRMS_ResourceType.h"
@@ -47,7 +46,7 @@ void build_failed_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
             &crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::get_msg(rsc.get_val()));
 
     char *s = serialize(req_rsp);
-    rsp->set_pc(crms::protocol::resource::primitive::CRMS_PrimitiveContentType(s));
+//    rsp->set_pc(crms::protocol::resource::primitive::CRMS_PrimitiveContentType(s));
     delete[] s;
 }
 
@@ -102,7 +101,7 @@ void serialize_resource_to_pc(crms::protocol::resource::primitive::CRMS_Rsp *rsp
             break;
 
     }
-    rsp->set_pc(crms::protocol::resource::primitive::CRMS_PrimitiveContentType(s));
+//    rsp->set_pc(crms::protocol::resource::primitive::CRMS_PrimitiveContentType(s));
 
     delete[] s;
 }
@@ -233,42 +232,42 @@ void crms::protocol::agent::resource_operator::resource_operator::create_resourc
         crms::protocol::resource::primitive::CRMS_Req *req, crms::protocol::resource::primitive::CRMS_Rsp *rsp,
         crms::protocol::resource::resource::CRMS_Resource *parent) {
 
-    resource::resource::CRMS_Resource *resource = deserialize_resource(req->get_ty(),
-                                                                       req->get_pc().get_value().c_str());
+//    resource::resource::CRMS_Resource *resource = deserialize_resource(req->get_ty(),
+//                                                                       req->get_pc().get_value().c_str());
 
-    resource->set_ty(req->get_ty());
-    resource->set_rn(req->get_rn());
-
-    ////see TS-0001 10.1.1.1 Step 002 5);
-    //a
-    resource->set_pa(parent->get_ri());
-    //b
-    resource->set_ct(DateTime::now());
-    //c
-    ////mark
-    //d
-    resource->set_lt(resource->get_ct());
-    //e
-    //TODO assign Any other RO (Read Only) attributes within the restriction of the Receiver policies a value.
-
-    //store the resource & update its real rn and ri
-    if (register_resource((crms::protocol::resource::resource::CRMS_HasChildren *) parent, resource) == -1) {
-        build_failed_rsp(req, rsp,
-                         crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_already_exists);
-
-        return;
-    }
-
-    //add to parent's ch list
-    crms::protocol::resource::resource::CRMS_ChildResourceRef child_resource_ref;
-    child_resource_ref.set_v(resource->get_ri());
-    child_resource_ref.set_rn(resource->get_rn());
-    child_resource_ref.set_ty(resource->get_ty());
-
-    ((resource::resource::CRMS_HasChildren *) parent)->add_child_ref(child_resource_ref);
-
-    //build create-successful response
-    build_create_successful_rsp(req, rsp, resource);
+//    resource->set_ty(req->get_ty());
+//    resource->set_rn(req->get_rn());
+//
+//    ////see TS-0001 10.1.1.1 Step 002 5);
+//    //a
+//    resource->set_pa(parent->get_ri());
+//    //b
+//    resource->set_ct(DateTime::now());
+//    //c
+//    ////mark
+//    //d
+//    resource->set_lt(resource->get_ct());
+//    //e
+//    //TODO assign Any other RO (Read Only) attributes within the restriction of the Receiver policies a value.
+//
+//    //store the resource & update its real rn and ri
+//    if (register_resource((crms::protocol::resource::resource::CRMS_HasChildren *) parent, resource) == -1) {
+//        build_failed_rsp(req, rsp,
+//                         crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_already_exists);
+//
+//        return;
+//    }
+//
+//    //add to parent's ch list
+//    crms::protocol::resource::resource::CRMS_ChildResourceRef child_resource_ref;
+//    child_resource_ref.set_v(resource->get_ri());
+//    child_resource_ref.set_rn(resource->get_rn());
+//    child_resource_ref.set_ty(resource->get_ty());
+//
+//    ((resource::resource::CRMS_HasChildren *) parent)->add_child_ref(child_resource_ref);
+//
+//    //build create-successful response
+//    build_create_successful_rsp(req, rsp, resource);
 }
 
 void build_retrieve_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
@@ -278,7 +277,7 @@ void build_retrieve_successful_rsp(crms::protocol::resource::primitive::CRMS_Req
 
     crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
             resource->get_ty(), resource);
-    req_rsp.set_retrieve_query(&(req->retrieve_query));
+//    req_rsp.set_retrieve_query(&(req->retrieve_query));
 
     serialize_resource_to_pc(rsp, resource, &req_rsp);
 }
@@ -302,16 +301,16 @@ void build_update_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *
 void crms::protocol::agent::resource_operator::resource_operator::update_resource(
         crms::protocol::resource::primitive::CRMS_Req *req, crms::protocol::resource::primitive::CRMS_Rsp *rsp,
         crms::protocol::resource::resource::CRMS_Resource *resource) {
-    resource::resource::CRMS_Resource *new_resource = deserialize_resource(resource->get_ty(),
-                                                                           req->get_pc().get_value().c_str());
-    new_resource->set_ty(resource->get_ty());
-    new_resource->set_lt(DateTime::now());
-
-    //update resource
-    deserialize_resource(resource->get_ty(), req->get_pc().get_value().c_str(), resource);
-    resource->set_lt(new_resource->get_lt());
-
-    build_update_successful_rsp(req, rsp, new_resource);
+//    resource::resource::CRMS_Resource *new_resource = deserialize_resource(resource->get_ty(),
+//                                                                           req->get_pc().get_value().c_str());
+//    new_resource->set_ty(resource->get_ty());
+//    new_resource->set_lt(DateTime::now());
+//
+//    //update resource
+//    deserialize_resource(resource->get_ty(), req->get_pc().get_value().c_str(), resource);
+//    resource->set_lt(new_resource->get_lt());
+//
+//    build_update_successful_rsp(req, rsp, new_resource);
 }
 
 void build_delete_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
@@ -322,7 +321,7 @@ void build_delete_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *
     char rsp_pc[50];
     sprintf(rsp_pc, KV_DELETE_RESPOND_FORMAT_STRING, (int) ty.get_val());
 
-    rsp->set_pc(crms::protocol::resource::primitive::CRMS_PrimitiveContentType(rsp_pc));
+//    rsp->set_pc(crms::protocol::resource::primitive::CRMS_PrimitiveContentType(rsp_pc));
 }
 
 void delete_resource_instance(const std::string &_Id) {

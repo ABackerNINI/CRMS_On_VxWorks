@@ -13,23 +13,22 @@ namespace crms {
 
             namespace primitive {
 
-                template<typename T>
                 class CRMS_PrimitiveContentType {
                 public:
                     CRMS_PrimitiveContentType() : ty(DEFAULT_VALUE_INT), val(NULL) {}
 
-                    CRMS_PrimitiveContentType(int ty, T *val) : ty(ty), val(val) {}
+                    CRMS_PrimitiveContentType(int ty, void *val) : ty(ty), val(val) {}
 
                     bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
                             if (_key_ == NULL) {
                                 SET(ty);
-                                SET(val);
+//                                SET(val);
                             } else {
-                                SET_IF_KEY(ty) SET_IF_KEY(val) {
-                                    return false;
-                                }
+//                                SET_IF_KEY(ty) SET_IF_KEY(val) {
+//                                    return false;
+//                                }
                             }
                         }
 
@@ -40,16 +39,26 @@ namespace crms {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
                             GET(ty);
-                            GET(val);
+//                            GET(val);
                         }
                     }
 
-                    ~CRMS_Req_Rsp() {
+                    ~CRMS_PrimitiveContentType() {
+//                        if (val)delete[] val;////mark:may raise some problems.
                     }
 
                 DEFINE_MEMBER(ty, _INT)
 
-                DEFINE_MEMBER(val, T *)
+                private:
+                    void *val;
+                public:
+                    void *get_val() { return val; }
+
+                    const void *get_val() const { return val; }
+
+                    void set_val(void *val) { this->val = val; }
+
+//                DEFINE_MEMBER(val, T*)
                 };
             }
         }
