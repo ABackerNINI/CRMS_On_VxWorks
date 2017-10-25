@@ -18,10 +18,7 @@ namespace crms {
                 struct CRMS_PartialRetrieve {
                     enumeration::CRMS_PartialRetrieveType ty;
 
-                    union {////mark:not use list-type here.cut original string afterwards.
-                        const _CSTR in;
-                        const _CSTR ex;
-                    } pr;
+                    const _CSTR val;
                 };
             }
         }

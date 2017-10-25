@@ -27,62 +27,62 @@ namespace crms {
                         memset(&proxy, -1, sizeof(proxy));
                     }
 
-                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
-                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-                        {
-                            if (_key_ == NULL) {
-                                SET(op);
-                                SET(to);
-                                SET(fr);
-                                SET(rqi);
-                                SET(ty);
-                                SET(rn);
-                                SET(pc);
-                                SET(ot);
-                                SET(rqet);
-                                SET(rset);
-                                SET(oet);
-                                SET(rcn);
-                                SET(da);
-                                SET(gid);
-                                SET(fc);
-                                SET(so);
-                                SET(proxy);
-                            } else {
-                                SET_IF_KEY(op) SET_IF_KEY(to) SET_IF_KEY(fr) SET_IF_KEY(rqi) SET_IF_KEY(ty) SET_IF_KEY(
-                                        rn) SET_IF_KEY(pc) SET_IF_KEY(ot) SET_IF_KEY(rqet) SET_IF_KEY(rset) SET_IF_KEY(
-                                        oet) SET_IF_KEY(rcn) SET_IF_KEY(da) SET_IF_KEY(gid) SET_IF_KEY(fc) SET_IF_KEY(
-                                        so) SET_IF_KEY(proxy) {
-                                    return false;
-                                }
-                            }
-                        }
-
-                        return true;
-                    }
-
-                    void deserialize(JSON_Value *_doc_) {
-                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-                        {
-                            GET(op);
-                            GET(to);
-                            GET(fr);
-                            GET(rqi);
-                            GET(ty);
-                            GET(rn);
-                            GET(pc);
-                            GET(ot);
-                            GET(rqet);
-                            GET(rset);
-                            GET(oet);
-                            GET(rcn);
-                            GET(da);
-                            GET(gid);
-                            GET(fc);
-                            GET(so);
-                            GET(proxy);
-                        }
-                    }
+//                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
+//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+//                        {
+//                            if (_key_ == NULL) {
+//                                SET(op);
+//                                SET(to);
+//                                SET(fr);
+//                                SET(rqi);
+//                                SET(ty);
+//                                SET(rn);
+//                                SET(pc);
+//                                SET(ot);
+//                                SET(rqet);
+//                                SET(rset);
+//                                SET(oet);
+//                                SET(rcn);
+//                                SET(da);
+//                                SET(gid);
+//                                SET(fc);
+//                                SET(so);
+//                                SET(proxy);
+//                            } else {
+//                                SET_IF_KEY(op) SET_IF_KEY(to) SET_IF_KEY(fr) SET_IF_KEY(rqi) SET_IF_KEY(ty) SET_IF_KEY(
+//                                        rn) SET_IF_KEY(pc) SET_IF_KEY(ot) SET_IF_KEY(rqet) SET_IF_KEY(rset) SET_IF_KEY(
+//                                        oet) SET_IF_KEY(rcn) SET_IF_KEY(da) SET_IF_KEY(gid) SET_IF_KEY(fc) SET_IF_KEY(
+//                                        so) SET_IF_KEY(proxy) {
+//                                    return false;
+//                                }
+//                            }
+//                        }
+//
+//                        return true;
+//                    }
+//
+//                    void deserialize(JSON_Value *_doc_) {
+//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+//                        {
+//                            GET(op);
+//                            GET(to);
+//                            GET(fr);
+//                            GET(rqi);
+//                            GET(ty);
+//                            GET(rn);
+//                            GET(pc);
+//                            GET(ot);
+//                            GET(rqet);
+//                            GET(rset);
+//                            GET(oet);
+//                            GET(rcn);
+//                            GET(da);
+//                            GET(gid);
+//                            GET(fc);
+//                            GET(so);
+//                            GET(proxy);
+//                        }
+//                    }
 
                     ~CRMS_Req() {
                     }
@@ -99,7 +99,7 @@ namespace crms {
 
                 DEFINE_MEMBER(rn, _STRING)
 
-                DEFINE_MEMBER(pc, CRMS_PrimitiveContentType)
+                DEFINE_MEMBER(pc, CRMS_PrimitiveContentType<void>)
 
                 DEFINE_MEMBER(ot, _DATETIME)
 
