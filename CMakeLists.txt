@@ -152,6 +152,7 @@ set(PROTOCOL_RESOURCE_SUPPORT
 set(PROTOCOL_RESOURCE
         protocol/resource/DEF.h
         protocol/resource/DefMem.h
+        protocol/resource/Object.h
         protocol/resource/Serialization.h
         protocol/resource/Type.h
         ${PROTOCOL_RESOURCE}
