@@ -8,7 +8,6 @@
 #include "../DEF.h"
 #include "../crms_resource/CRMS_Resource.h"
 #include "CRMS_Req.h"
-#include "../crms_common/CRMS_RetrieveQuery.h"
 
 namespace crms {
 

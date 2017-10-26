@@ -103,7 +103,7 @@ set(PROTOCOL_RESOURCE_CRMS_COMMON
         protocol/resource/crms_common/CRMS_ChildResourceRef.h
         protocol/resource/crms_common/CRMS_FilterCriteria.h
         protocol/resource/crms_common/CRMS_Notification.h
-        protocol/resource/crms_common/CRMS_Pagination.h
+        protocol/resource/crms_common/CRMS_PaginationRetrieve.h
         protocol/resource/crms_common/CRMS_PartialRetrieve.h
         protocol/resource/crms_common/CRMS_Subscription.h
         protocol/resource/crms_common/CRMS_SubscriptionRef.h
@@ -148,6 +148,8 @@ set(PROTOCOL_RESOURCE_SUPPORT
         protocol/resource/support/DateSupport.h
         protocol/resource/support/DurationSupport.h
         protocol/resource/support/EnumerationSupport.h
+        protocol/resource/support/PrimitiveContentTypeSupport.cpp
+        protocol/resource/support/PrimitiveContentTypeSupport.h
         )
 set(PROTOCOL_RESOURCE
         protocol/resource/DEF.h
@@ -194,5 +196,13 @@ add_executable(test_root_resource test/test_crud/test_root_resource.cpp
         ${UTILITY}
         )
 target_link_libraries(test_root_resource pthread)
+
+##############################################################################################
+
+add_executable(test_crud test/test_crud/test_crud.cpp
+        ${PROTOCOL}
+        ${UTILITY}
+        )
+target_link_libraries(test_crud pthread)
 
 ##############################################################################################

@@ -14,7 +14,7 @@ namespace crms {
 
             namespace primitive {
 
-                template <typename T = void>
+                template<typename T = void>
                 class CRMS_PrimitiveContentType {
                 public:
                     CRMS_PrimitiveContentType() : ty(DEFAULT_VALUE_INT), val(NULL) {}
@@ -51,16 +51,18 @@ namespace crms {
 
                 DEFINE_MEMBER(ty, _INT)
 
+                DEFINE_POINTER_MEMBER(val, T *)
+
 //                DEFINE_MEMBER(val, Object)
 
-                private:
-                    T *val;
-                public:
-                    T *get_val() { return val; }
-
-                    const T *get_val() const { return val; }
-
-                    void set_val(T *val) { this->val = val; }
+//                private:
+//                    T *val;
+//                public:
+//                    T *get_val() { return val; }
+//
+//                    const T *get_val() const { return val; }
+//
+//                    void set_val(T *val) { this->val = val; }
 
 //                DEFINE_MEMBER(val, T*)
                 };

@@ -21,6 +21,7 @@
 #include "../../keyword.h"
 #include "../../resource/crms_primitive/CRMS_Req.h"
 #include "../../resource/crms_enumeration/CRMS_ResourceType.h"
+#include "../../resource/support/PrimitiveContentTypeSupport.h"
 
 void build_corresponding_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
                              crms::protocol::resource::primitive::CRMS_Rsp *rsp) {
@@ -111,7 +112,7 @@ void build_corresponding_failed_rsp(crms::protocol::resource::primitive::CRMS_Re
 
 crms::protocol::resource::resource::CRMS_Resource *
 deserialize_resource(int ty, const char *s, crms::protocol::resource::resource::CRMS_Resource *resource = NULL) {
-    crms::protocol::resource::primitive::CRMS_PrimitiveContentType <>pc;
+    crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> pc;
 
     if (resource) {
         pc.set_val(resource);
@@ -168,7 +169,7 @@ deserialize_resource(int ty, const char *s, crms::protocol::resource::resource::
             break;
     }
 
-    return (crms::protocol::resource::resource::CRMS_Resource *)pc.get_val();
+    return (crms::protocol::resource::resource::CRMS_Resource *) pc.get_val();
 }
 
 char *uitoa(unsigned int value, char *str, int base) {
@@ -226,19 +227,19 @@ void build_create_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *
                                  crms::protocol::resource::resource::CRMS_Resource *resource) {
     build_corresponding_successful_rsp(req, rsp);
 
-
-
-//    crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
-//            resource->get_ty(), resource);
-//    serialize_resource_to_pc(rsp, resource, &req_rsp);
+    rsp->get_pc().set_ty(req->get_ty());
+    rsp->get_pc().set_val((void *) resource);
 }
 
 void crms::protocol::agent::resource_operator::resource_operator::create_resource(
         crms::protocol::resource::primitive::CRMS_Req *req, crms::protocol::resource::primitive::CRMS_Rsp *rsp,
         crms::protocol::resource::resource::CRMS_Resource *parent) {
 
-    resource::resource::CRMS_Resource *resource = deserialize_resource(req->get_ty(),
-                                                                       (const char *) req->get_pc().get_val());
+    crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> pc;
+
+    deserialize_pc(&pc, req->get_ty(), (const char *) req->get_pc().get_val());
+
+    resource::resource::CRMS_Resource *resource = (resource::resource::CRMS_Resource *) pc.get_val();
 
     resource->set_ty(req->get_ty());
     resource->set_rn(req->get_rn());
@@ -258,13 +259,13 @@ void crms::protocol::agent::resource_operator::resource_operator::create_resourc
     //store the resource & update its real rn and ri
     if (register_resource((crms::protocol::resource::resource::CRMS_HasChildren *) parent, resource) == -1) {
         build_corresponding_failed_rsp(req, rsp,
-                         crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_already_exists);
+                                       crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_already_exists);
 
         return;
     }
 
     //add to parent's ch list
-    crms::protocol::resource::resource::CRMS_ChildResourceRef child_resource_ref;
+    crms::protocol::resource::common::CRMS_ChildResourceRef child_resource_ref;
     child_resource_ref.set_v(resource->get_ri());
     child_resource_ref.set_rn(resource->get_rn());
     child_resource_ref.set_ty(resource->get_ty());
@@ -338,10 +339,10 @@ void delete_resource_instance(const std::string &_Id) {
         ty == crms::protocol::resource::enumeration::CRMS_MemberType::command/* ||
         ty == crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject ||
         ty == crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand*/) {//resources have children
-        const std::list<crms::protocol::resource::resource::CRMS_ChildResourceRef> &childrenListRef = ((crms::protocol::resource::resource::CRMS_HasChildren *) instance)->get_children();
+        const std::list<crms::protocol::resource::common::CRMS_ChildResourceRef> &childrenListRef = ((crms::protocol::resource::resource::CRMS_HasChildren *) instance)->get_children();
 
         //delete all children
-        for (std::list<crms::protocol::resource::resource::CRMS_ChildResourceRef>::const_iterator childIt = childrenListRef.begin();
+        for (std::list<crms::protocol::resource::common::CRMS_ChildResourceRef>::const_iterator childIt = childrenListRef.begin();
              childIt != childrenListRef.end(); ++childIt) {
             delete_resource_instance(childIt->get_v());
         }

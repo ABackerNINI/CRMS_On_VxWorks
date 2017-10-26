@@ -15,10 +15,11 @@ namespace crms {
 
             namespace common {
 
-                struct CRMS_PartialRetrieve {
-                    enumeration::CRMS_PartialRetrieveType ty;
+                class CRMS_PartialRetrieve {
 
-                    const _CSTR val;
+                DEFINE_MEMBER(ty, enumeration::CRMS_PartialRetrieveType)
+
+                DEFINE_POINTER_MEMBER(val,const _CSTR)
                 };
             }
         }

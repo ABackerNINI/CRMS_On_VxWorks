@@ -12,8 +12,9 @@
 #define KV_CRMS_ROOT_RESOURCE_RI "/root"
 
 #define KW_HEADERS_HOST "Host"
-#define KV_HEADERS_HOST "/crms_on_vxworks"
+#define KV_HEADERS_HOST "crms_on_vxworks"
 #define KW_HEADERS_X_CRMS_RI "x-crms-ri"
+#define KW_HEADERS_X_CRMS_RSC "x-crms-rsc"
 
 #define KW_QUERY_Q "q"
 #define KV_QUERY_Q_PR "pr"

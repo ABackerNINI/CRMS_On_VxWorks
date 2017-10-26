@@ -15,9 +15,11 @@ namespace crms {
 
             namespace common {
 
-                struct CRMS_Pagination {
-                    _INT offset;
-                    _INT len;
+                struct CRMS_PaginationRetrieve {
+
+                DEFINE_MEMBER(offset, _INT)
+
+                DEFINE_MEMBER(len, _INT)
                 };
             }
         }

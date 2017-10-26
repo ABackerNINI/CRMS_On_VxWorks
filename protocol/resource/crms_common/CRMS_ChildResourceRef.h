@@ -11,7 +11,7 @@ namespace crms {
 
         namespace resource {
 
-            namespace resource {
+            namespace common {
 
                 class CRMS_ChildResourceRef {
                 public:
@@ -48,7 +48,6 @@ namespace crms {
                     ~CRMS_ChildResourceRef() {
                     }
 
-                private:
                 DEFINE_MEMBER(v, _STRING)
 
                 DEFINE_MEMBER(ty, _INT)

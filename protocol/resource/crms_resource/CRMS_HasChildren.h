@@ -50,11 +50,11 @@ namespace crms {
                     ~CRMS_HasChildren() {
                     }
 
-                    void add_child_ref(const CRMS_ChildResourceRef &child_ref) {
+                    void add_child_ref(const crms::protocol::resource::common::CRMS_ChildResourceRef &child_ref) {
                         children.push_back(child_ref);
                     }
 
-                DEFINE_MEMBER(children, _LIST < CRMS_ChildResourceRef >)
+                DEFINE_MEMBER(children, _LIST < crms::protocol::resource::common::CRMS_ChildResourceRef >)
 
                 DEFINE_MEMBER(acid, _UINT)//automatic children id
                 };
