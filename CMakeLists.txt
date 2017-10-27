@@ -187,21 +187,6 @@ target_link_libraries(launcher pthread)
 
 ##############################################################################################
 
-add_executable(test_req_rsp test/test_serialization/test_req_rsp.cpp
-        ${PROTOCOL_RESOURCE}
-        ${UTILITY_NJSON}
-        )
-
-##############################################################################################
-
-add_executable(test_root_resource test/test_crud/test_root_resource.cpp
-        ${PROTOCOL}
-        ${UTILITY}
-        )
-target_link_libraries(test_root_resource pthread)
-
-##############################################################################################
-
 add_executable(test_create test/test_crud/test_create.cpp
         ${PROTOCOL}
         ${UTILITY}

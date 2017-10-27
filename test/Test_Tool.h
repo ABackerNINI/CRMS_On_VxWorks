@@ -5,34 +5,29 @@
 #ifndef GATEWAY_CSE_TEST_TOOL_H
 #define GATEWAY_CSE_TEST_TOOL_H
 
+#include "../utility/HttpUtil/HttpUtil.h"
+#include "../protocol/resource/crms_common/CRMS_RetrieveQuery.h"
+#include "../protocol/resource/crms_resource/CRMS_Resource.h"
 
-#include <iostream>
-#include <map>
-#include "../lab/mars/m2m/protocol/resource/M2M_KeyWords.h"
-#include "../lab/mars/m2m/protocol/resource/resource/m2m_resource.h"
-#include "../lab/mars/m2m/utility/XmlLib/XmlLib.h"
-#include "../lab/mars/m2m/utility/HttpUtil/HttpUtil.h"
+namespace test_tool {
 
-#define CSB KW_CSE_BASE_PATH
-
-namespace Test_Tool {
-
-    static const std::string _URL = "192.168.1.1:8080";
+    static const std::string URL = "192.168.159.130:8080";
+    static const std::string RSC_OK = "1";
 
     std::map<std::string, std::string> GetHeaders();
 
-    void Create(const std::string &_Path,
-                const enumeration::m2m_resourceType &_Type,
-                const std::string &_Name,
-                const std::string &_Body);
+    bool Create(const std::string &path, const std::string &name,
+                const crms::protocol::resource::resource::CRMS_Resource *resource);
 
-    void Retrieve(const std::string &_Path, const std::string &_Xml);
+    void Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_PartialRetrieve pr);
 
-    void Retrieve(const std::string &_Path, const std::string &_Xml,HttpUtil::Http_Rsp* _Rsp);
+    void Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_PaginationRetrieve pg);
 
-    void Update(const std::string &_Path, const std::string &_Body);
+    void Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_SubscriptionRetrieve sr);
 
-    void Delete(const std::string &_Path);
+    void Update(const std::string &path, const std::string &body);
+
+    void Delete(const std::string &path);
 }
 
 
