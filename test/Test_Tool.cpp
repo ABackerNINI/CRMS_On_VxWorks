@@ -3,8 +3,6 @@
 //
 
 #include "Test_Tool.h"
-#include "../lab/mars/m2m/utility/HttpUtil/HttpUtil.h"
-#include "../lab/mars/m2m/utility/HttpUtil/Client.h"
 
 std::map<std::string, std::string> Test_Tool::GetHeaders() {
     std::map<std::string, std::string> _Headers;
@@ -15,37 +13,6 @@ std::map<std::string, std::string> Test_Tool::GetHeaders() {
     _Headers["X-M2M-RI"] = "ID";
 
     return _Headers;
-}
-
-std::string Test_Tool::GetRetrieveXml(const std::string &_Attrs) {
-    xmlDocPtr doc = xmlNewDoc(BAD_CAST "1.0");
-    {
-        xmlNodePtr _Rnode = xmlNewNode(NULL, BAD_CAST "pc");
-        {
-            xmlNewProp(_Rnode, BAD_CAST "xmlns:m2m", BAD_CAST "http://www.onem2m.org/xml/protocols");
-
-            xmlNodePtr _PRnode = xmlNewNode(NULL, BAD_CAST "PartialRetrieve");
-            {
-                xmlNodePtr _Attrnode = xmlNewNode(NULL, BAD_CAST "attributes");
-                {
-                    xmlNodeAddContent(_Attrnode, BAD_CAST _Attrs.c_str());
-                }
-                xmlAddChild(_PRnode, _Attrnode);
-            }
-            xmlAddChild(_Rnode, _PRnode);
-        }
-
-        xmlDocSetRootElement(doc, _Rnode);
-    }
-
-    const char *_Str = save_doc(doc, 1);
-    std::string _Ret(_Str);
-
-    return _Ret;
-}
-
-std::string Test_Tool::GeDeleteXml() {
-    return std::string();
 }
 
 void Test_Tool::Create(const std::string &_Path,

@@ -103,11 +103,9 @@ set(PROTOCOL_RESOURCE_CRMS_COMMON
         protocol/resource/crms_common/CRMS_ChildResourceRef.h
         protocol/resource/crms_common/CRMS_FilterCriteria.h
         protocol/resource/crms_common/CRMS_Notification.h
-        protocol/resource/crms_common/CRMS_PaginationRetrieve.h
-        protocol/resource/crms_common/CRMS_PartialRetrieve.h
+        protocol/resource/crms_common/CRMS_RetrieveQuery.h
         protocol/resource/crms_common/CRMS_Subscription.h
         protocol/resource/crms_common/CRMS_SubscriptionRef.h
-        protocol/resource/crms_common/CRMS_SubscriptionRetrieve.h
         )
 set(PROTOCOL_RESOURCE_CRMS_ENUMERATION
         protocol/resource/crms_enumeration/CRMS_ConsistencyStrategy.h
@@ -115,12 +113,10 @@ set(PROTOCOL_RESOURCE_CRMS_ENUMERATION
         protocol/resource/crms_enumeration/CRMS_NodeExecutionState.h
         protocol/resource/crms_enumeration/CRMS_NotificationContentType.h
         protocol/resource/crms_enumeration/CRMS_Operation.h
-        protocol/resource/crms_enumeration/CRMS_PartialRetrieveType.h
         protocol/resource/crms_enumeration/CRMS_ResourceStatus.h
         protocol/resource/crms_enumeration/CRMS_ResourceType.h
         protocol/resource/crms_enumeration/CRMS_ResponseStatusCodeType.h
         protocol/resource/crms_enumeration/CRMS_ResultContent.h
-        protocol/resource/crms_enumeration/CRMS_RetrieveQueryType.h
         protocol/resource/crms_enumeration/CRMS_SubscriptionEventType.h
         protocol/resource/crms_enumeration/CRMS_SubscriptionOperation.h
         protocol/resource/crms_enumeration/EnumerationBase.h
@@ -154,7 +150,6 @@ set(PROTOCOL_RESOURCE_SUPPORT
 set(PROTOCOL_RESOURCE
         protocol/resource/DEF.h
         protocol/resource/DefMem.h
-        protocol/resource/Object.h
         protocol/resource/Serialization.h
         protocol/resource/Type.h
         ${PROTOCOL_RESOURCE}
@@ -168,7 +163,15 @@ set(PROTOCOL
         protocol/keyword.h
         ${PROTOCOL_AGENT}
         ${PROTOCOL_RESOURCE}
-        protocol/common.h)
+        protocol/common.h
+        )
+
+##############################################################################################
+
+set(TEST_TOOL
+        test/Test_Tool.cpp
+        test/Test_Tool.h
+        )
 
 ##############################################################################################
 
@@ -199,10 +202,11 @@ target_link_libraries(test_root_resource pthread)
 
 ##############################################################################################
 
-add_executable(test_crud test/test_crud/test_crud.cpp
+add_executable(test_create test/test_crud/test_create.cpp
         ${PROTOCOL}
         ${UTILITY}
+        ${TEST_TOOL}
         )
-target_link_libraries(test_crud pthread)
+target_link_libraries(test_create pthread)
 
 ##############################################################################################

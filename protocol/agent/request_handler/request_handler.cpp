@@ -6,18 +6,16 @@
 #include "../../../utility/resource_pool/resource_pool.h"
 #include "../../resource/crms_resource/CRMS_Resource.h"
 #include "../resource_handler/resource_handler.h"
-#include "../../resource/crms_common/CRMS_PartialRetrieve.h"
-#include "../../resource/crms_common/CRMS_PaginationRetrieve.h"
-#include "../../resource/crms_common/CRMS_SubscriptionRetrieve.h"
 #include "../../resource/support/PrimitiveContentTypeSupport.h"
+#include "../../resource/crms_common/CRMS_RetrieveQuery.h"
 
 bool check_req_headers(HttpUtil::Http_Req *http_req) {
     return true;
 }
 
 crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Req *http_req) {
-
     crms::protocol::resource::primitive::CRMS_Req crms_req;
+    crms::protocol::resource::primitive::CRMS_Rsp crms_rsp;
 
     crms_req.set_to(http_req->Uri);
     std::map<std::string, std::string>::const_iterator it_ri = http_req->Headers.find(KW_HEADERS_X_CRMS_RI);
@@ -55,31 +53,32 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
         crms_req.set_op(crms::protocol::resource::enumeration::CRMS_Operation::Create);
     } else if (http_req->Method == HttpUtil::GET) {////RETRIEVE
         std::map<std::string, std::string>::const_iterator it_q = http_req->Querys.find(KW_QUERY_Q);
-        crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> pc;
         if (it_q != http_req->Querys.end()) {
-            if (it_q->second.compare(KV_QUERY_Q_PR) == 0) {////PR
-                pc.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::partialRetrieve);
+            crms::protocol::resource::common::CRMS_RetrieveQuery *rq = &(crms_rsp.get_pc().get_rq());////mark:const?
 
-                crms::protocol::resource::common::CRMS_PartialRetrieve *pr = new crms::protocol::resource::common::CRMS_PartialRetrieve();////mark:new
+            if (it_q->second.compare(KV_QUERY_Q_PR) == 0) {////PR
+                crms::protocol::resource::common::CRMS_PartialRetrieve *pr = &(rq->get_val().get_pr());
+
+                rq->set_ty(crms::protocol::resource::common::CRMS_RetrieveQueryType::PartialRetrieve);
 
                 std::map<std::string, std::string>::const_iterator it_in = http_req->Querys.find(KW_QUERY_Q_PR_IN);
 
                 if (it_in != http_req->Querys.end()) {////IN
-                    pr->set_ty(crms::protocol::resource::enumeration::CRMS_PartialRetrieveType::In);
+                    pr->set_ty(crms::protocol::resource::common::CRMS_PartialRetrieveType::In);
                     pr->set_val(it_in->second.c_str());
                 } else {////EX
                     std::map<std::string, std::string>::const_iterator it_ex = http_req->Querys.find(KW_QUERY_Q_PR_EX);
                     if (it_ex != http_req->Querys.end()) {
-                        pr->set_ty(crms::protocol::resource::enumeration::CRMS_PartialRetrieveType::Ex);
+                        pr->set_ty(crms::protocol::resource::common::CRMS_PartialRetrieveType::Ex);
                         pr->set_val(it_ex->second.c_str());
                     } else {
                         ////TODO:handle error
                     }
                 }
-                pc.set_val((void *) pr);
             } else if (it_q->second.compare(KV_QUERY_Q_PG) == 0) {////PG
-                pc.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::pagination);
-                crms::protocol::resource::common::CRMS_PaginationRetrieve *pg = new crms::protocol::resource::common::CRMS_PaginationRetrieve();////mark:new
+                crms::protocol::resource::common::CRMS_PaginationRetrieve *pg = &(rq->get_val().get_pg());
+
+                rq->set_ty(crms::protocol::resource::common::CRMS_RetrieveQueryType::PaginationRetrieve);
 
                 std::map<std::string, std::string>::const_iterator it_offset = http_req->Querys.find(
                         KW_QUERY_Q_PG_OFFSET);
@@ -94,15 +93,12 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
                 } else {
                     pg->set_len(10);
                 }
-
-                pc.set_val((void *) pg);
             } else if (it_q->second.compare(KV_QUERY_Q_SR) == 0) {////SR
-                pc.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::subscriptionRetrieve);
-                crms::protocol::resource::common::CRMS_SubscriptionRetrieve *sr = new crms::protocol::resource::common::CRMS_SubscriptionRetrieve();////mark:new
+                rq->set_ty(crms::protocol::resource::common::CRMS_RetrieveQueryType::SubscriptionRetrieve);
+
+                crms::protocol::resource::common::CRMS_SubscriptionRetrieve *sr = &(rq->get_val().get_sr());
 
                 ////TODO
-
-                pc.set_val((void *) sr);
             }
         }
 
@@ -151,7 +147,6 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
         return crms::protocol::resource::primitive::CRMS_Rsp(&crms_req, rsc);
     }
 
-    crms::protocol::resource::primitive::CRMS_Rsp crms_rsp;
     crms::protocol::agent::resource_handler::resource_handler::handle_crud(&crms_req, &crms_rsp, resource);
 
     return crms_rsp;
@@ -172,7 +167,6 @@ void cse::protocol::agent::request_handler::on_request(HttpUtil::Http_Req *http_
 //        std::map<std::string, std::string>::const_iterator X_M2M_RI_Iter = http_req->Headers.find(KW_HEADERS_X_CRMS_RI);
 //        if (X_M2M_RI_Iter != http_req->Headers.end())
 //            http_rsp->Headers[KW_HEADERS_X_CRMS_RI] = X_M2M_RI_Iter->second;
-
 
         char rsc[11];
         sprintf(rsc, "%d", crms_rsp.get_rsc().get_val());

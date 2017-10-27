@@ -47,7 +47,7 @@ SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_NotificationCont
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_Operation)
 
-SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_PartialRetrieveType)
+//SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_PartialRetrieveType)
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResourceStatus)
 
@@ -57,7 +57,7 @@ SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResponseStatusCo
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResultContent)
 
-SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_RetrieveQueryType)
+//SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_RetrieveQueryType)
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_SubscriptionEventType)
 

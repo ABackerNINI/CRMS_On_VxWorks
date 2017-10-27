@@ -15,14 +15,14 @@ namespace crms {
 
             namespace enumeration {
 
-                struct CRMS_PartialRetrieveType : public EnumerationBase {
-                    CRMS_PartialRetrieveType() {}
-
-                    CRMS_PartialRetrieveType(int val) { this->val = val; }
-
-                    static const _SHORT In = 1;
-                    static const _SHORT Ex = 2;
-                };
+//                struct CRMS_PartialRetrieveType : public EnumerationBase {
+//                    CRMS_PartialRetrieveType() {}
+//
+//                    CRMS_PartialRetrieveType(int val) { this->val = val; }
+//
+//                    static const _SHORT In = 1;
+//                    static const _SHORT Ex = 2;
+//                };
             }
         }
     }

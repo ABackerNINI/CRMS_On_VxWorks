@@ -15,12 +15,6 @@ namespace crms {
 
             namespace common {
 
-                class CRMS_PartialRetrieve {
-
-                DEFINE_MEMBER(ty, enumeration::CRMS_PartialRetrieveType)
-
-                DEFINE_POINTER_MEMBER(val,const _CSTR)
-                };
             }
         }
     }

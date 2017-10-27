@@ -281,6 +281,9 @@ void build_retrieve_successful_rsp(crms::protocol::resource::primitive::CRMS_Req
                                    crms::protocol::resource::resource::CRMS_Resource *resource) {
     build_corresponding_successful_rsp(req, rsp);
 
+    rsp->get_pc().set_ty(resource->get_ty());
+    rsp->get_pc().set_val((void *) resource);
+
 //    crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
 //            resource->get_ty(), resource);
 //    req_rsp.set_retrieve_query(&(req->retrieve_query));

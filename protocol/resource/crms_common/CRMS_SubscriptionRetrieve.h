@@ -15,10 +15,6 @@ namespace crms {
 
             namespace common {
 
-                struct CRMS_SubscriptionRetrieve {
-
-                DEFINE_POINTER_MEMBER(id, const _CSTR)
-                };
             }
         }
     }
