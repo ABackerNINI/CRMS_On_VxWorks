@@ -51,7 +51,8 @@ namespace HttpUtil {
             ERR_PARSING_STATUS_CODE,
             ERR_PARSING_STATUS_MSG,
             ERR_PARSING_HEADERS,
-            ERR_PARSING_BODY
+            ERR_PARSING_BODY,
+            ERR_TIMEOUT
         };
 
         typedef void (*On_Response)(Http_Rsp *);
@@ -70,11 +71,10 @@ namespace HttpUtil {
         static mg_mgr *_Mgr = NULL;
         static std::map<mg_connection *, Callback> _CallbackPool;
         static pthread_t _EvLoopThread;
-        static std::map<mg_connection *, std::pair<ErrCode, Http_Rsp *> > _RspPool;
 
 #if(DEBUG_SHOW_REQ)
 
-        static int SETTING_SHOW_REQ = REQ_ALL;
+        static int SETTING_SHOW_REQ = REQ_NONE;
 
         void _Show_Req(const Http_Req &_Req);
 
@@ -84,7 +84,7 @@ namespace HttpUtil {
 
 #if (DEBUG_SHOW_RSP)
 
-        static int SETTING_SHOW_RSP = RSP_ALL;
+        static int SETTING_SHOW_RSP = RSP_NONE;
 
         void _Show_Rsp(const Http_Rsp &_Rsp);
 
@@ -97,6 +97,8 @@ namespace HttpUtil {
         std::string _ToHeaders(const Http_Req *_Req);
 
         std::string _ToMethod(const Http_Req *_Req);
+
+        char *_ToHttpStr(const HttpUtil::Http_Req *_Req, const char *_Path, unsigned int &_SendLen);
 
         bool _Parse_Http_StatusCode(const http_message *_Hm, Http_Rsp *_Rsp);
 
@@ -114,8 +116,6 @@ namespace HttpUtil {
 
         void _EvHandlerAsyn(mg_connection *_Nc, int _Ev, void *_Data);
 
-        void _EvHandlerSync(mg_connection *_Nc, int _Ev, void *_Data);
-
         void *_EvLoop(void *);
 
         bool StartAsynClient();
@@ -124,9 +124,22 @@ namespace HttpUtil {
 
         bool SendRequestAsyn(const Http_Req *_Req, Callback _Callback);
 
-        bool SendRequest(const Http_Req *_Req, Callback _Callback);
-
         bool SendRequestSync(const Http_Req *_Req, Http_Rsp *_Rsp, ErrCode *_ErrCode);
+
+        int mg_http_common_url_parse(const char *url, const char *schema,
+                                     const char *schema_tls, int *use_ssl,
+                                     char **addr, int *port_i,
+                                     const char **path);
+
+        int mg_parse_address(const char *str, sockaddr_in *sa, int *proto, char *host, size_t host_len);
+
+        int _Sync_InitialSock(char *_Addr, struct sockaddr_in *_SrvAddr);
+
+        int _Sync_Connect(int _Sockfd, struct sockaddr_in *_SrvAddr);
+
+        int _Sync_Send(int _Sockfd, const char *_SendStr, unsigned int _Len);
+
+        char *_Sync_GetRecvStr(int _Sockfd, unsigned int *_RecvLen);
     };
 }
 

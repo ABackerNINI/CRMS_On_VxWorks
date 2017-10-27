@@ -23,7 +23,7 @@ namespace HttpUtil {
         Http_Mtd Method;
         std::string Uri;
         std::string Protocol;
-        std::map<std::string, std::string> Querys;
+        std::map<std::string, std::string> Queries;
         std::map<std::string, std::string> Headers;
         std::string Body;
     };

@@ -4,23 +4,33 @@
 
 #include "Server.h"
 
+
+#define _log(content,with_time) //LogFile::LogFileEx::GetInstance()->Write(content,with_time)
+
 #if(DEBUG_SHOW_REQ)
 
 void HttpUtil::server::_Show_Req(const Http_Req &_Req) {
 
     if (SETTING_SHOW_REQ != REQ_NONE) {
         std::cout << "\033[33m" << "\n***Recv Request:" << "\033[0m" << std::endl;
+        //LogFile::LogFileEx::GetInstance()->Write("***Recv Request:\r\n",WITH_TIME);//log
     }
 
     if (SETTING_SHOW_REQ & REQ_MTD_AND_URI_AND_QUERYS) {
         std::cout << MtdToString(_Req.Method) << " " << _Req.Uri;
+       // LogFile::LogFileEx::GetInstance()->Write(std::string(MtdToString(_Req.Method))+" "+ _Req.Uri);//log
 
-        if (!_Req.Querys.empty()) {
+        if (!_Req.Queries.empty()) {
             std::cout << "?";
-            std::map<std::string, std::string>::const_iterator _Iter = _Req.Querys.begin();
+          //  LogFile::LogFileEx::GetInstance()->Write("?");//log
+
+            auto _Iter = _Req.Queries.begin();
             std::cout << _Iter->first << "=" << _Iter->second;
-            for (++_Iter; _Iter != _Req.Querys.end(); ++_Iter) {
+           // LogFile::LogFileEx::GetInstance()->Write(_Iter->first+"="+_Iter->second);//log
+
+            for (++_Iter; _Iter != _Req.Queries.end(); ++_Iter) {
                 std::cout << "&" << _Iter->first << "=" << _Iter->second;
+              //  LogFile::LogFileEx::GetInstance()->Write("&"+_Iter->first+"="+_Iter->second);//log
             }
         }
         std::cout << std::endl;
@@ -28,14 +38,22 @@ void HttpUtil::server::_Show_Req(const Http_Req &_Req) {
 
     if (SETTING_SHOW_REQ & REQ_HEADERS) {
         std::cout << "Headers:" << std::endl;
-        for (std::map<std::string, std::string>::const_iterator _Iter = _Req.Headers.begin(); _Iter != _Req.Headers.end(); ++_Iter) {
+        //LogFile::LogFileEx::GetInstance()->Write("Headers:\r\n");//log
+
+        for (auto _Iter = _Req.Headers.begin(); _Iter != _Req.Headers.end(); ++_Iter) {
             std::cout << _Iter->first << ":" << _Iter->second << std::endl;
+          //  LogFile::LogFileEx::GetInstance()->Write(_Iter->first+":"+_Iter->second+"\r\n");//log
+
         }
     }
 
     if (SETTING_SHOW_REQ & REQ_BODY) {
         std::cout << "Body:" << std::endl;
+        //LogFile::LogFileEx::GetInstance()->Write("Body:\r\n");//log
+
         std::cout << _Req.Body << std::endl;
+       // LogFile::LogFileEx::GetInstance()->Write(_Req.Body+"\r\n");//log
+
     }
 }
 
@@ -50,22 +68,30 @@ void HttpUtil::server::Show_Req(int SETTING_SHOW_REQ) {
 void HttpUtil::server::_Show_Rsp(const Http_Rsp &_Rsp) {
     if (SETTING_SHOW_RSP != RSP_NONE) {
         std::cout << "\033[34m" << "\n***Send Response:" << "\033[0m" << std::endl;
+        //LogFile::LogFileEx::GetInstance()->Write("***Send Response:\r\n",WITH_TIME);//log
     }
 
     if (SETTING_SHOW_RSP & RSP_STATUS_CODE_AND_MSG) {
         std::cout << _Rsp.Status_Code << " " << _Rsp.Status_Msg << std::endl;
+        //LogFile::LogFileEx::GetInstance()->Write(Common::to_string(_Rsp.Status_Code)+" "+_Rsp.Status_Msg+"\r\n");//log
     }
 
     if (SETTING_SHOW_RSP & RSP_HEADERS) {
         std::cout << "Headers:" << std::endl;
-        for (std::map<std::string, std::string>::const_iterator _Iter = _Rsp.Headers.begin(); _Iter != _Rsp.Headers.end(); ++_Iter) {
+        //LogFile::LogFileEx::GetInstance()->Write("Headers:\r\n");//log
+
+        for (auto _Iter = _Rsp.Headers.begin(); _Iter != _Rsp.Headers.end(); ++_Iter) {
             std::cout << _Iter->first << ":" << _Iter->second << std::endl;
+            //LogFile::LogFileEx::GetInstance()->Write(_Iter->first+":"+_Iter->second+"\r\n");//log
         }
     }
 
     if (SETTING_SHOW_RSP & RSP_BODY) {
         std::cout << "Body:" << std::endl;
+       // LogFile::LogFileEx::GetInstance()->Write("Body:\r\n");//log
+
         std::cout << _Rsp.Body << std::endl;
+       // LogFile::LogFileEx::GetInstance()->Write(_Rsp.Body+"\r\n");
     }
 }
 
@@ -76,14 +102,14 @@ void HttpUtil::server::Show_Rsp(int SETTING_SHOW_RSP) {
 #endif
 
 void HttpUtil::server::_CallOnError(ErrCode _ErrCode, http_message *_Hm, mg_connection *_Nc, void *_Extra) {
-    if (_Callback._On_Error) {
+    if (_Callback._On_Error != NULL) {
         _Callback._On_Error(_ErrCode, _Hm, _Nc, _Extra);
     }
 }
 
 void HttpUtil::server::_CallOnRequest(mg_connection *_Nc, Http_Req *_Req) {
     Http_Rsp _Rsp;
-    if (_Callback._On_Req) {
+    if (_Callback._On_Req != NULL) {
         _Callback._On_Req(_Req, &_Rsp);
         _Replay(_Nc, &_Rsp);
     } else {//default response
@@ -165,7 +191,7 @@ bool HttpUtil::server::_Parse_Http_Querys(http_message *_Hm, Http_Req *_Req) {
         }
 
         if (_Status == 2) {
-            _Req->Querys[_First] = _Second;
+            _Req->Queries[_First] = _Second;
             _Status = 0;
             q = p + 1;
         }
@@ -201,26 +227,26 @@ void HttpUtil::server::_Replay(mg_connection *_Nc, const Http_Rsp *_Rsp) {
     if (_Rsp->Headers.find("Host") == _Rsp->Headers.end())_Headers.append("Host: host\r\n");
     if (_Rsp->Headers.find("Content-Length") == _Rsp->Headers.end()) {
         _Headers.append("Content-Length: ");
-        char _Len[10];
-        sprintf(_Len,"%ld",_Rsp->Body.length());
+        char _Len[11];
+        sprintf(_Len, "%ld", _Rsp->Body.length());
         _Headers.append(_Len);
         _Headers.append("\r\n");
     }
 
-    for (std::map<std::string, std::string>::const_iterator _Iter = _Rsp->Headers.begin();_Iter!=_Rsp->Headers.end();++_Iter) {
-        _Headers.append(_Iter->first);
+    for (auto _Header:_Rsp->Headers) {
+        _Headers.append(_Header.first);
         _Headers.append(": ");
-        _Headers.append(_Iter->second);
+        _Headers.append(_Header.second);
         _Headers.append("\r\n");
     }
 
-    mg_printf(_Nc, "HTTP/1.1 %d %s\r\nTransfer-Encoding: chunked\r\n%s\r\n",
+    //DON'T use Transfer-Encoding: chunked
+    mg_printf(_Nc, "HTTP/1.1 %d %s\r\n%s\r\n",
               _Rsp->Status_Code,
               _Rsp->Status_Msg.c_str(),
               _Headers.c_str()
     );
-    mg_printf_http_chunk(_Nc, "%s", _Rsp->Body.c_str());
-    mg_send_http_chunk(_Nc, "", 0);
+    mg_printf(_Nc, "%s", _Rsp->Body.c_str());
 
     _Nc->flags |= MG_F_SEND_AND_CLOSE;
 }
@@ -273,7 +299,7 @@ bool HttpUtil::server::Start(const char *_Port, Callback _Callback) {
     server::_Callback = _Callback;
 
     mg_mgr_init(&_Mgr, NULL);
-    mg_connection *_Nc = mg_bind(&_Mgr, _Port, _EvHandler);
+    auto _Nc = mg_bind(&_Mgr, _Port, _EvHandler);
 
     if (_Nc == NULL) {
         mg_mgr_free(&_Mgr);
