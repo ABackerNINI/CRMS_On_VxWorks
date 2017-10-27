@@ -28,8 +28,10 @@ namespace crms {
                             if (rq.get_ty() == crms::protocol::resource::common::CRMS_RetrieveQueryType::None) {//NON
                                 SET(ty);
                                 SET(val);
-                            } else if (rq.get_ty() == crms::protocol::resource::common::CRMS_RetrieveQueryType::PartialRetrieve) {//PR
-                                if (rq.get_val().get_pr().get_ty() == crms::protocol::resource::common::CRMS_PartialRetrieveType::In) {
+                            } else if (rq.get_ty() ==
+                                       crms::protocol::resource::common::CRMS_RetrieveQueryType::PartialRetrieve) {//PR
+                                if (rq.get_val().get_pr().get_ty() ==
+                                    crms::protocol::resource::common::CRMS_PartialRetrieveType::In) {
                                     SET(ty);
 
                                     if (!is_default_value(val)) {
@@ -39,7 +41,7 @@ namespace crms {
                                         delete[]keys;
                                     }
                                 } else if (rq.get_val().get_pr().get_ty() ==
-                                        crms::protocol::resource::common::CRMS_PartialRetrieveType::Ex) {
+                                           crms::protocol::resource::common::CRMS_PartialRetrieveType::Ex) {
                                     SET(ty);
                                     SET(val);
 
@@ -64,9 +66,11 @@ namespace crms {
                                 } else {
                                     ////TODO:handle error
                                 }
-                            } else if (rq.get_ty() == crms::protocol::resource::common::CRMS_RetrieveQueryType::PaginationRetrieve) {//PG
+                            } else if (rq.get_ty() ==
+                                       crms::protocol::resource::common::CRMS_RetrieveQueryType::PaginationRetrieve) {//PG
 
-                            } else if (rq.get_ty() == crms::protocol::resource::common::CRMS_RetrieveQueryType::SubscriptionRetrieve) {//SR
+                            } else if (rq.get_ty() ==
+                                       crms::protocol::resource::common::CRMS_RetrieveQueryType::SubscriptionRetrieve) {//SR
 
                             }
                         }

@@ -55,8 +55,6 @@ namespace crms {
                         return Msg[rsc - 1];
                     }
                 };
-
-
             }
         }
     }

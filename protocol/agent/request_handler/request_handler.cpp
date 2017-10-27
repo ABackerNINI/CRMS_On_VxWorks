@@ -31,10 +31,10 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
     }
 
     if (http_req->Method == HttpUtil::POST) {////CREATE
-        std::map<std::string, std::string>::const_iterator it_ty = http_req->Querys.find(KW_TYPE_SHORT);
-        std::map<std::string, std::string>::const_iterator it_rn = http_req->Querys.find(KW_RESOURCE_NAME_SHORT);
+        std::map<std::string, std::string>::const_iterator it_ty = http_req->Queries.find(KW_TYPE_SHORT);
+        std::map<std::string, std::string>::const_iterator it_rn = http_req->Queries.find(KW_RESOURCE_NAME_SHORT);
 
-        if (it_ty == http_req->Querys.end()) {
+        if (it_ty == http_req->Queries.end()) {
             LOGEVT("'ty' Not Found in URL @request_dispatch");
 
             return crms::protocol::resource::primitive::CRMS_Rsp(&crms_req,
@@ -44,7 +44,7 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
         char *p = NULL;
         int ty = (int) strtol(it_ty->second.c_str(), &p, 10);
         ////TODO:handle error
-        if (it_rn != http_req->Querys.end()) {
+        if (it_rn != http_req->Queries.end()) {
             crms_req.set_rn(it_rn->second);
         }
 
@@ -52,8 +52,8 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
         crms_req.get_pc().set_val((void *) http_req->Body.c_str());
         crms_req.set_op(crms::protocol::resource::enumeration::CRMS_Operation::Create);
     } else if (http_req->Method == HttpUtil::GET) {////RETRIEVE
-        std::map<std::string, std::string>::const_iterator it_q = http_req->Querys.find(KW_QUERY_Q);
-        if (it_q != http_req->Querys.end()) {
+        std::map<std::string, std::string>::const_iterator it_q = http_req->Queries.find(KW_QUERY_Q);
+        if (it_q != http_req->Queries.end()) {
             crms::protocol::resource::common::CRMS_RetrieveQuery *rq = &(crms_rsp.get_pc().get_rq());////mark:const?
 
             if (it_q->second.compare(KV_QUERY_Q_PR) == 0) {////PR
@@ -61,14 +61,14 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
 
                 rq->set_ty(crms::protocol::resource::common::CRMS_RetrieveQueryType::PartialRetrieve);
 
-                std::map<std::string, std::string>::const_iterator it_in = http_req->Querys.find(KW_QUERY_Q_PR_IN);
+                std::map<std::string, std::string>::const_iterator it_in = http_req->Queries.find(KW_QUERY_Q_PR_IN);
 
-                if (it_in != http_req->Querys.end()) {////IN
+                if (it_in != http_req->Queries.end()) {////IN
                     pr->set_ty(crms::protocol::resource::common::CRMS_PartialRetrieveType::In);
                     pr->set_val(it_in->second.c_str());
                 } else {////EX
-                    std::map<std::string, std::string>::const_iterator it_ex = http_req->Querys.find(KW_QUERY_Q_PR_EX);
-                    if (it_ex != http_req->Querys.end()) {
+                    std::map<std::string, std::string>::const_iterator it_ex = http_req->Queries.find(KW_QUERY_Q_PR_EX);
+                    if (it_ex != http_req->Queries.end()) {
                         pr->set_ty(crms::protocol::resource::common::CRMS_PartialRetrieveType::Ex);
                         pr->set_val(it_ex->second.c_str());
                     } else {
@@ -80,15 +80,15 @@ crms::protocol::resource::primitive::CRMS_Rsp request_dispatch(HttpUtil::Http_Re
 
                 rq->set_ty(crms::protocol::resource::common::CRMS_RetrieveQueryType::PaginationRetrieve);
 
-                std::map<std::string, std::string>::const_iterator it_offset = http_req->Querys.find(
+                std::map<std::string, std::string>::const_iterator it_offset = http_req->Queries.find(
                         KW_QUERY_Q_PG_OFFSET);
-                if (it_offset != http_req->Querys.end()) {
+                if (it_offset != http_req->Queries.end()) {
                     pg->set_offset((int) strtol(it_offset->second.c_str(), NULL, 10));
                 } else {
                     pg->set_offset(0);
                 }
-                std::map<std::string, std::string>::const_iterator it_len = http_req->Querys.find(KW_QUERY_Q_PG_LEN);
-                if (it_len != http_req->Querys.end()) {
+                std::map<std::string, std::string>::const_iterator it_len = http_req->Queries.find(KW_QUERY_Q_PG_LEN);
+                if (it_len != http_req->Queries.end()) {
                     pg->set_len((int) strtol(it_len->second.c_str(), NULL, 10));
                 } else {
                     pg->set_len(10);

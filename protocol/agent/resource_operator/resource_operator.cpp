@@ -41,9 +41,10 @@ void build_corresponding_failed_rsp(crms::protocol::resource::primitive::CRMS_Re
                                     crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType rsc) {
     build_corresponding_rsp(req, rsp);
     rsp->set_rsc(rsc);
+
     rsp->get_pc().set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::string);
-    rsp->get_pc().set_val((void *) crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::get_msg(
-            rsc.get_val()).c_str());
+    rsp->get_pc().set_val(
+            (void *) &crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::get_msg(rsc.get_val()));
 
 //    crms::protocol::resource::primitive::CRMS_Req_Rsp<std::string> req_rsp(
 //            crms::protocol::resource::enumeration::CRMS_ResourceType::string,
@@ -240,6 +241,13 @@ void crms::protocol::agent::resource_operator::resource_operator::create_resourc
     deserialize_pc(&pc, req->get_ty(), (const char *) req->get_pc().get_val());
 
     resource::resource::CRMS_Resource *resource = (resource::resource::CRMS_Resource *) pc.get_val();
+
+    if (resource == NULL) {
+        build_corresponding_failed_rsp(req, rsp,
+                                       crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_missing_mandatory_parameter);
+
+        return;
+    }
 
     resource->set_ty(req->get_ty());
     resource->set_rn(req->get_rn());
