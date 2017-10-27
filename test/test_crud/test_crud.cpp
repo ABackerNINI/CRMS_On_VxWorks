@@ -128,22 +128,22 @@ int main() {
 //    }
 //    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
 //
-//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//    std::cin.getline(cmd, 100);
-//
-//    {
-//        http_req.Method = HttpUtil::GET;
-//        http_req.Uri = "http://localhost:8080/root/1";
-//        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
-//        http_req.Querys["q"] = "pr";
-//        http_req.Querys["ex"] = "ty,pa,lt";
-//    }
-//    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
-//
-//    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//    std::cin.getline(cmd, 100);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    std::cin.getline(cmd, 100);
+
+    {
+        http_req.Method = HttpUtil::GET;
+        http_req.Uri = "http://localhost:8080/root";
+        http_req.Headers[KW_HEADERS_X_CRMS_RI] = "11111";
+        http_req.Querys["q"] = "pr";
+        http_req.Querys["ex"] = "ty,pa,lt";
+    }
+    HttpUtil::Client::SendRequestAsyn(&http_req, callback);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    std::cin.getline(cmd, 100);
 
     HttpUtil::Client::StopAsynClient();
 
