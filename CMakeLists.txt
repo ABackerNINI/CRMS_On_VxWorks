@@ -195,3 +195,12 @@ add_executable(test_create test/test_crud/test_create.cpp
 target_link_libraries(test_create pthread)
 
 ##############################################################################################
+
+add_executable(test_retrieve test/test_crud/test_retrieve.cpp
+        ${PROTOCOL}
+        ${UTILITY}
+        ${TEST_TOOL}
+        )
+target_link_libraries(test_retrieve pthread)
+
+##############################################################################################

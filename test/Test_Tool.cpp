@@ -6,10 +6,11 @@
 #include "../utility/HttpUtil/Client.h"
 #include "../protocol/keyword.h"
 #include "../protocol/resource/support/PrimitiveContentTypeSupport.h"
+#include "../protocol/common.h"
 
 std::map<std::string, std::string> test_tool::GetHeaders() {
     std::map<std::string, std::string> _Headers;
-    _Headers[KW_HEADERS_HOST] = "test_client_test_create";
+    _Headers[KW_HEADERS_HOST] = "test_tool";
     _Headers[KW_HEADERS_X_CRMS_RI] = "1";
 
     return _Headers;
@@ -91,9 +92,13 @@ bool test_tool::Retrieve(const std::string &path, const crms::protocol::resource
 
 bool test_tool::Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_PaginationRetrieve &pg) {
     HttpUtil::Http_Req req;
+    char str[11];
+
     req.Queries[KW_QUERY_Q] = KV_QUERY_Q_PG;
-    req.Queries[KW_QUERY_Q_PG_OFFSET] = pg.get_offset();
-    req.Queries[KW_QUERY_Q_PG_LEN] = pg.get_len();
+    sprintf(str, "%d", pg.get_offset());
+    req.Queries[KW_QUERY_Q_PG_OFFSET] = std::string(str);
+    sprintf(str, "%d", pg.get_len());
+    req.Queries[KW_QUERY_Q_PG_LEN] = std::string(str);
 
     return Retrieve(path, &req);
 }
@@ -113,6 +118,29 @@ bool test_tool::Update(const std::string &path, const std::string &body) {
 
 bool test_tool::Delete(const std::string &path) {
 
+}
+
+int test_tool::Test(test_func *funcs, int n) {
+    bool *rst = new bool[n];
+    int failed = 0;
+
+    for (int i = 0; i < n; ++i) {
+        LOGEVT("test_%d begin", i + 1);
+        rst[i] = funcs[i] ? funcs[i]() : true;
+        LOGEVT("test_%d end", i + 1);
+        if (!rst[i]) {
+            ++failed;
+            printf("test_%d failed!\n", i + 1);
+        }
+    }
+
+    if (failed == 0) {
+        printf("all tests succeed!\n");
+    }
+
+    delete[]rst;
+
+    return failed;
 }
 
 //void test_tool::Create(const std::string &_Path,

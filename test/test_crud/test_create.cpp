@@ -56,9 +56,10 @@ bool test_1() {
 
 //create stress test
 //return number of tests failed
-int test_1_1(int sum) {
-    LOGEVT("stress test @test_1_1 begin\n");
+bool test_2() {
     DateTime begin = DateTime::now();
+
+    int sum = 10000;
     int failed = 0;
     for (int i = 0; i < sum; ++i) {
         if (!test_1()) {
@@ -66,23 +67,22 @@ int test_1_1(int sum) {
         }
     }
     DateTime end = DateTime::now();
-    LOGEVT("stress test @test_1_1 end\n");
 
     long long dif = DateTime::diffTime(end, begin);
 
-    printf("stress test @test_1_1 time used:%lld.%llds\n", dif / 1000, dif % 1000);
+    printf("stress test @test_2 time used:%lld.%llds\n", dif / 1000, dif % 1000);
+    printf("stress test @test_2 %d/%d failed\n", failed, sum);
 
-    return failed;
+    return failed == 0;
 }
 
 int main() {
-    if (!test_1()) {
-        printf("test_1 failed!\n");
-    } else {
-        int sum = 10000;
-        int failed = test_1_1(sum);
-        printf("stress test @test_1_1 %d/%d failed\n", failed, sum);
-    }
+    test_tool::test_func funcs[] = {
+            test_1,
+            test_2
+    };
+
+    test_tool::Test(funcs, sizeof(funcs) / sizeof(test_tool::test_func));
 
     return 0;
 }

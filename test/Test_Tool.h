@@ -11,7 +11,7 @@
 
 namespace test_tool {
 
-    static const std::string URL = "192.168.159.130:8080";
+    static const std::string URL = "http://localhost:8080";
     static const std::string RSC_OK = "1";
 
     std::map<std::string, std::string> GetHeaders();
@@ -30,6 +30,11 @@ namespace test_tool {
     bool Update(const std::string &path, const std::string &body);
 
     bool Delete(const std::string &path);
+
+
+    typedef bool (*test_func)();
+
+    int Test(test_func *funcs,int n);
 }
 
 
