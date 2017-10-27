@@ -74,7 +74,7 @@ namespace HttpUtil {
 
 #if(DEBUG_SHOW_REQ)
 
-        static int SETTING_SHOW_REQ = REQ_NONE;
+        static int SETTING_SHOW_REQ = REQ_ALL;
 
         void _Show_Req(const Http_Req &_Req);
 
@@ -84,7 +84,7 @@ namespace HttpUtil {
 
 #if (DEBUG_SHOW_RSP)
 
-        static int SETTING_SHOW_RSP = RSP_NONE;
+        static int SETTING_SHOW_RSP = RSP_ALL;
 
         void _Show_Rsp(const Http_Rsp &_Rsp);
 

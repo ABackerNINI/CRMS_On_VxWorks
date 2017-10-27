@@ -4,33 +4,25 @@
 
 #include "Server.h"
 
-
-#define _log(content,with_time) //LogFile::LogFileEx::GetInstance()->Write(content,with_time)
-
 #if(DEBUG_SHOW_REQ)
 
 void HttpUtil::server::_Show_Req(const Http_Req &_Req) {
 
     if (SETTING_SHOW_REQ != REQ_NONE) {
         std::cout << "\033[33m" << "\n***Recv Request:" << "\033[0m" << std::endl;
-        //LogFile::LogFileEx::GetInstance()->Write("***Recv Request:\r\n",WITH_TIME);//log
     }
 
     if (SETTING_SHOW_REQ & REQ_MTD_AND_URI_AND_QUERYS) {
         std::cout << MtdToString(_Req.Method) << " " << _Req.Uri;
-       // LogFile::LogFileEx::GetInstance()->Write(std::string(MtdToString(_Req.Method))+" "+ _Req.Uri);//log
 
         if (!_Req.Queries.empty()) {
             std::cout << "?";
-          //  LogFile::LogFileEx::GetInstance()->Write("?");//log
 
-            auto _Iter = _Req.Queries.begin();
+            std::map<std::string, std::string>::const_iterator _Iter = _Req.Queries.begin();
             std::cout << _Iter->first << "=" << _Iter->second;
-           // LogFile::LogFileEx::GetInstance()->Write(_Iter->first+"="+_Iter->second);//log
 
             for (++_Iter; _Iter != _Req.Queries.end(); ++_Iter) {
                 std::cout << "&" << _Iter->first << "=" << _Iter->second;
-              //  LogFile::LogFileEx::GetInstance()->Write("&"+_Iter->first+"="+_Iter->second);//log
             }
         }
         std::cout << std::endl;
@@ -38,22 +30,18 @@ void HttpUtil::server::_Show_Req(const Http_Req &_Req) {
 
     if (SETTING_SHOW_REQ & REQ_HEADERS) {
         std::cout << "Headers:" << std::endl;
-        //LogFile::LogFileEx::GetInstance()->Write("Headers:\r\n");//log
 
-        for (auto _Iter = _Req.Headers.begin(); _Iter != _Req.Headers.end(); ++_Iter) {
+        for (std::map<std::string, std::string>::const_iterator _Iter = _Req.Headers.begin();
+             _Iter != _Req.Headers.end(); ++_Iter) {
             std::cout << _Iter->first << ":" << _Iter->second << std::endl;
-          //  LogFile::LogFileEx::GetInstance()->Write(_Iter->first+":"+_Iter->second+"\r\n");//log
 
         }
     }
 
     if (SETTING_SHOW_REQ & REQ_BODY) {
         std::cout << "Body:" << std::endl;
-        //LogFile::LogFileEx::GetInstance()->Write("Body:\r\n");//log
 
         std::cout << _Req.Body << std::endl;
-       // LogFile::LogFileEx::GetInstance()->Write(_Req.Body+"\r\n");//log
-
     }
 }
 
@@ -80,7 +68,8 @@ void HttpUtil::server::_Show_Rsp(const Http_Rsp &_Rsp) {
         std::cout << "Headers:" << std::endl;
         //LogFile::LogFileEx::GetInstance()->Write("Headers:\r\n");//log
 
-        for (auto _Iter = _Rsp.Headers.begin(); _Iter != _Rsp.Headers.end(); ++_Iter) {
+        for (std::map<std::string, std::string>::const_iterator _Iter = _Rsp.Headers.begin();
+             _Iter != _Rsp.Headers.end(); ++_Iter) {
             std::cout << _Iter->first << ":" << _Iter->second << std::endl;
             //LogFile::LogFileEx::GetInstance()->Write(_Iter->first+":"+_Iter->second+"\r\n");//log
         }
@@ -88,10 +77,10 @@ void HttpUtil::server::_Show_Rsp(const Http_Rsp &_Rsp) {
 
     if (SETTING_SHOW_RSP & RSP_BODY) {
         std::cout << "Body:" << std::endl;
-       // LogFile::LogFileEx::GetInstance()->Write("Body:\r\n");//log
+        // LogFile::LogFileEx::GetInstance()->Write("Body:\r\n");//log
 
         std::cout << _Rsp.Body << std::endl;
-       // LogFile::LogFileEx::GetInstance()->Write(_Rsp.Body+"\r\n");
+        // LogFile::LogFileEx::GetInstance()->Write(_Rsp.Body+"\r\n");
     }
 }
 
@@ -233,10 +222,11 @@ void HttpUtil::server::_Replay(mg_connection *_Nc, const Http_Rsp *_Rsp) {
         _Headers.append("\r\n");
     }
 
-    for (auto _Header:_Rsp->Headers) {
-        _Headers.append(_Header.first);
+    for (std::map<std::string, std::string>::const_iterator _Header = _Rsp->Headers.begin();
+         _Header != _Rsp->Headers.end(); ++_Header) {
+        _Headers.append(_Header->first);
         _Headers.append(": ");
-        _Headers.append(_Header.second);
+        _Headers.append(_Header->second);
         _Headers.append("\r\n");
     }
 
@@ -299,7 +289,7 @@ bool HttpUtil::server::Start(const char *_Port, Callback _Callback) {
     server::_Callback = _Callback;
 
     mg_mgr_init(&_Mgr, NULL);
-    auto _Nc = mg_bind(&_Mgr, _Port, _EvHandler);
+    mg_connection *_Nc = mg_bind(&_Mgr, _Port, _EvHandler);
 
     if (_Nc == NULL) {
         mg_mgr_free(&_Mgr);
