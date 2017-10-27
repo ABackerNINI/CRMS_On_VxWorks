@@ -18,7 +18,7 @@ void On_Response(HttpUtil::Http_Rsp *http_rsp) {
 }
 
 void On_Error(HttpUtil::Client::ErrCode err_code, HttpUtil::Http_Rsp *rsp, http_message *msg, void *_Extra) {
-    printf("error_code:%d\n", err_code);
+    printf("http error_code:%d\n", err_code);
 }
 
 //create three resources under ROOT_RESOURCE

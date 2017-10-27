@@ -29,7 +29,7 @@ std::string serialize_resource(const crms::protocol::resource::resource::CRMS_Re
 }
 
 bool test_tool::Create(const std::string &path, const std::string &name,
-                      const crms::protocol::resource::resource::CRMS_Resource *resource) {
+                       const crms::protocol::resource::resource::CRMS_Resource *resource) {
     HttpUtil::Http_Req req;
     {
         char ty_str[11];
@@ -38,9 +38,9 @@ bool test_tool::Create(const std::string &path, const std::string &name,
         req.Method = HttpUtil::POST;
         req.Uri = URL + path;
         req.Headers = GetHeaders();
-        req.Body = serialize_resource(resource);
         req.Queries["rn"] = name;
         req.Queries["ty"] = std::string(ty_str);
+        req.Body = serialize_resource(resource);
     }
 
     HttpUtil::Http_Rsp rsp;
@@ -50,28 +50,68 @@ bool test_tool::Create(const std::string &path, const std::string &name,
 
     if (err_code != HttpUtil::Client::OK) {
         printf("error code:%d\n", err_code);
+
+        return false;
     }
 
     return rsp.Headers[KW_HEADERS_X_CRMS_RSC] == RSC_OK;
 }
 
-void test_tool::Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_PartialRetrieve pr) {
+bool test_tool::Retrieve(const std::string &path, HttpUtil::Http_Req *req) {
+    HttpUtil::Http_Req tmp;
+    if (req == NULL)req = &tmp;
+    {
+        req->Method = HttpUtil::GET;
+        req->Uri = URL + path;
+        req->Headers = GetHeaders();
+    }
+
+    HttpUtil::Http_Rsp rsp;
+    HttpUtil::Client::ErrCode err_code;
+
+    HttpUtil::Client::SendRequestSync(req, &rsp, &err_code);
+
+    if (err_code != HttpUtil::Client::OK) {
+        printf("error code:%d\n", err_code);
+
+        return false;
+    }
+
+    return rsp.Headers[KW_HEADERS_X_CRMS_RSC] == RSC_OK;
+}
+
+bool test_tool::Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_PartialRetrieve &pr) {
+    HttpUtil::Http_Req req;
+    req.Queries[KW_QUERY_Q] = KV_QUERY_Q_PR;
+    req.Queries[pr.get_ty() == crms::protocol::resource::common::CRMS_PartialRetrieveType::In ? KW_QUERY_Q_PR_IN
+                                                                                              : KW_QUERY_Q_PR_EX] = pr.get_val();
+
+    return Retrieve(path, &req);
+}
+
+bool test_tool::Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_PaginationRetrieve &pg) {
+    HttpUtil::Http_Req req;
+    req.Queries[KW_QUERY_Q] = KV_QUERY_Q_PG;
+    req.Queries[KW_QUERY_Q_PG_OFFSET] = pg.get_offset();
+    req.Queries[KW_QUERY_Q_PG_LEN] = pg.get_len();
+
+    return Retrieve(path, &req);
+}
+
+bool test_tool::Retrieve(const std::string &path,
+                         const crms::protocol::resource::common::CRMS_SubscriptionRetrieve &sr) {
+    HttpUtil::Http_Req req;
+    req.Queries[KW_QUERY_Q] = KV_QUERY_Q_SR;
+    req.Queries[KW_QUERY_Q_SR_ID] = sr.get_id();
+
+    return Retrieve(path, &req);
+}
+
+bool test_tool::Update(const std::string &path, const std::string &body) {
 
 }
 
-void test_tool::Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_PaginationRetrieve pg) {
-
-}
-
-void test_tool::Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_SubscriptionRetrieve sr) {
-
-}
-
-void test_tool::Update(const std::string &path, const std::string &body) {
-
-}
-
-void test_tool::Delete(const std::string &path) {
+bool test_tool::Delete(const std::string &path) {
 
 }
 

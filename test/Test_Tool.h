@@ -19,15 +19,17 @@ namespace test_tool {
     bool Create(const std::string &path, const std::string &name,
                 const crms::protocol::resource::resource::CRMS_Resource *resource);
 
-    void Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_PartialRetrieve pr);
+    bool Retrieve(const std::string &path,HttpUtil::Http_Req *req = NULL);
 
-    void Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_PaginationRetrieve pg);
+    bool Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_PartialRetrieve &pr);
 
-    void Retrieve(const std::string &path, crms::protocol::resource::common::CRMS_SubscriptionRetrieve sr);
+    bool Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_PaginationRetrieve &pg);
 
-    void Update(const std::string &path, const std::string &body);
+    bool Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_SubscriptionRetrieve &sr);
 
-    void Delete(const std::string &path);
+    bool Update(const std::string &path, const std::string &body);
+
+    bool Delete(const std::string &path);
 }
 
 
