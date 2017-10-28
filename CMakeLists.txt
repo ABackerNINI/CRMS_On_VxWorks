@@ -204,3 +204,13 @@ add_executable(test_retrieve test/test_crud/test_retrieve.cpp
 target_link_libraries(test_retrieve pthread)
 
 ##############################################################################################
+
+add_executable(test_update test/test_crud/test_update.cpp
+        ${PROTOCOL}
+        ${UTILITY}
+        ${TEST_TOOL}
+        )
+target_link_libraries(test_update pthread)
+
+##############################################################################################
+
