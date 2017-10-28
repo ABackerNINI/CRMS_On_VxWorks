@@ -48,11 +48,11 @@ namespace crms {
                     void deserialize(JSON_Value *_doc_) {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
-                            GET(ri);
-                            GET(pa);
-                            GET(rn);
-                            GET(ty);
-                            GET(ct);
+//                            GET(ri);
+//                            GET(pa);
+//                            GET(rn);////mark:read only?
+//                            GET(ty);
+//                            GET(ct);
                             GET(lt);
                             GET(onto);
                             GET(subs);

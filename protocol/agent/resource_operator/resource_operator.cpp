@@ -323,13 +323,13 @@ void crms::protocol::agent::resource_operator::resource_operator::update_resourc
         crms::protocol::resource::resource::CRMS_Resource *resource) {
     crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> pc;
 
-    deserialize_pc(&pc, req->get_ty(), (const char *) req->get_pc().get_val());
+    deserialize_pc(&pc, resource->get_ty(), (const char *) req->get_pc().get_val());
 
-    resource::resource::CRMS_Resource *new_resource = (resource::resource::CRMS_Resource *) pc.get_val();
+    resource::resource::CRMS_Resource *new_resource = (resource::resource::CRMS_Resource *) pc.get_val();////mark:delete new_resource
 
     if (new_resource == NULL) {////mark
         build_corresponding_failed_rsp(req, rsp,
-                                       crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_missing_mandatory_parameter);
+                                       crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Update_error_unacceptable_contents);
 
         return;
     }
@@ -340,7 +340,7 @@ void crms::protocol::agent::resource_operator::resource_operator::update_resourc
     //update resource
     pc.set_val(resource);
 
-    deserialize_pc(&pc, req->get_ty(), (const char *) req->get_pc().get_val());
+    deserialize_pc(&pc, resource->get_ty(), (const char *) req->get_pc().get_val());
 //    deserialize_resource(resource->get_ty(), req->get_pc().get_value().c_str(), resource);
     resource->set_lt(new_resource->get_lt());
 
