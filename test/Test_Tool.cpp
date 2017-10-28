@@ -165,6 +165,9 @@ int test_tool::Test(test_func *funcs, int n) {
         LOGEVT("test_%d begin", i + 1);
         rst[i] = funcs[i] ? funcs[i]() : true;
         LOGEVT("test_%d end", i + 1);
+    }
+
+    for (int i = 0; i < n; ++i) {
         if (!rst[i]) {
             ++failed;
             printf("test_%d failed!\n", i + 1);

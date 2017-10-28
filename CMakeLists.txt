@@ -214,3 +214,13 @@ target_link_libraries(test_update pthread)
 
 ##############################################################################################
 
+add_executable(test_delete test/test_crud/test_delete.cpp
+        ${PROTOCOL}
+        ${UTILITY}
+        ${TEST_TOOL}
+        )
+target_link_libraries(test_delete pthread)
+
+##############################################################################################
+
+
