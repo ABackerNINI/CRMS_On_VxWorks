@@ -110,68 +110,68 @@ void build_corresponding_failed_rsp(crms::protocol::resource::primitive::CRMS_Re
 //
 //    delete[] s;
 //}
-
-crms::protocol::resource::resource::CRMS_Resource *
-deserialize_resource(int ty, const char *s, crms::protocol::resource::resource::CRMS_Resource *resource = NULL) {
-    crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> pc;
-
-    if (resource) {
-        pc.set_val(resource);
-    }
-
-    switch (ty) {//switch:resources can be create or update
-        case crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_ResourceObject> *) &pc,
-                    s);
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::attribute:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Attribute> *) &pc,
-                    s);
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::command:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Command> *) &pc,
-                    s);
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::node:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Node> *) &pc,
-                    s);
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::dataTable:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_DataTable> *) &pc,
-                    s);
-            break;
-        case crms::protocol::resource::enumeration::CRMS_MemberType::group:
-            deserialize(
-                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Group> *) &pc,
-                    s);
-            break;
-//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject:
+//
+//crms::protocol::resource::resource::CRMS_Resource *
+//deserialize_resource(int ty, const char *s, crms::protocol::resource::resource::CRMS_Resource *resource = NULL) {
+//    crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> pc;
+//
+//    if (resource) {
+//        pc.set_val(resource);
+//    }
+//
+//    switch (ty) {//switch:resources can be create or update
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::resourceObject:
 //            deserialize(
-//                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteResourceObject> *) &req_rsp,
+//                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_ResourceObject> *) &pc,
 //                    s);
 //            break;
-//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteAttribute:
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::attribute:
 //            deserialize(
-//                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteAttribute> *) &req_rsp,
+//                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Attribute> *) &pc,
 //                    s);
 //            break;
-//        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand:
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::command:
 //            deserialize(
-//                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteCommand> *) &req_rsp,
+//                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Command> *) &pc,
 //                    s);
 //            break;
-        default:
-            assert(false);
-            break;
-    }
-
-    return (crms::protocol::resource::resource::CRMS_Resource *) pc.get_val();
-}
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::node:
+//            deserialize(
+//                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Node> *) &pc,
+//                    s);
+//            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::dataTable:
+//            deserialize(
+//                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_DataTable> *) &pc,
+//                    s);
+//            break;
+//        case crms::protocol::resource::enumeration::CRMS_MemberType::group:
+//            deserialize(
+//                    (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Group> *) &pc,
+//                    s);
+//            break;
+////        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteResourceObject:
+////            deserialize(
+////                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteResourceObject> *) &req_rsp,
+////                    s);
+////            break;
+////        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteAttribute:
+////            deserialize(
+////                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteAttribute> *) &req_rsp,
+////                    s);
+////            break;
+////        case crms::protocol::resource::enumeration::CRMS_MemberType::remoteCommand:
+////            deserialize(
+////                    (crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_RemoteCommand> *) &req_rsp,
+////                    s);
+////            break;
+//        default:
+//            assert(false);
+//            break;
+//    }
+//
+//    return (crms::protocol::resource::resource::CRMS_Resource *) pc.get_val();
+//}
 
 char *uitoa(unsigned int value, char *str, int base) {
     static char zm[37] = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -310,6 +310,9 @@ void build_update_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *
                                  crms::protocol::resource::resource::CRMS_Resource *resource) {
     build_corresponding_successful_rsp(req, rsp);
 
+    rsp->get_pc().set_ty(resource->get_ty());
+    rsp->get_pc().set_val((void *) resource);
+
 //    crms::protocol::resource::primitive::CRMS_Req_Rsp<crms::protocol::resource::resource::CRMS_Resource> req_rsp(
 //            resource->get_ty(), resource);
 //    serialize_resource_to_pc(rsp, resource, &req_rsp);
@@ -318,16 +321,30 @@ void build_update_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *
 void crms::protocol::agent::resource_operator::resource_operator::update_resource(
         crms::protocol::resource::primitive::CRMS_Req *req, crms::protocol::resource::primitive::CRMS_Rsp *rsp,
         crms::protocol::resource::resource::CRMS_Resource *resource) {
-//    resource::resource::CRMS_Resource *new_resource = deserialize_resource(resource->get_ty(),
-//                                                                           req->get_pc().get_value().c_str());
-//    new_resource->set_ty(resource->get_ty());
-//    new_resource->set_lt(DateTime::now());
-//
-//    //update resource
+    crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> pc;
+
+    deserialize_pc(&pc, req->get_ty(), (const char *) req->get_pc().get_val());
+
+    resource::resource::CRMS_Resource *new_resource = (resource::resource::CRMS_Resource *) pc.get_val();
+
+    if (new_resource == NULL) {////mark
+        build_corresponding_failed_rsp(req, rsp,
+                                       crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::Create_error_missing_mandatory_parameter);
+
+        return;
+    }
+
+    new_resource->set_ty(resource->get_ty());
+    new_resource->set_lt(DateTime::now());
+
+    //update resource
+    pc.set_val(resource);
+
+    deserialize_pc(&pc, req->get_ty(), (const char *) req->get_pc().get_val());
 //    deserialize_resource(resource->get_ty(), req->get_pc().get_value().c_str(), resource);
-//    resource->set_lt(new_resource->get_lt());
-//
-//    build_update_successful_rsp(req, rsp, new_resource);
+    resource->set_lt(new_resource->get_lt());
+
+    build_update_successful_rsp(req, rsp, new_resource);
 }
 
 void build_delete_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
@@ -335,8 +352,13 @@ void build_delete_successful_rsp(crms::protocol::resource::primitive::CRMS_Req *
                                  crms::protocol::resource::enumeration::CRMS_MemberType ty) {
     build_corresponding_successful_rsp(req, rsp);
 
-    char rsp_pc[50];
-    sprintf(rsp_pc, KV_DELETE_RESPOND_FORMAT_STRING, (int) ty.get_val());
+//    char rsp_pc[50];
+//    sprintf(rsp_pc, KV_DELETE_RESPOND_FORMAT_STRING, (int) ty.get_val());
+    
+    static std::string rsp_pc = KV_DELETE_RESPOND_FORMAT_STRING;
+    
+    rsp->get_pc().set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::string);
+    rsp->get_pc().set_val(&rsp_pc);
 
 //    rsp->set_pc(crms::protocol::resource::primitive::CRMS_PrimitiveContentType(rsp_pc));
 }

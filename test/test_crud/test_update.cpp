@@ -1,17 +1,6 @@
 //
-// Created by nini on 10/27/17.
+// Created by nini on 10/28/17.
 //
-
-#include <stdio.h>
-#include "../../utility/HttpUtil/HttpUtil.h"
-#include "../../utility/HttpUtil/mongoose.h"
-#include "../../utility/HttpUtil/Client.h"
-#include "../Test_Tool.h"
-#include "../../protocol/resource/crms_resource/CRMS_RootResource.h"
-#include "../../protocol/resource/crms_resource/CRMS_ResourceObject.h"
-#include "../../protocol/resource/crms_resource/CRMS_Command.h"
-#include "../../protocol/resource/crms_resource/CRMS_Attribute.h"
-#include "../../protocol/common.h"
 
 //create three resources under ROOT_RESOURCE
 //return create result
@@ -46,26 +35,36 @@ bool test_1() {
     return true;
 }
 
-//create stress test
-//return number of tests failed
+//update resources
 bool test_2() {
-    DateTime begin = DateTime::now();
-
-    int sum = 10000;
-    int failed = 0;
-    for (int i = 0; i < sum; ++i) {
-        if (!test_1()) {
-            ++failed;
-        }
+    //create CRMS_ResourceObject
+    crms::protocol::resource::resource::CRMS_ResourceObject ro;
+    {
+        ro.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::resourceObject);
     }
-    DateTime end = DateTime::now();
+    if (!test_tool::Update("/root/1", "", &ro)) {
+        return false;
+    }
 
-    long long dif = DateTime::diffTime(end, begin);
+    //create CRMS_Attribute
+    crms::protocol::resource::resource::CRMS_Attribute attr;
+    {
+        attr.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::attribute);
+    }
+    if (!test_tool::Update("/root/1", "", &attr)) {
+        return false;
+    }
 
-    printf("stress test @test_2 time used:%lld.%llds\n", dif / 1000, dif % 1000);
-    printf("stress test @test_2 %d/%d failed\n", failed, sum);
+    //create CRMS_Command
+    crms::protocol::resource::resource::CRMS_Command cmd;
+    {
+        cmd.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::command);
+    }
+    if (!test_tool::Update("/root/1", "", &cmd)) {
+        return false;
+    }
 
-    return failed == 0;
+    return true;
 }
 
 int main() {

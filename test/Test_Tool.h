@@ -19,7 +19,7 @@ namespace test_tool {
     bool Create(const std::string &path, const std::string &name,
                 const crms::protocol::resource::resource::CRMS_Resource *resource);
 
-    bool Retrieve(const std::string &path,HttpUtil::Http_Req *req = NULL);
+    bool Retrieve(const std::string &path, HttpUtil::Http_Req *req = NULL);
 
     bool Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_PartialRetrieve &pr);
 
@@ -27,14 +27,14 @@ namespace test_tool {
 
     bool Retrieve(const std::string &path, const crms::protocol::resource::common::CRMS_SubscriptionRetrieve &sr);
 
-    bool Update(const std::string &path, const std::string &body);
+    bool Update(const std::string &path, const crms::protocol::resource::resource::CRMS_Resource *resource);
 
     bool Delete(const std::string &path);
 
 
     typedef bool (*test_func)();
 
-    int Test(test_func *funcs,int n);
+    int Test(test_func *funcs, int n);
 }
 
 

@@ -112,12 +112,49 @@ bool test_tool::Retrieve(const std::string &path,
     return Retrieve(path, &req);
 }
 
-bool test_tool::Update(const std::string &path, const std::string &body) {
+bool test_tool::Update(const std::string &path, const crms::protocol::resource::resource::CRMS_Resource *resource) {
+    HttpUtil::Http_Req req;
+    {
+        req.Method = HttpUtil::PUT;
+        req.Uri = URL + path;
+        req.Headers = GetHeaders();
+        req.Body = serialize_resource(resource);
+    }
 
+    HttpUtil::Http_Rsp rsp;
+    HttpUtil::Client::ErrCode err_code;
+
+    HttpUtil::Client::SendRequestSync(&req, &rsp, &err_code);
+
+    if (err_code != HttpUtil::Client::OK) {
+        printf("error code:%d\n", err_code);
+
+        return false;
+    }
+
+    return rsp.Headers[KW_HEADERS_X_CRMS_RSC] == RSC_OK;
 }
 
 bool test_tool::Delete(const std::string &path) {
+    HttpUtil::Http_Req req;
+    {
+        req.Method = HttpUtil::DELETE;
+        req.Uri = URL + path;
+        req.Headers = GetHeaders();
+    }
 
+    HttpUtil::Http_Rsp rsp;
+    HttpUtil::Client::ErrCode err_code;
+
+    HttpUtil::Client::SendRequestSync(&req, &rsp, &err_code);
+
+    if (err_code != HttpUtil::Client::OK) {
+        printf("error code:%d\n", err_code);
+
+        return false;
+    }
+
+    return rsp.Headers[KW_HEADERS_X_CRMS_RSC] == RSC_OK;
 }
 
 int test_tool::Test(test_func *funcs, int n) {
