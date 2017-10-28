@@ -23,11 +23,16 @@ namespace crms {
                     CRMS_Rsp() {
                     }
 
-                    CRMS_Rsp(const CRMS_Req *crms_req,enumeration::CRMS_ResponseStatusCodeType rsc){
+                    CRMS_Rsp(const CRMS_Req *crms_req, enumeration::CRMS_ResponseStatusCodeType rsc) {
                         this->to = crms_req->get_fr();
                         this->fr = crms_req->get_to();
                         this->rqi = crms_req->get_rqi();
                         this->rsc = rsc;
+
+                        this->pc.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::string);
+                        this->pc.set_val(
+                                (void *) &crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType::get_msg(
+                                        rsc.get_val()));
                     }
 
 //                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
@@ -74,7 +79,7 @@ namespace crms {
 
                 DEFINE_MEMBER(rqi, _STRING)
 
-                DEFINE_MEMBER(pc, CRMS_PrimitiveContentType<void>)
+                DEFINE_MEMBER(pc, CRMS_PrimitiveContentType < void >)
 
                 DEFINE_MEMBER(ot, _DATETIME)
 

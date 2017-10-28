@@ -25,17 +25,18 @@ namespace crms {
                     static const _SHORT Create_error_no_privilege = 5;
                     static const _SHORT Create_error_already_exists = 6;
                     static const _SHORT Create_error_missing_mandatory_parameter = 7;
-                    static const _SHORT Retrieve_error_no_privilege = 7;
-                    static const _SHORT Retrieve_error_does_not_exist = 8;
-                    static const _SHORT Update_error_no_privilege = 9;
-                    static const _SHORT Update_error_does_not_exist = 10;
-                    static const _SHORT Update_error_unacceptable_contents = 11;
-                    static const _SHORT Delete_error_does_not_exist = 12;
-                    static const _SHORT Delete_error_no_privilege = 13;
-                    static const _SHORT Bad_request = 14;
+                    static const _SHORT Retrieve_error_no_privilege = 8;
+                    static const _SHORT Retrieve_error_does_not_exist = 9;
+                    static const _SHORT Update_error_no_privilege = 10;
+                    static const _SHORT Update_error_does_not_exist = 11;
+                    static const _SHORT Update_error_unacceptable_contents = 12;
+                    static const _SHORT Delete_error_does_not_exist = 13;
+                    static const _SHORT Delete_error_no_privilege = 14;
+                    static const _SHORT Bad_request = 15;
 
                     static const std::string &get_msg(_SHORT rsc) {
                         static const std::string Msg[] = {
+                                "",
                                 "Success",
                                 "Accepted",
                                 "Unsupported_resource",
@@ -46,13 +47,14 @@ namespace crms {
                                 "Retrieve_error_no_privilege",
                                 "Retrieve_error_does_not_exist",
                                 "Update_error_no_privilege",
+                                "Update_error_does_not_exist",
                                 "Update_error_unacceptable_contents",
                                 "Delete_error_does_not_exist",
                                 "Delete_error_no_privilege",
                                 "Bad_request"
                         };
 
-                        return Msg[rsc - 1];
+                        return Msg[rsc];
                     }
                 };
             }
