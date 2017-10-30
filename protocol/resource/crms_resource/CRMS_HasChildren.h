@@ -27,9 +27,9 @@ namespace crms {
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
                             if (_key_ == NULL) {
-                                SET(children);
+                                SET(ch);
                             } else {
-                                SET_IF_KEY(children) {
+                                SET_IF_KEY(ch) {
                                     return false;
                                 }
                             }
@@ -43,7 +43,7 @@ namespace crms {
 
                         JSON_Object *_root_obj_ = json_value_get_object(_doc_);
                         {
-                            GET(children);
+                            GET(ch);
                         }
                     }
 
@@ -51,10 +51,19 @@ namespace crms {
                     }
 
                     void add_child_ref(const crms::protocol::resource::common::CRMS_ChildResourceRef &child_ref) {
-                        children.push_back(child_ref);
+                        ch.push_back(child_ref);
                     }
 
-                DEFINE_MEMBER(children, _LIST < crms::protocol::resource::common::CRMS_ChildResourceRef >)
+                    void remove_child_ref(const std::string &child_ri) {
+                        for(_LIST < crms::protocol::resource::common::CRMS_ChildResourceRef >::iterator it = ch.begin();it!=ch.end();++it){
+                            if(it->get_v()==child_ri){
+                                ch.erase(it);
+                                break;
+                            }
+                        }
+                    }
+
+                DEFINE_MEMBER(ch, _LIST < crms::protocol::resource::common::CRMS_ChildResourceRef >)
 
                 DEFINE_MEMBER(acid, _UINT)//automatic children id
                 };
