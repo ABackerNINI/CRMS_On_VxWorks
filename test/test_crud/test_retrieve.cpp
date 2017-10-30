@@ -6,7 +6,6 @@
 #include "../Test_Tool.h"
 #include "../../protocol/resource/crms_resource/CRMS_Attribute.h"
 #include "../../protocol/resource/crms_resource/CRMS_Command.h"
-#include "../../protocol/common.h"
 
 //create three resources under ROOT_RESOURCE
 //return create result
