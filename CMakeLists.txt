@@ -28,18 +28,17 @@ set(UTILITY_NETWORK
 set(UTILITY_NJSON
         utility/nJson/parson/parson.c
         utility/nJson/parson/parson.h
+        utility/nJson/type_traits/type_traits.h
         utility/nJson/support/basic_type.h
         utility/nJson/support/cstr_type.h
         utility/nJson/support/list_type.h
         utility/nJson/support/map_type.h
         utility/nJson/support/pointer_type.h
-        utility/nJson/support/string_to.h
         utility/nJson/support/string_type.h
-        utility/nJson/support/to_string.h
-        utility/nJson/support/userdef_type.h
+        utility/nJson/support/support_base.h
+        utility/nJson/support/vector_type.h
         utility/nJson/DEF.h
         utility/nJson/nJson.h
-        utility/nJson/parson.h
         )
 set(UTILITY_RESOURCE_POOL
         utility/resource_pool/resource_pool.cpp

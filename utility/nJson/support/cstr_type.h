@@ -1,65 +1,54 @@
 #pragma once
 
-#ifndef _UTILITIES_JSON_SUPPORT_CSTR_TYPE_H_
-#define _UTILITIES_JSON_SUPPORT_CSTR_TYPE_H_
+#ifndef _NJSON_SUPPORT_CSTR_TYPE_H_
+#define _NJSON_SUPPORT_CSTR_TYPE_H_
 
-#include "../parson.h"
+#include "support_base.h"
 
 /*
 	This file is to support the serialization and deserialization of type 'char *'.
-	Note that this file support the char pointers point to a char array contains no less than two chars.
+
+	Note that this file support the c-style string end with '/0'.
 */
 
-/*Feature 'strdup' will malloc and copy c-style strings from json-object,that means you need to free it manually afterwards.*/
-#define FEATURE_STRDUP							1
-
-#define DEFAULT_VALUE_CSTR						NULL
-
-/*
- * Declarations:
+/*! Be attention to the difference between "char *" and "const char *".
+ *  Type "char *" will dump c-string from JSON_Value when deserialization while "const char *" not.
+ *  So,you should free "char *" after using it but keep "const char *".
  * */
 
-inline bool is_default_value(const char *val);
+#define NJSON_DEFAULT_VALUE_CSTR NULL
 
-inline void njson_set_value(JSON_Object *obj,const char *key,const char *val);
-inline void njson_set_value(JSON_Array *arr,const char *val);
+template<>
+struct njson_support<char *> {
+    static bool is_default_value(const char *njson_var) {
+        return njson_var == NJSON_DEFAULT_VALUE_CSTR;
+    }
 
-inline void njson_get_value(JSON_Object *obj,const char *key,const char **val);
-inline void njson_get_value(JSON_Array *arr,size_t index,const char **val);
+    static void serialize(JSON_Value *njson_val, const char *njson_name, const char *njson_var) {
+        njson_value_set_value(njson_val, njson_name, json_value_init_string(njson_var));
+    }
 
-/*
- * Definitions:
- * */
+    static void deserialize(JSON_Value *njson_val, char **njson_var) {
+        const char *tmp = json_value_get_string(njson_val);
 
-/*is_default_value*/
-inline bool is_default_value(const char *val){
-	return val==DEFAULT_VALUE_CSTR;
-}
+        if (tmp)*njson_var = strdup(tmp);
+    }
+};
 
-/*njson_set_value*/
-inline void njson_set_value(JSON_Object *obj,const char *key,const char *val){
-	json_object_set(obj,key,val);
-}
-inline void njson_set_value(JSON_Array *arr,const char *val){
-	json_array_append(arr,val);
-}
+template<>
+struct njson_support<const char *> {
+    static bool is_default_value(const char *njson_var) {
+        return njson_var == NJSON_DEFAULT_VALUE_CSTR;
+    }
 
-/*njson_get_value*/
-inline void njson_get_value(JSON_Object *obj,const char *key,const char **val){
-	if(json_object_has_value(obj,key)){
-		*val = json_object_get<const char *>(obj,key);
+    static void serialize(JSON_Value *njson_val, const char *njson_name, const char *njson_var) {
+        njson_value_set_value(njson_val, njson_name, json_value_init_string(njson_var));
+    }
 
-#if(FEATURE_STRDUP)
-		*val = strdup(*val);
-#endif
-	}
-}
-inline void njson_get_value(JSON_Array *arr,size_t index,const char **val){
-	*val = json_array_get<const char *>(arr,index);
+    static void deserialize(JSON_Value *njson_val, const char **njson_var) {
+        ////TODO:test
+        *njson_var = json_value_get_string(njson_val);
+    }
+};
 
-#if(FEATURE_STRDUP)
-	*val = strdup(*val);
-#endif
-}
-
-#endif//_UTILITIES_JSON_SUPPORT_CSTR_TYPE_H_
+#endif//_NJSON_SUPPORT_CSTR_TYPE_H_
