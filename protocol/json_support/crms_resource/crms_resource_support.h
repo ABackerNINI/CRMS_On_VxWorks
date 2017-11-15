@@ -3,7 +3,7 @@
 #ifndef _CRMS_JSON_RESOURCE_SUPPORT_H_
 #define _CRMS_JSON_RESOURCE_SUPPORT_H_
 
-#include "../SupportBase.h"
+#include "../support_base.h"
 #include "../../resource/crms_resource/CRMS_Resource.h"
 
 template<>
@@ -25,11 +25,6 @@ struct njson_support<crms::protocol::resource::resource::CRMS_Resource> {
     }
 
     static void deserialize(JSON_Value *njson_val, crms::protocol::resource::resource::CRMS_Resource *njson_var) {
-//                            GET(ri);
-//                            GET(pa);
-//                            GET(rn);////mark:read only?
-//                            GET(ty);
-//                            GET(ct);
         GET(lt);
         GET(onto);
         GET(subs);

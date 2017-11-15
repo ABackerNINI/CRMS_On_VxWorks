@@ -3,7 +3,7 @@
 #ifndef _CRMS_JSON_BATCH_NOTIFY_SUPPORT_H_
 #define _CRMS_JSON_BATCH_NOTIFY_SUPPORT_H_
 
-#include "../SupportBase.h"
+#include "../support_base.h"
 
 template<>
 struct njson_support<crms::protocol::resource::common::CRMS_BatchNotify> {

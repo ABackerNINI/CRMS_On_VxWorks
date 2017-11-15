@@ -3,7 +3,7 @@
 #ifndef _CRMS_JSON_SUBSCRIPTION_SUPPORT_H_
 #define _CRMS_JSON_SUBSCRIPTION_SUPPORT_H_
 
-#include "../SupportBase.h"
+#include "../support_base.h"
 #include "../../resource/crms_common/CRMS_Subscription.h"
 
 template<>

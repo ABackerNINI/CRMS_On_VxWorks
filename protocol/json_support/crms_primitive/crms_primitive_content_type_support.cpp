@@ -1,4 +1,4 @@
-#include "PrimitiveContentTypeSupport.h"
+#include "crms_primitive_content_type_support.h"
 
 #include <assert.h>
 #include "../../resource/crms_resource/CRMS_RootResource.h"
