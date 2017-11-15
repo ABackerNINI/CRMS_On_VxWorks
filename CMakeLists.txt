@@ -7,8 +7,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 ##############################################################################################
 ##Utility
 set(UTILITY_DATETIME
-        utility/DateTime/DateTime.h
-        utility/DateTime/Duration.h
+        utility/TimeUtil/DateTime.h
+        utility/TimeUtil/Duration.h
 )
 set(UTILITY_DBUTIL
 
@@ -143,7 +143,7 @@ set(PROTOCOL_RESOURCE_SUPPORT
         protocol/json_support/crms_common/SubscriptionSupport.h
         protocol/json_support/crms_common/BatchNotifySupport.h
         protocol/json_support/crms_resource/AttributeSupport.h
-        protocol/json_support/DateSupport.h
+        protocol/json_support/DateTimeSupport.h
         protocol/json_support/DurationSupport.h
         protocol/json_support/crms_enumeration/EnumerationSupport.h
         protocol/json_support/crms_primitive/PrimitiveContentTypeSupport.cpp

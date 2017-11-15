@@ -4,7 +4,7 @@
 #define _CRMS_RESOURCE_DURATION_SUPPORT_H_
 
 #include "../../utility/nJson/DEF.h"
-#include "../../utility/DateTime/Duration.h"
+#include "../../utility/TimeUtil/Duration.h"
 
 template<>
 struct njson_support<Duration> {
