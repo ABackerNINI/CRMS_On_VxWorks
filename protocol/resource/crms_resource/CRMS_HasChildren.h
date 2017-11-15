@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_HAS_CHILDREN_H
 #define _CRMS_RESOURCE_HAS_CHILDREN_H
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "../crms_common/CRMS_ChildResourceRef.h"
 #include "CRMS_Resource.h"
 

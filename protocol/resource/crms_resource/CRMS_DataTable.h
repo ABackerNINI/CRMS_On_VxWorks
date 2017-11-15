@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_DATA_TABLE_H_
 #define _CRMS_RESOURCE_DATA_TABLE_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "CRMS_Resource.h"
 
 namespace crms {

@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_NOTIFICATION_H_
 #define _CRMS_RESOURCE_NOTIFICATION_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "../crms_primitive/CRMS_PrimitiveContentType.h"
 
 namespace crms {

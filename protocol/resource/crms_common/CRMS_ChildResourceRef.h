@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_CHILD_RESOURCE_REF_H_
 #define _CRMS_RESOURCE_CHILD_RESOURCE_REF_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 
 namespace crms {
 

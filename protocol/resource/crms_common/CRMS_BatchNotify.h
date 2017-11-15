@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_BATCH_NOTIFY_H_
 #define _CRMS_RESOURCE_BATCH_NOTIFY_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 
 #include "../../../utility/TimeUtil/Duration.h"
 

@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_PRIMITIVE_CONTENT_TYPE_H_
 #define _CRMS_RESOURCE_PRIMITIVE_CONTENT_TYPE_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "../Object.h"
 #include "../crms_common/CRMS_RetrieveQuery.h"
 

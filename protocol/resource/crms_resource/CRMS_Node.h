@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_NODE_H_
 #define _CRMS_RESOURCE_NODE_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "CRMS_Resource.h"
 #include "../crms_enumeration/CRMS_NodeExecutionState.h"
 

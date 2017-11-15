@@ -5,7 +5,7 @@
 #ifndef CRMS_ON_VXWORKS_CRMS_REQ_RSP_H
 #define CRMS_ON_VXWORKS_CRMS_REQ_RSP_H
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "../crms_resource/CRMS_Resource.h"
 #include "CRMS_Req.h"
 

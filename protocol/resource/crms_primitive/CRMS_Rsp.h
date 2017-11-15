@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_RESPONSE_H_
 #define _CRMS_RESOURCE_RESPONSE_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "../crms_enumeration/CRMS_ResponseStatusCodeType.h"
 #include "../crms_enumeration/CRMS_ResourceType.h"
 #include "CRMS_PrimitiveContentType.h"

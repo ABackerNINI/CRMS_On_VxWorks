@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_PARTIAL_RETRIEVE_H_
 #define _CRMS_RESOURCE_PARTIAL_RETRIEVE_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 
 namespace crms {
 

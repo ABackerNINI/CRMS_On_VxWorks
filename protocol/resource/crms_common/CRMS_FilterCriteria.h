@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_FILTER_CRITERIA_H_
 #define _CRMS_RESOURCE_FILTER_CRITERIA_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 
 namespace crms {
 

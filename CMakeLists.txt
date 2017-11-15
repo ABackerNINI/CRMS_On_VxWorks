@@ -152,7 +152,7 @@ set(PROTOCOL_RESOURCE_SUPPORT
         protocol/json_support/SupportBase.h
         )
 set(PROTOCOL_RESOURCE
-        protocol/resource/DEF.h
+        protocol/resource/ResourceBase.h
         protocol/resource/DefMem.h
         protocol/json_support/Serialization.h
         protocol/resource/Type.h

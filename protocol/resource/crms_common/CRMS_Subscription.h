@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_SUBSCRIPTION_H_
 #define _CRMS_RESOURCE_SUBSCRIPTION_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "CRMS_BatchNotify.h"
 #include "../crms_enumeration/CRMS_SubscriptionEventType.h"
 #include "../crms_enumeration/CRMS_NotificationContentType.h"

@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_REMOTE_COMMAND_H_
 #define _CRMS_RESOURCE_REMOTE_COMMAND_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "CRMS_Command.h"
 
 namespace crms {

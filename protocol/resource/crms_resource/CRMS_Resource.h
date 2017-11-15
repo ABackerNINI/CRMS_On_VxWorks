@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_RESOURCE_H_
 #define _CRMS_RESOURCE_RESOURCE_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 
 #include "../crms_common/CRMS_Subscription.h"
 

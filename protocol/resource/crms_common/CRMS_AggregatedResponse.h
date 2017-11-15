@@ -3,7 +3,7 @@
 #ifndef _CRMS_RESOURCE_AGGREGATED_RESPONSE_H_
 #define _CRMS_RESOURCE_AGGREGATED_RESPONSE_H_
 
-#include "../DEF.h"
+#include "../ResourceBase.h"
 #include "../crms_primitive/CRMS_Rsp.h"
 
 namespace crms {
