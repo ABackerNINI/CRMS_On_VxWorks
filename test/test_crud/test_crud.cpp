@@ -9,7 +9,7 @@
 #include "../../protocol/resource/crms_resource/CRMS_Attribute.h"
 #include "../../protocol/resource/crms_resource/CRMS_Command.h"
 #include "../../protocol/resource/crms_resource/CRMS_DataTable.h"
-#include "../../protocol/resource/support/PrimitiveContentTypeSupport.h"
+#include "../../protocol/resource/support/crms_primitive/PrimitiveContentTypeSupport.h"
 
 void On_Response(HttpUtil::Http_Rsp *http_rsp) {
     //printf("%s\n", http_rsp->Body.c_str());

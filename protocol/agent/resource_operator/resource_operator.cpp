@@ -17,7 +17,7 @@
 #include "../../resource/crms_resource/CRMS_RemoteResourceObject.h"
 #include "../../resource/crms_resource/CRMS_RootResource.h"
 #include "../../../utility/resource_pool/resource_pool.h"
-#include "../../resource/support/PrimitiveContentTypeSupport.h"
+#include "../../resource/support/crms_primitive/PrimitiveContentTypeSupport.h"
 
 void build_corresponding_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
                              crms::protocol::resource::primitive::CRMS_Rsp *rsp) {

@@ -2,7 +2,7 @@
 // Created by nini on 10/9/17.
 //
 
-#include "../DEF.h"
+#include "EnumerationBase.h"
 
 #ifndef _CRMS_RESOURCE_ENUMERATION_SUBSCRIPTION_EVENT_TYPE_H_
 #define _CRMS_RESOURCE_ENUMERATION_SUBSCRIPTION_EVENT_TYPE_H_

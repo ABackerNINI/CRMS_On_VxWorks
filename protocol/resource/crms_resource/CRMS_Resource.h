@@ -19,45 +19,45 @@ namespace crms {
                 class CRMS_Resource {
                 public:
                     CRMS_Resource() :
-                            ty(DEFAULT_VALUE_INT) {
+                            ty(NJSON_DEFAULT_VALUE_INT) {
                     }
 
-                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
-                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-                        {
-                            if (_key_ == NULL) {
-                                SET(ri);
-                                SET(pa);
-                                SET(rn);
-                                SET(ty);
-                                SET(ct);
-                                SET(lt);
-                                SET(onto);
-                                SET(subs);
-                            } else {
-                                SET_IF_KEY(ri) SET_IF_KEY(pa) SET_IF_KEY(rn) SET_IF_KEY(ty) SET_IF_KEY(ct) SET_IF_KEY(
-                                        lt) SET_IF_KEY(onto) SET_IF_KEY(subs) {
-                                    return false;
-                                }
-                            }
-                        }
-
-                        return true;
-                    }
-
-                    void deserialize(JSON_Value *_doc_) {
-                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-                        {
-//                            GET(ri);
-//                            GET(pa);
-//                            GET(rn);////mark:read only?
-//                            GET(ty);
-//                            GET(ct);
-                            GET(lt);
-                            GET(onto);
-                            GET(subs);
-                        }
-                    }
+//                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
+//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+//                        {
+//                            if (_key_ == NULL) {
+//                                SET(ri);
+//                                SET(pa);
+//                                SET(rn);
+//                                SET(ty);
+//                                SET(ct);
+//                                SET(lt);
+//                                SET(onto);
+//                                SET(subs);
+//                            } else {
+//                                SET_IF_KEY(ri) SET_IF_KEY(pa) SET_IF_KEY(rn) SET_IF_KEY(ty) SET_IF_KEY(ct) SET_IF_KEY(
+//                                        lt) SET_IF_KEY(onto) SET_IF_KEY(subs) {
+//                                    return false;
+//                                }
+//                            }
+//                        }
+//
+//                        return true;
+//                    }
+//
+//                    void deserialize(JSON_Value *_doc_) {
+//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+//                        {
+////                            GET(ri);
+////                            GET(pa);
+////                            GET(rn);////mark:read only?
+////                            GET(ty);
+////                            GET(ct);
+//                            GET(lt);
+//                            GET(onto);
+//                            GET(subs);
+//                        }
+//                    }
 
                     ~CRMS_Resource() {}
 

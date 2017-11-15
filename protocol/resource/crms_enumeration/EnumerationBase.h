@@ -7,11 +7,10 @@
 #include "../DefMem.h"
 #include "../Type.h"
 
-
 struct EnumerationBase {
 public:
     EnumerationBase() :
-            val(DEFAULT_VALUE_SHORT) {
+            val(NJSON_DEFAULT_VALUE_SHORT) {
     }
 
     EnumerationBase(int val) {

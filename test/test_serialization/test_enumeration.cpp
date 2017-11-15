@@ -1,5 +1,5 @@
 
-#include "../../protocol/resource/Serialization.h"
+#include "../../protocol/json_support/Serialization.h"
 #include "../../protocol/resource/DefMem.h"
 
 struct Foo{

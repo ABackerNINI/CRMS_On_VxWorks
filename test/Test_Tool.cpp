@@ -5,7 +5,7 @@
 #include "Test_Tool.h"
 #include "../utility/HttpUtil/Client.h"
 #include "../protocol/keyword.h"
-#include "../protocol/resource/support/PrimitiveContentTypeSupport.h"
+#include "../protocol/json_support/crms_primitive/PrimitiveContentTypeSupport.h"
 #include "../protocol/common.h"
 
 std::map<std::string, std::string> test_tool::GetHeaders() {

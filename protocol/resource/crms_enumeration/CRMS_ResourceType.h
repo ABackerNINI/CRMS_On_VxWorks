@@ -5,7 +5,7 @@
 #ifndef _CRMS_RESOURCE_ENUMERATION_RESOURCE_TYPE_H_
 #define _CRMS_RESOURCE_ENUMERATION_RESOURCE_TYPE_H_
 
-#include "../DEF.h"
+#include "EnumerationBase.h"
 
 namespace crms {
 

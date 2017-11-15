@@ -6,7 +6,7 @@
 #define _CRMS_PROTOCOL_RESOURCE_PRIMITIVE_CONTENT_TYPE_SUPPORT_H_
 
 
-#include "../crms_primitive/CRMS_PrimitiveContentType.h"
+#include "../../resource/crms_primitive/CRMS_PrimitiveContentType.h"
 
 char *serialize_pc(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc);
 

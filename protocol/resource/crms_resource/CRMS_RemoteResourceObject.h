@@ -18,42 +18,42 @@ namespace crms {
                 class CRMS_RemoteResourceObject : public CRMS_ResourceObject {
                 public:
                     CRMS_RemoteResourceObject() :
-                            rm(DEFAULT_VALUE_INT) {
+                            rm(NJSON_DEFAULT_VALUE_INT) {
                         memset(&alive, -1, sizeof(alive));
                         memset(&proxy, -1, sizeof(proxy));
                     }
 
-                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
-                        SERIALIZE_SUPER_CLASS(CRMS_ResourceObject);
-
-                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-                        {
-                            if (_key_ == NULL) {
-                                SET(rm);
-                                SET(rri);
-                                SET(alive);
-                                SET(proxy);
-                            } else {
-                                SET_IF_KEY(rm) SET_IF_KEY(rri) SET_IF_KEY(alive) SET_IF_KEY(proxy) {
-                                    return false;
-                                }
-                            }
-                        }
-
-                        return true;
-                    }
-
-                    void deserialize(JSON_Value *_doc_) {
-                        DESERIALIZE_SUPER_CLASS(CRMS_ResourceObject);
-
-                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-                        {
-                            GET(rm);
-                            GET(rri);
-                            GET(alive);
-                            GET(proxy);
-                        }
-                    }
+//                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
+//                        SERIALIZE_SUPER_CLASS(CRMS_ResourceObject);
+//
+//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+//                        {
+//                            if (_key_ == NULL) {
+//                                SET(rm);
+//                                SET(rri);
+//                                SET(alive);
+//                                SET(proxy);
+//                            } else {
+//                                SET_IF_KEY(rm) SET_IF_KEY(rri) SET_IF_KEY(alive) SET_IF_KEY(proxy) {
+//                                    return false;
+//                                }
+//                            }
+//                        }
+//
+//                        return true;
+//                    }
+//
+//                    void deserialize(JSON_Value *_doc_) {
+//                        DESERIALIZE_SUPER_CLASS(CRMS_ResourceObject);
+//
+//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
+//                        {
+//                            GET(rm);
+//                            GET(rri);
+//                            GET(alive);
+//                            GET(proxy);
+//                        }
+//                    }
 
                     ~CRMS_RemoteResourceObject() {
                     }

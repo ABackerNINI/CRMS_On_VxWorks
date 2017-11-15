@@ -140,16 +140,21 @@ set(PROTOCOL_RESOURCE_CRMS_RESOURCE
         protocol/resource/crms_resource/CRMS_RootResource.h
         )
 set(PROTOCOL_RESOURCE_SUPPORT
-        protocol/resource/support/DateSupport.h
-        protocol/resource/support/DurationSupport.h
-        protocol/resource/support/EnumerationSupport.h
-        protocol/resource/support/PrimitiveContentTypeSupport.cpp
-        protocol/resource/support/PrimitiveContentTypeSupport.h
+        protocol/json_support/crms_common/SubscriptionSupport.h
+        protocol/json_support/crms_common/BatchNotifySupport.h
+        protocol/json_support/crms_resource/AttributeSupport.h
+        protocol/json_support/DateSupport.h
+        protocol/json_support/DurationSupport.h
+        protocol/json_support/crms_enumeration/EnumerationSupport.h
+        protocol/json_support/crms_primitive/PrimitiveContentTypeSupport.cpp
+        protocol/json_support/crms_primitive/PrimitiveContentTypeSupport.h
+        protocol/json_support/crms_resource/ResourceSupport.h
+        protocol/json_support/SupportBase.h
         )
 set(PROTOCOL_RESOURCE
         protocol/resource/DEF.h
         protocol/resource/DefMem.h
-        protocol/resource/Serialization.h
+        protocol/json_support/Serialization.h
         protocol/resource/Type.h
         ${PROTOCOL_RESOURCE}
         ${PROTOCOL_RESOURCE_CRMS_COMMON}
@@ -174,7 +179,10 @@ set(TEST_TOOL
 
 ##############################################################################################
 
-add_executable(CRMS_On_VxWOrks main.cpp)
+add_executable(CRMS_On_VxWOrks main.cpp
+        ${UTILITY}
+        )
+target_link_libraries(CRMS_On_VxWOrks pthread)
 
 ##############################################################################################
 

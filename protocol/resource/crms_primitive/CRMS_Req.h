@@ -23,7 +23,7 @@ namespace crms {
                 class CRMS_Req {
                 public:
                     CRMS_Req() :
-                            ty(DEFAULT_VALUE_INT) {
+                            ty(NJSON_DEFAULT_VALUE_INT) {
                         memset(&proxy, -1, sizeof(proxy));
                     }
 

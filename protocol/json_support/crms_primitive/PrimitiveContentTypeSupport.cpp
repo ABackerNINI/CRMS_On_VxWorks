@@ -5,97 +5,97 @@
 #include <assert.h>
 #include "PrimitiveContentTypeSupport.h"
 
-#include "../crms_resource/CRMS_RootResource.h"
-#include "../crms_resource/CRMS_ResourceObject.h"
-#include "../crms_resource/CRMS_Attribute.h"
-#include "../crms_resource/CRMS_Command.h"
-#include "../crms_resource/CRMS_DataTable.h"
-#include "../crms_resource/CRMS_Node.h"
-#include "../crms_resource/CRMS_Group.h"
-#include "../crms_common/CRMS_PaginationRetrieve.h"
-#include "../crms_common/CRMS_PartialRetrieve.h"
-#include "../crms_common/CRMS_SubscriptionRetrieve.h"
-#include "../crms_common/CRMS_Notification.h"
-#include "../crms_common/CRMS_AggregatedNotification.h"
-#include "../crms_common/CRMS_AggregatedResponse.h"
+#include "../../resource/crms_resource/CRMS_RootResource.h"
+#include "../../resource/crms_resource/CRMS_ResourceObject.h"
+#include "../../resource/crms_resource/CRMS_Attribute.h"
+#include "../../resource/crms_resource/CRMS_Command.h"
+#include "../../resource/crms_resource/CRMS_DataTable.h"
+#include "../../resource/crms_resource/CRMS_Node.h"
+#include "../../resource/crms_resource/CRMS_Group.h"
+#include "../../resource/crms_common/CRMS_PaginationRetrieve.h"
+#include "../../resource/crms_common/CRMS_PartialRetrieve.h"
+#include "../../resource/crms_common/CRMS_SubscriptionRetrieve.h"
+#include "../../resource/crms_common/CRMS_Notification.h"
+#include "../../resource/crms_common/CRMS_AggregatedNotification.h"
+#include "../../resource/crms_common/CRMS_AggregatedResponse.h"
 
 char *serialize_1(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_RootResource> *) pc);
 }
 
 char *serialize_2(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_ResourceObject> *) pc);
 }
 
 char *serialize_3(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Attribute> *) pc);
 }
 
 char *serialize_4(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Command> *) pc);
 }
 
 char *serialize_5(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_DataTable> *) pc);
 }
 
 char *serialize_6(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Node> *) pc);
 }
 
 char *serialize_7(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Group> *) pc);
 }
 
 char *serialize_8(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_Subscription> *) pc);
 }
 
 char *serialize_9(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_ChildResourceRef> *) pc);
 }
 
 char *serialize_10(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-//    return serialize(
+//    return njson_serialize(
 //            *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_PaginationRetrieve> *) pc);
 }
 
 char *serialize_11(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-//    return serialize(
+//    return njson_serialize(
 //            *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_PartialRetrieve> *) pc);
 }
 
 char *serialize_12(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-//    return serialize(
+//    return njson_serialize(
 //            *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_SubscriptionRetrieve> *) pc);
 }
 
 char *serialize_13(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-//    return serialize(
+//    return njson_serialize(
 //            *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_Notification> *) pc);
 }
 
 char *serialize_14(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-//    return serialize(
+//    return njson_serialize(
 //            *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_AggregatedNotification> *) pc);
 }
 
 char *serialize_15(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-//    return serialize(
+//    return njson_serialize(
 //            *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_AggregatedResponse> *) pc);
 }
 
 char *serialize_16(const crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc) {
-    return serialize(
+    return njson_serialize(
             *(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<std::string> *) pc);
 }
 
@@ -131,7 +131,7 @@ char *serialize_pc(const crms::protocol::resource::primitive::CRMS_PrimitiveCont
 }
 
 int deserialize_1(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_RootResource> *) pc,
             cstr);
 
@@ -139,7 +139,7 @@ int deserialize_1(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_2(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_ResourceObject> *) pc,
             cstr);
 
@@ -147,7 +147,7 @@ int deserialize_2(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_3(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Attribute> *) pc,
             cstr);
 
@@ -155,7 +155,7 @@ int deserialize_3(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_4(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Command> *) pc,
             cstr);
 
@@ -163,7 +163,7 @@ int deserialize_4(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_5(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_DataTable> *) pc,
             cstr);
 
@@ -171,7 +171,7 @@ int deserialize_5(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_6(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Node> *) pc,
             cstr);
 
@@ -179,7 +179,7 @@ int deserialize_6(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_7(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::resource::CRMS_Group> *) pc,
             cstr);
 
@@ -188,7 +188,7 @@ int deserialize_7(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 
 
 int deserialize_8(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_Subscription> *) pc,
             cstr);
 
@@ -196,7 +196,7 @@ int deserialize_8(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_9(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_ChildResourceRef> *) pc,
             cstr);
 
@@ -204,7 +204,7 @@ int deserialize_9(crms::protocol::resource::primitive::CRMS_PrimitiveContentType
 }
 
 int deserialize_10(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-//    deserialize(
+//    njson_deserialize(
 //            (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_PaginationRetrieve> *) pc,
 //            cstr);
 
@@ -212,7 +212,7 @@ int deserialize_10(crms::protocol::resource::primitive::CRMS_PrimitiveContentTyp
 }
 
 int deserialize_11(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-//    deserialize(
+//    njson_deserialize(
 //            (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_PartialRetrieve> *) pc,
 //            cstr);
 
@@ -220,7 +220,7 @@ int deserialize_11(crms::protocol::resource::primitive::CRMS_PrimitiveContentTyp
 }
 
 int deserialize_12(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-//    deserialize(
+//    njson_deserialize(
 //            (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_SubscriptionRetrieve> *) pc,
 //            cstr);
 
@@ -228,7 +228,7 @@ int deserialize_12(crms::protocol::resource::primitive::CRMS_PrimitiveContentTyp
 }
 
 int deserialize_13(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-//    deserialize(
+//    njson_deserialize(
 //            (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_Notification> *) pc,
 //            cstr);
 
@@ -236,7 +236,7 @@ int deserialize_13(crms::protocol::resource::primitive::CRMS_PrimitiveContentTyp
 }
 
 int deserialize_14(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-//    deserialize(
+//    njson_deserialize(
 //            (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_AggregatedNotification> *) pc,
 //            cstr);
 
@@ -244,7 +244,7 @@ int deserialize_14(crms::protocol::resource::primitive::CRMS_PrimitiveContentTyp
 }
 
 int deserialize_15(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-//    deserialize(
+//    njson_deserialize(
 //            (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<crms::protocol::resource::common::CRMS_AggregatedResponse> *) pc,
 //            cstr);
 
@@ -252,7 +252,7 @@ int deserialize_15(crms::protocol::resource::primitive::CRMS_PrimitiveContentTyp
 }
 
 int deserialize_16(crms::protocol::resource::primitive::CRMS_PrimitiveContentType<> *pc, const char *cstr) {
-    deserialize(
+    njson_deserialize(
             (crms::protocol::resource::primitive::CRMS_PrimitiveContentType<std::string> *) pc, cstr);
 
     return 0;
