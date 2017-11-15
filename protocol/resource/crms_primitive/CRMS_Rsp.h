@@ -1,13 +1,12 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_RSP_H_
-#define _CRMS_RESOURCE_RSP_H_
+#ifndef _CRMS_RESOURCE_RESPONSE_H_
+#define _CRMS_RESOURCE_RESPONSE_H_
 
 #include "../DEF.h"
-
-#include "../../../utility/DateTime/DateTime.h"
-#include "CRMS_PrimitiveContentType.h"
 #include "../crms_enumeration/CRMS_ResponseStatusCodeType.h"
+#include "../crms_enumeration/CRMS_ResourceType.h"
+#include "CRMS_PrimitiveContentType.h"
 #include "CRMS_Req.h"
 
 namespace crms {
@@ -92,4 +91,4 @@ namespace crms {
     }
 }
 
-#endif//_CRMS_RESOURCE_RSP_H_
+#endif//_CRMS_RESOURCE_RESPONSE_H_

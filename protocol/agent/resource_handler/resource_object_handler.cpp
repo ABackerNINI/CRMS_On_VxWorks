@@ -1,9 +1,5 @@
-//
-// Created by nini on 9/27/17.
-//
-
-#include "../resource_operator/resource_operator.h"
 #include "resource_object_handler.h"
+#include "../resource_operator/resource_operator.h"
 
 void crms::protocol::agent::resource_handler::resource_object_handler::Create(
         crms::protocol::resource::primitive::CRMS_Req *_Req, crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,

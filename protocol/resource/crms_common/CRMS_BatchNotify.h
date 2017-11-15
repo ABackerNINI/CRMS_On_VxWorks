@@ -1,11 +1,11 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_COMMON_BATCH_NOTIFY_H_
-#define _CRMS_RESOURCE_COMMON_BATCH_NOTIFY_H_
+#ifndef _CRMS_RESOURCE_BATCH_NOTIFY_H_
+#define _CRMS_RESOURCE_BATCH_NOTIFY_H_
 
 #include "../DEF.h"
 
-#include "../../../utility/DateTime/Duration.h"
+#include "../../../utility/TimeUtil/Duration.h"
 
 namespace crms {
 
@@ -57,4 +57,4 @@ namespace crms {
     }
 }
 
-#endif//_CRMS_RESOURCE_COMMON_BATCH_NOTIFY_H_
+#endif//_CRMS_RESOURCE_BATCH_NOTIFY_H_

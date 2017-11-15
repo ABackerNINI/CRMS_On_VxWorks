@@ -1,9 +1,7 @@
-//
-// Created by nini on 10/9/17.
-//
+#pragma once
 
-#ifndef _CRMS_RESOURCE_COMMON_NOTIFICATION_H_
-#define _CRMS_RESOURCE_COMMON_NOTIFICATION_H_
+#ifndef _CRMS_RESOURCE_NOTIFICATION_H_
+#define _CRMS_RESOURCE_NOTIFICATION_H_
 
 #include "../DEF.h"
 #include "../crms_primitive/CRMS_PrimitiveContentType.h"
@@ -59,4 +57,4 @@ namespace crms {
     }
 }
 
-#endif //_CRMS_RESOURCE_COMMON_NOTIFICATION_H_
+#endif //_CRMS_RESOURCE_NOTIFICATION_H_

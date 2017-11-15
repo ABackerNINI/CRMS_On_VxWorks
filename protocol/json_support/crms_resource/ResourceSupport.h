@@ -1,10 +1,7 @@
-//
-// Created by nini on 11/15/17.
-//
+#pragma once
 
-#ifndef _CRMS_RESOURCE_RESOURCE_SUPPORT_H_
-#define _CRMS_RESOURCE_RESOURCE_SUPPORT_H_
-
+#ifndef _CRMS_JSON_RESOURCE_SUPPORT_H_
+#define _CRMS_JSON_RESOURCE_SUPPORT_H_
 
 #include "../SupportBase.h"
 #include "../../resource/crms_resource/CRMS_Resource.h"
@@ -39,5 +36,4 @@ struct njson_support<crms::protocol::resource::resource::CRMS_Resource> {
     }
 };
 
-
-#endif //_CRMS_RESOURCE_RESOURCE_SUPPORT_H_
+#endif //_CRMS_JSON_RESOURCE_SUPPORT_H_

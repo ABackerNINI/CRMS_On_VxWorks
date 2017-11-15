@@ -1,6 +1,4 @@
-//
-// Created by nini on 9/27/17.
-//
+#pragma once
 
 #ifndef CRMS_ON_VXWORKS_CREATOR_H
 #define CRMS_ON_VXWORKS_CREATOR_H
@@ -22,8 +20,9 @@ namespace crms {
                     static void create_resource(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
                                                 resource::resource::CRMS_Resource *parent);
 
-                    static void retrieve_resource(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
-                                                  resource::resource::CRMS_Resource *resource);
+                    static void
+                    retrieve_resource(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
+                                      resource::resource::CRMS_Resource *resource);
 
                     static void update_resource(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
                                                 resource::resource::CRMS_Resource *resource);

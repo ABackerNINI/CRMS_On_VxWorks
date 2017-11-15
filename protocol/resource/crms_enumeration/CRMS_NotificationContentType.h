@@ -1,11 +1,9 @@
-//
-// Created by nini on 10/9/17.
-//
+#pragma once
 
-#ifndef _CRMS_RESOURCE_ENUMERATION_NOTIFICATION_CONTENT_TYPE_H_
-#define _CRMS_RESOURCE_ENUMERATION_NOTIFICATION_CONTENT_TYPE_H_
+#ifndef _CRMS_RESOURCE_NOTIFICATION_CONTENT_TYPE_H_
+#define _CRMS_RESOURCE_NOTIFICATION_CONTENT_TYPE_H_
 
-#include "../DEF.h"
+#include "EnumerationBase.h"
 
 namespace crms {
 
@@ -29,4 +27,4 @@ namespace crms {
     }
 }
 
-#endif //_CRMS_RESOURCE_ENUMERATION_NOTIFICATION_CONTENT_TYPE_H_
+#endif //_CRMS_RESOURCE_NOTIFICATION_CONTENT_TYPE_H_

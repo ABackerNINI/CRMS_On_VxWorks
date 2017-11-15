@@ -1,6 +1,4 @@
-//
-// Created by nini on 9/27/17.
-//
+#pragma once
 
 #ifndef CRMS_ON_VXWORKS_DATATABLE_HANDLER_H
 #define CRMS_ON_VXWORKS_DATATABLE_HANDLER_H
@@ -35,6 +33,5 @@ namespace crms {
         }
     }
 }
-
 
 #endif //CRMS_ON_VXWORKS_DATATABLE_HANDLER_H

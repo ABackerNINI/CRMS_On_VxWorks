@@ -1,6 +1,4 @@
-//
-// Created by nini on 9/27/17.
-//
+#pragma once
 
 #ifndef CRMS_ON_VXWORKS_GROUP_H
 #define CRMS_ON_VXWORKS_GROUP_H
@@ -35,6 +33,5 @@ namespace crms {
         }
     }
 }
-
 
 #endif //CRMS_ON_VXWORKS_GROUP_H

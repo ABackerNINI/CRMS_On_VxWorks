@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_DATE_SUPPORT_H_
-#define _CRMS_RESOURCE_DATE_SUPPORT_H_
+#ifndef _CRMS_JSON_DATE_SUPPORT_H_
+#define _CRMS_JSON_DATE_SUPPORT_H_
 
 #include "../../utility/nJson/DEF.h"
 #include "../../utility/TimeUtil/DateTime.h"
@@ -23,4 +23,4 @@ struct njson_support<DateTime> {
     }
 };
 
-#endif//_CRMS_RESOURCE_DATE_SUPPORT_H_
+#endif//_CRMS_JSON_DATE_SUPPORT_H_

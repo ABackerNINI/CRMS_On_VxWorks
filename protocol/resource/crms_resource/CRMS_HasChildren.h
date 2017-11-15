@@ -1,10 +1,9 @@
-//
-// Created by nini on 9/27/17.
-//
+#pragma once
 
-#ifndef CRMS_ON_VXWORKS_CRMS_HASCHILDREN_H
-#define CRMS_ON_VXWORKS_CRMS_HASCHILDREN_H
+#ifndef _CRMS_RESOURCE_HAS_CHILDREN_H
+#define _CRMS_RESOURCE_HAS_CHILDREN_H
 
+#include "../DEF.h"
 #include "../crms_common/CRMS_ChildResourceRef.h"
 #include "CRMS_Resource.h"
 
@@ -55,8 +54,9 @@ namespace crms {
                     }
 
                     void remove_child_ref(const std::string &child_ri) {
-                        for(_LIST < crms::protocol::resource::common::CRMS_ChildResourceRef >::iterator it = ch.begin();it!=ch.end();++it){
-                            if(it->get_v()==child_ri){
+                        for (_LIST<crms::protocol::resource::common::CRMS_ChildResourceRef>::iterator it = ch.begin();
+                             it != ch.end(); ++it) {
+                            if (it->get_v() == child_ri) {
                                 ch.erase(it);
                                 break;
                             }
@@ -72,5 +72,4 @@ namespace crms {
     }
 }
 
-
-#endif //CRMS_ON_VXWORKS_CRMS_HASCHILDREN_H
+#endif //_CRMS_RESOURCE_HAS_CHILDREN_H

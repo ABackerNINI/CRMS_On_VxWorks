@@ -1,9 +1,7 @@
-//
-// Created by nini on 10/9/17.
-//
+#pragma once
 
-#ifndef _CRMS_RESOURCE_CRMS_RETRIEVE_QUERY_TYPE_H_
-#define _CRMS_RESOURCE_CRMS_RETRIEVE_QUERY_TYPE_H_
+#ifndef _CRMS_RESOURCE_RETRIEVE_QUERY_TYPE_H_
+#define _CRMS_RESOURCE_RETRIEVE_QUERY_TYPE_H_
 
 #include "EnumerationBase.h"
 
@@ -30,4 +28,4 @@ namespace crms {
     }
 }
 
-#endif //_CRMS_RESOURCE_CRMS_RETRIEVE_QUERY_TYPE_H_
+#endif //_CRMS_RESOURCE_RETRIEVE_QUERY_TYPE_H_

@@ -4,7 +4,6 @@
 #define _CRMS_RESOURCE_REMOTE_ATTRIBUTE_H_
 
 #include "../DEF.h"
-
 #include "CRMS_Attribute.h"
 
 namespace crms {
@@ -18,7 +17,7 @@ namespace crms {
                 class CRMS_RemoteAttribute : public CRMS_Attribute {
                 public:
                     CRMS_RemoteAttribute() :
-                            rm(DEFAULT_VALUE_INT) {
+                            rm(NJSON_DEFAULT_VALUE_INT) {
                         memset(&proxy, -1, sizeof(proxy));
                     }
 

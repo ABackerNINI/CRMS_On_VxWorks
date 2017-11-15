@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_DURATION_SUPPORT_H_
-#define _CRMS_RESOURCE_DURATION_SUPPORT_H_
+#ifndef _CRMS_JSON_DURATION_SUPPORT_H_
+#define _CRMS_JSON_DURATION_SUPPORT_H_
 
 #include "../../utility/nJson/DEF.h"
 #include "../../utility/TimeUtil/Duration.h"
@@ -21,4 +21,4 @@ struct njson_support<Duration> {
     }
 };
 
-#endif//_CRMS_RESOURCE_DURATION_SUPPORT_H_
+#endif//_CRMS_JSON_DURATION_SUPPORT_H_

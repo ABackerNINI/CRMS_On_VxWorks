@@ -1,11 +1,8 @@
-//
-// Created by nini on 9/27/17.
-//
+#include "resource_operator.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "resource_operator.h"
 #include "../../resource/crms_resource/CRMS_Attribute.h"
 #include "../../resource/crms_common/CRMS_ChildResourceRef.h"
 #include "../../resource/crms_resource/CRMS_Command.h"
@@ -17,7 +14,7 @@
 #include "../../resource/crms_resource/CRMS_RemoteResourceObject.h"
 #include "../../resource/crms_resource/CRMS_RootResource.h"
 #include "../../../utility/resource_pool/resource_pool.h"
-#include "../../resource/support/crms_primitive/PrimitiveContentTypeSupport.h"
+#include "../../json_support/crms_primitive/PrimitiveContentTypeSupport.h"
 
 void build_corresponding_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
                              crms::protocol::resource::primitive::CRMS_Rsp *rsp) {

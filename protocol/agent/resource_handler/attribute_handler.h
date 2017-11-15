@@ -1,6 +1,4 @@
-//
-// Created by nini on 9/27/17.
-//
+#pragma once
 
 #ifndef CRMS_ON_VXWORKS_ATTRIBUTE_HANDLER_H
 #define CRMS_ON_VXWORKS_ATTRIBUTE_HANDLER_H

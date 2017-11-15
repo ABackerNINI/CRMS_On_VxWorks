@@ -1,6 +1,4 @@
-//
-// Created by nini on 10/9/17.
-//
+#pragma once
 
 #ifndef _CRMS_RESOURCE_PARTIAL_RETRIEVE_TYPE_H_
 #define _CRMS_RESOURCE_PARTIAL_RETRIEVE_TYPE_H_

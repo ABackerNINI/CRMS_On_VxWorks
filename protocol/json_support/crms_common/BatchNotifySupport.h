@@ -1,9 +1,7 @@
-//
-// Created by nini on 11/15/17.
-//
+#pragma once
 
-#ifndef _CRMS_RESOURCE_BATCH_NOTIFY_SUPPORT_H_
-#define _CRMS_RESOURCE_BATCH_NOTIFY_SUPPORT_H_
+#ifndef _CRMS_JSON_BATCH_NOTIFY_SUPPORT_H_
+#define _CRMS_JSON_BATCH_NOTIFY_SUPPORT_H_
 
 #include "../SupportBase.h"
 
@@ -25,4 +23,4 @@ struct njson_support<crms::protocol::resource::common::CRMS_BatchNotify> {
     }
 };
 
-#endif //_CRMS_RESOURCE_BATCH_NOTIFY_SUPPORT_H_
+#endif //_CRMS_JSON_BATCH_NOTIFY_SUPPORT_H_

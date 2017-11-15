@@ -1,11 +1,9 @@
-//
-// Created by nini on 10/9/17.
-//
+#pragma once
+
+#ifndef _CRMS_RESOURCE_RESOURCE_STATUS_H_
+#define _CRMS_RESOURCE_RESOURCE_STATUS_H_
 
 #include "EnumerationBase.h"
-
-#ifndef _CRMS_RESOURCE_ENUMERATION_RESOURCE_STATUS_H_
-#define _CRMS_RESOURCE_ENUMERATION_RESOURCE_STATUS_H_
 
 namespace crms {
 
@@ -30,4 +28,4 @@ namespace crms {
     }
 }
 
-#endif //_CRMS_RESOURCE_ENUMERATION_RESOURCE_STATUS_H_
+#endif //_CRMS_RESOURCE_RESOURCE_STATUS_H_

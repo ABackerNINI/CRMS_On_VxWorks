@@ -1,7 +1,3 @@
-//
-// Created by nini on 9/27/17.
-//
-
 #include "resource_handler.h"
 #include "node_handler.h"
 #include "root_resource_handler.h"

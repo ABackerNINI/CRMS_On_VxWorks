@@ -4,7 +4,6 @@
 #define _CRMS_RESOURCE_REMOTE_COMMAND_H_
 
 #include "../DEF.h"
-
 #include "CRMS_Command.h"
 
 namespace crms {

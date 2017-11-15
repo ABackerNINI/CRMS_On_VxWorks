@@ -1,9 +1,7 @@
-//
-// Created by nini on 11/15/17.
-//
+#pragma once
 
-#ifndef _CRMS_RESOURCE_ATTRIBUTE_SUPPORT_H_
-#define _CRMS_RESOURCE_ATTRIBUTE_SUPPORT_H_
+#ifndef _CRMS_JSON_ATTRIBUTE_SUPPORT_H_
+#define _CRMS_JSON_ATTRIBUTE_SUPPORT_H_
 
 #include "../SupportBase.h"
 #include "../../resource/crms_resource/CRMS_Attribute.h"
@@ -14,7 +12,8 @@ struct njson_support<crms::protocol::resource::resource::CRMS_Attribute> {
         return false;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name, const crms::protocol::resource::resource::CRMS_Attribute &njson_var) {
+    static void serialize(JSON_Value *njson_val, const char *njson_name,
+                          const crms::protocol::resource::resource::CRMS_Attribute &njson_var) {
         SERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Resource);
 
         SET(nm);
@@ -29,4 +28,4 @@ struct njson_support<crms::protocol::resource::resource::CRMS_Attribute> {
     }
 };
 
-#endif //_CRMS_RESOURCE_ATTRIBUTE_SUPPORT_H_
+#endif //_CRMS_JSON_ATTRIBUTE_SUPPORT_H_

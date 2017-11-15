@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_ENUMERATION_ENUMERATION_SUPPORT_H_
-#define _CRMS_RESOURCE_ENUMERATION_ENUMERATION_SUPPORT_H_
+#ifndef _CRMS_JSON_ENUMERATION_SUPPORT_H_
+#define _CRMS_JSON_ENUMERATION_SUPPORT_H_
 
 #include "../../../utility/nJson/DEF.h"
 
@@ -33,7 +33,7 @@ struct njson_support<ENUM> {\
     static void deserialize(JSON_Value *njson_val, ENUM *njson_var) {\
        njson_deserialize(njson_val,&njson_var->get_val());\
     }\
-};\
+};
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ConsistencyStrategy)
 
@@ -61,4 +61,4 @@ SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_SubscriptionEven
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_SubscriptionOperation)
 
-#endif//_CRMS_RESOURCE_ENUMERATION_ENUMERATION_SUPPORT_H_
+#endif//_CRMS_JSON_ENUMERATION_SUPPORT_H_

@@ -1,7 +1,3 @@
-//
-// Created by nini on 9/27/17.
-//
-
 #include "remote_resource_object_handler.h"
 #include "../resource_operator/resource_operator.h"
 

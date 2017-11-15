@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_PROTOCOL_RESOURCE_SERIALIZATION_H_
-#define _CRMS_PROTOCOL_RESOURCE_SERIALIZATION_H_
+#ifndef _CRMS_JSON_SERIALIZATION_H_
+#define _CRMS_JSON_SERIALIZATION_H_
 
 #include "../../utility/nJson/DEF.h"
 
@@ -15,4 +15,4 @@
 #include "crms_resource/AttributeSupport.h"
 #include "crms_resource/ResourceSupport.h"
 
-#endif//_CRMS_PROTOCOL_RESOURCE_SERIALIZATION_H_
+#endif//_CRMS_JSON_SERIALIZATION_H_

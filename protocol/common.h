@@ -1,6 +1,4 @@
-//
-// Created by nini on 9/26/17.
-//
+#pragma once
 
 #ifndef _CRMS_PROTOCOL_COMMON_H_
 #define _CRMS_PROTOCOL_COMMON_H_

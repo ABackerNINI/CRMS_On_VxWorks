@@ -2,8 +2,8 @@
 // Created by nini on 11/9/16.
 //
 
-#ifndef GATEWAY_CSE_TEST_TOOL_H
-#define GATEWAY_CSE_TEST_TOOL_H
+#ifndef _CRMS_TEST_TOOL_H_
+#define _CRMS_TEST_TOOL_H_
 
 #include "../utility/HttpUtil/HttpUtil.h"
 #include "../protocol/resource/crms_common/CRMS_RetrieveQuery.h"
@@ -37,5 +37,4 @@ namespace test_tool {
     int Test(test_func *funcs, int n);
 }
 
-
-#endif //GATEWAY_CSE_TEST_TOOL_H
+#endif //_CRMS_TEST_TOOL_H_

@@ -1,10 +1,6 @@
-//
-// Created by nini on 10/26/17.
-//
-
-#include <assert.h>
 #include "PrimitiveContentTypeSupport.h"
 
+#include <assert.h>
 #include "../../resource/crms_resource/CRMS_RootResource.h"
 #include "../../resource/crms_resource/CRMS_ResourceObject.h"
 #include "../../resource/crms_resource/CRMS_Attribute.h"

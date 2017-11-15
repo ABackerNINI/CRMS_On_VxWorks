@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_ATTRIBUTE_TYPE_H_
-#define _CRMS_RESOURCE_ATTRIBUTE_TYPE_H_
+#ifndef _CRMS_RESOURCE_TYPE_H_
+#define _CRMS_RESOURCE_TYPE_H_
 
 //basic types
 #define _CHAR           char
@@ -24,4 +24,12 @@
 #define _DATETIME       DateTime
 #define _DURATION       Duration
 
-#endif//_CRMS_RESOURCE_ATTRIBUTE_TYPE_H_
+#include <string>
+#include <list>
+#include <map>
+#include <vector>
+
+#include "../../utility/TimeUtil/DateTime.h"
+#include "../../utility/TimeUtil/Duration.h"
+
+#endif//_CRMS_RESOURCE_TYPE_H_

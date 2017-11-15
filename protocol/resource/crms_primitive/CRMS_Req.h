@@ -1,11 +1,9 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_REQ_H_
-#define _CRMS_RESOURCE_REQ_H_
+#ifndef _CRMS_RESOURCE_REQUEST_H_
+#define _CRMS_RESOURCE_REQUEST_H_
 
 #include "../DEF.h"
-
-#include "../../../utility/DateTime/DateTime.h"
 #include "CRMS_PrimitiveContentType.h"
 #include "../crms_enumeration/CRMS_Operation.h"
 #include "../crms_enumeration/CRMS_ResultContent.h"
@@ -126,4 +124,4 @@ namespace crms {
     }
 }
 
-#endif//_CRMS_RESOURCE_REQ_H_
+#endif//_CRMS_RESOURCE_REQUEST_H_

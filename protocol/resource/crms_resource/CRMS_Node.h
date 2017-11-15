@@ -4,7 +4,6 @@
 #define _CRMS_RESOURCE_NODE_H_
 
 #include "../DEF.h"
-
 #include "CRMS_Resource.h"
 #include "../crms_enumeration/CRMS_NodeExecutionState.h"
 
@@ -72,4 +71,5 @@ namespace crms {
         }
     }
 }
+
 #endif//_CRMS_RESOURCE_NODE_H_

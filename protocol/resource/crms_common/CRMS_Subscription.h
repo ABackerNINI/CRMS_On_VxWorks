@@ -1,15 +1,12 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_COMMON_SUBSCRIPTION_H_
-#define _CRMS_RESOURCE_COMMON_SUBSCRIPTION_H_
+#ifndef _CRMS_RESOURCE_SUBSCRIPTION_H_
+#define _CRMS_RESOURCE_SUBSCRIPTION_H_
 
 #include "../DEF.h"
-
 #include "CRMS_BatchNotify.h"
 #include "../crms_enumeration/CRMS_SubscriptionEventType.h"
 #include "../crms_enumeration/CRMS_NotificationContentType.h"
-// #include "../crms_enumeration/CRMS_SubscriptionEventType.h"
-// #include "../crms_enumeration/CRMS_NotificationContentType.h"
 
 namespace crms {
 
@@ -111,4 +108,5 @@ namespace crms {
         }
     }
 }
-#endif//_CRMS_RESOURCE_COMMON_SUBSCRIPTION_H_
+
+#endif//_CRMS_RESOURCE_SUBSCRIPTION_H_

@@ -1,12 +1,9 @@
-//
-// Created by nini on 9/27/17.
-//
-
 #include "root_resource_handler.h"
-#include "../../../utility/resource_pool/resource_pool.h"
-#include "../../resource/crms_resource/CRMS_RootResource.h"
 #include "../resource_operator/resource_operator.h"
+#include "../../resource/crms_resource/CRMS_RootResource.h"
 #include "../../keyword.h"
+#include "../../resource/crms_enumeration/CRMS_MemberType.h"
+#include "../../../utility/resource_pool/resource_pool.h"
 
 void crms::protocol::agent::resource_handler::root_resource_handler::Create(
         crms::protocol::resource::primitive::CRMS_Req *_Req, crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,

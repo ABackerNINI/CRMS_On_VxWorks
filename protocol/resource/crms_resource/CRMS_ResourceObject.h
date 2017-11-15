@@ -4,7 +4,6 @@
 #define _CRMS_RESOURCE_RESOURCE_OBJECT_H_
 
 #include "../DEF.h"
-
 #include "CRMS_HasChildren.h"
 
 namespace crms {

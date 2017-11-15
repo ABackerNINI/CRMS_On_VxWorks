@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_ENUMERATION_MEMBER_TYPE_H_
-#define _CRMS_RESOURCE_ENUMERATION_MEMBER_TYPE_H_
+#ifndef _CRMS_RESOURCE_MEMBER_TYPE_H_
+#define _CRMS_RESOURCE_MEMBER_TYPE_H_
 
 #include "EnumerationBase.h"
 
@@ -32,4 +32,4 @@ namespace crms {
     }
 }
 
-#endif//_CRMS_RESOURCE_ENUMERATION_MEMBER_TYPE_H_
+#endif//_CRMS_RESOURCE_MEMBER_TYPE_H_

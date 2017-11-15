@@ -1,9 +1,7 @@
-//
-// Created by nini on 10/25/17.
-//
+#pragma once
 
-#ifndef CRMS_ON_VXWORKS_OBJECT_H
-#define CRMS_ON_VXWORKS_OBJECT_H
+#ifndef _CRMS_RESOURCE_OBJECT_H_
+#define _CRMS_RESOURCE_OBJECT_H_
 
 #include "DEF.h"
 
@@ -13,7 +11,7 @@ namespace crms {
 
         namespace resource {
 
-            template <typename T = void>
+            template<typename T = void>
             class Object {
             public:
                 Object() :
@@ -30,7 +28,8 @@ namespace crms {
                         if (_key_ == NULL) {
                             SET(val);
                         } else {
-                            SET_IF_KEY(val) {
+                            SET_IF_KEY(val)
+                            {
                                 return false;
                             }
                         }
@@ -69,5 +68,4 @@ namespace crms {
     }
 }
 
-
-#endif //CRMS_ON_VXWORKS_OBJECT_H
+#endif //_CRMS_RESOURCE_OBJECT_H_
