@@ -6,7 +6,7 @@
 #include "../../../utility/resource_pool/resource_pool.h"
 #include "../../resource/crms_resource/CRMS_Resource.h"
 #include "../resource_handler/resource_handler.h"
-#include "../../json_support/crms_primitive/PrimitiveContentTypeSupport.h"
+#include "../../json_support/crms_primitive/crms_primitive_content_type_support.h"
 #include "../../resource/crms_common/CRMS_RetrieveQuery.h"
 
 bool check_req_headers(HttpUtil::Http_Req *http_req) {

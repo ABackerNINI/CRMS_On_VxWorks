@@ -9,12 +9,12 @@
 #include "../../resource/crms_resource/CRMS_DataTable.h"
 #include "../../resource/crms_resource/CRMS_Group.h"
 #include "../../resource/crms_resource/CRMS_Node.h"
-#include "../../resource/crms_resource/CRMS_RemoteAttribut.h"
+#include "../../resource/crms_resource/CRMS_RemoteAttribute.h"
 #include "../../resource/crms_resource/CRMS_RemoteCommand.h"
 #include "../../resource/crms_resource/CRMS_RemoteResourceObject.h"
 #include "../../resource/crms_resource/CRMS_RootResource.h"
 #include "../../../utility/resource_pool/resource_pool.h"
-#include "../../json_support/crms_primitive/PrimitiveContentTypeSupport.h"
+#include "../../json_support/crms_primitive/crms_primitive_content_type_support.h"
 
 void build_corresponding_rsp(crms::protocol::resource::primitive::CRMS_Req *req,
                              crms::protocol::resource::primitive::CRMS_Rsp *rsp) {

@@ -4,7 +4,6 @@
 #define _CRMS_RESOURCE_PRIMITIVE_CONTENT_TYPE_H_
 
 #include "../ResourceBase.h"
-#include "../Object.h"
 #include "../crms_common/CRMS_RetrieveQuery.h"
 
 namespace crms {

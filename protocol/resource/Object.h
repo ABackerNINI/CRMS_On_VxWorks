@@ -15,7 +15,7 @@ namespace crms {
             class Object {
             public:
                 Object() :
-                        val(DEFAULT_VALUE_POINTER) {
+                        val(NJSON_DEFAULT_VALUE_POINTER) {
                 }
 
                 Object(T *val) :
