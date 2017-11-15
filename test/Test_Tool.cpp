@@ -2,7 +2,7 @@
 #include "../utility/HttpUtil/Client.h"
 #include "../protocol/keyword.h"
 #include "../protocol/common.h"
-#include "../protocol/json_support/crms_primitive/PrimitiveContentTypeSupport.h"
+#include "../protocol/json_support/crms_primitive/crms_primitive_content_type_support.h"
 
 std::map<std::string, std::string> test_tool::GetHeaders() {
     std::map<std::string, std::string> _Headers;

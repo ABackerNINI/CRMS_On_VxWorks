@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "protocol/resource/crms_resource/CRMS_Attribute.h"
-#include "protocol/json_support/Serialization.h"
+#include "protocol/json_support/crms_serialization.h"
 
 int main() {
     crms::protocol::resource::resource::CRMS_Attribute attribute;
@@ -17,5 +17,6 @@ int main() {
     delete[]s;
 
     std::cout << "Hello, World!" << std::endl;
+
     return 0;
 }
