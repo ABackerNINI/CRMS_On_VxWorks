@@ -93,7 +93,36 @@ set(PROTOCOL_AGENT
         ${PROTOCOL_AGENT_RESOURCE_HANDLER}
         ${PROTOCOL_AGENT_RESOURCE_OPERATOR}
         )
+###Protocol_json_support
+set(PROTOCOL_JSON_SUPPORT
+        protocol/json_support/crms_common/crms_batch_notify_support.h
+        protocol/json_support/crms_common/crms_child_resource_ref_support.h
+        protocol/json_support/crms_common/crms_filter_criteria_support.h
+        protocol/json_support/crms_common/crms_subscription_support.h
 
+        protocol/json_support/crms_enumeration/crms_enumeration_support.h
+
+        protocol/json_support/crms_primitive/crms_primitive_content_type_support.cpp
+        protocol/json_support/crms_primitive/crms_primitive_content_type_support.h
+
+        protocol/json_support/crms_resource/crms_attribute_support.h
+        protocol/json_support/crms_resource/crms_command_support.h
+        protocol/json_support/crms_resource/crms_data_table_support.h
+        protocol/json_support/crms_resource/crms_group_support.h
+        protocol/json_support/crms_resource/crms_has_children_support.h
+        protocol/json_support/crms_resource/crms_node_support.h
+        protocol/json_support/crms_resource/crms_remote_attribute_support.h
+        protocol/json_support/crms_resource/crms_remote_command_support.h
+        protocol/json_support/crms_resource/crms_remote_resource_object_support.h
+        protocol/json_support/crms_resource/crms_resource_object_support.h
+        protocol/json_support/crms_resource/crms_resource_support.h
+        protocol/json_support/crms_resource/crms_root_resource_support.h
+
+        protocol/json_support/crms_serialization.h
+        protocol/json_support/datetime_support.h
+        protocol/json_support/duration_support.h
+        protocol/json_support/support_base.h
+        )
 ###Protocol_resource
 set(PROTOCOL_RESOURCE_CRMS_COMMON
         protocol/resource/crms_common/CRMS_AggregatedNotification.h
@@ -132,40 +161,29 @@ set(PROTOCOL_RESOURCE_CRMS_RESOURCE
         protocol/resource/crms_resource/CRMS_Group.h
         protocol/resource/crms_resource/CRMS_HasChildren.h
         protocol/resource/crms_resource/CRMS_Node.h
-        protocol/resource/crms_resource/CRMS_RemoteAttribut.h
+        protocol/resource/crms_resource/CRMS_RemoteAttribute.h
         protocol/resource/crms_resource/CRMS_RemoteCommand.h
         protocol/resource/crms_resource/CRMS_RemoteResourceObject.h
         protocol/resource/crms_resource/CRMS_Resource.h
         protocol/resource/crms_resource/CRMS_ResourceObject.h
         protocol/resource/crms_resource/CRMS_RootResource.h
         )
-set(PROTOCOL_RESOURCE_SUPPORT
-        protocol/json_support/crms_common/SubscriptionSupport.h
-        protocol/json_support/crms_common/BatchNotifySupport.h
-        protocol/json_support/crms_resource/AttributeSupport.h
-        protocol/json_support/DateTimeSupport.h
-        protocol/json_support/DurationSupport.h
-        protocol/json_support/crms_enumeration/EnumerationSupport.h
-        protocol/json_support/crms_primitive/PrimitiveContentTypeSupport.cpp
-        protocol/json_support/crms_primitive/PrimitiveContentTypeSupport.h
-        protocol/json_support/crms_resource/ResourceSupport.h
-        protocol/json_support/SupportBase.h
-        )
+
 set(PROTOCOL_RESOURCE
         protocol/resource/ResourceBase.h
         protocol/resource/DefMem.h
-        protocol/json_support/Serialization.h
+        protocol/json_support/crms_serialization.h
         protocol/resource/Type.h
         ${PROTOCOL_RESOURCE}
         ${PROTOCOL_RESOURCE_CRMS_COMMON}
         ${PROTOCOL_RESOURCE_CRMS_ENUMERATION}
         ${PROTOCOL_RESOURCE_CRMS_PRIMITIVE}
         ${PROTOCOL_RESOURCE_CRMS_RESOURCE}
-        ${PROTOCOL_RESOURCE_SUPPORT}
         )
 set(PROTOCOL
         protocol/keyword.h
         ${PROTOCOL_AGENT}
+        ${PROTOCOL_JSON_SUPPORT}
         ${PROTOCOL_RESOURCE}
         protocol/common.h
         )
