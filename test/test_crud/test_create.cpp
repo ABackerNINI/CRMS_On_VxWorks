@@ -18,6 +18,7 @@ bool test_1() {
     crms::protocol::resource::resource::CRMS_ResourceObject ro;
     {
         ro.set_ty(crms::protocol::resource::enumeration::CRMS_ResourceType::resourceObject);
+        ro.set_onto("onto");
     }
     if (!test_tool::Create("/root", "", &ro)) {
         return false;

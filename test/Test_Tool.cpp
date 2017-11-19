@@ -2,7 +2,7 @@
 #include "../utility/HttpUtil/Client.h"
 #include "../protocol/keyword.h"
 #include "../protocol/common.h"
-#include "../protocol/json_support/crms_primitive/crms_primitive_content_type_support.h"
+#include "../protocol/json_support/crms_primitive_content_type_serialization.h"
 
 std::map<std::string, std::string> test_tool::GetHeaders() {
     std::map<std::string, std::string> _Headers;
@@ -35,7 +35,7 @@ bool test_tool::Create(const std::string &path, const std::string &name,
         req.Method = HttpUtil::POST;
         req.Uri = URL + path;
         req.Headers = GetHeaders();
-        req.Queries["rn"] = name;
+        if(!name.empty()) req.Queries["rn"] = name;
         req.Queries["ty"] = std::string(ty_str);
         req.Body = serialize_resource(resource);
     }
