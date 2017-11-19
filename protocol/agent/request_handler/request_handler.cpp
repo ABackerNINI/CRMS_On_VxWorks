@@ -8,6 +8,7 @@
 #include "../resource_handler/resource_handler.h"
 #include "../../json_support/crms_primitive/crms_primitive_content_type_support.h"
 #include "../../resource/crms_common/CRMS_RetrieveQuery.h"
+#include "../../json_support/crms_primitive_content_type_serialization.h"
 
 bool check_req_headers(HttpUtil::Http_Req *http_req) {
     return true;
