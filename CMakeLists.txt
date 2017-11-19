@@ -102,7 +102,8 @@ set(PROTOCOL_JSON_SUPPORT
 
         protocol/json_support/crms_enumeration/crms_enumeration_support.h
 
-        protocol/json_support/crms_primitive/crms_primitive_content_type_support.cpp
+        protocol/json_support/crms_primitive_content_type_serialization.cpp
+        protocol/json_support/crms_primitive_content_type_serialization.h
         protocol/json_support/crms_primitive/crms_primitive_content_type_support.h
 
         protocol/json_support/crms_resource/crms_attribute_support.h
