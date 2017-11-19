@@ -17,8 +17,8 @@ public:                                                 \
 A:                                                      \
     __VA_ARGS__ M;                                      \
 public:                                                 \
-    __VA_ARGS__ const get_##M()const{return M;}         \
-    __VA_ARGS__ get_##M(){return this->M;}              \
+    __VA_ARGS__ const &get_##M()const{return M;}        \
+    __VA_ARGS__ &get_##M(){return this->M;}             \
     void set_##M(__VA_ARGS__ M){this->M=M;}
 
 #define DEFINE_POINTER_MEMBER(M, ...) _DEFINE_POINTER_MEMBER(private,M,__VA_ARGS__)
