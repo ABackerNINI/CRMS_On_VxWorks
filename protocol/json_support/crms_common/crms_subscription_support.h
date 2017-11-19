@@ -8,41 +8,47 @@
 
 template<>
 struct njson_support<crms::protocol::resource::common::CRMS_Subscription> {
-    static bool is_default_value(const crms::protocol::resource::common::CRMS_Subscription &njson_var) {
+    static bool is_default(const crms::protocol::resource::common::CRMS_Subscription &njson_var) {
         return false;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name,
-                          const crms::protocol::resource::common::CRMS_Subscription &njson_var) {
-        SET(ri);
-        SET(id);
-        SET(ct);
-        SET(ety);
-        SET(exc);
-        SET(nu);
-        SET(nfu);
-        SET(gi);
-        SET(bn);
-        SET(ln);
-        SET(nct);
-        SET(cr);
-        SET(su);
+    static JSON_Value *serialize(const crms::protocol::resource::common::CRMS_Subscription &njson_var) {
+        NJSON_SERIALIZE_INIT;
+        {
+            NJSON_NSET(ri);
+            NJSON_NSET(id);
+            NJSON_NSET(ct);
+            NJSON_NSET(ety);
+            NJSON_NSET(exc);
+            NJSON_NSET(nu);
+            NJSON_NSET(nfu);
+            NJSON_NSET(gi);
+            NJSON_NSET(bn);
+            NJSON_NSET(ln);
+            NJSON_NSET(nct);
+            NJSON_NSET(cr);
+            NJSON_NSET(su);
+        }
+        NJSON_RET;
     }
 
     static void deserialize(JSON_Value *njson_val, crms::protocol::resource::common::CRMS_Subscription *njson_var) {
-        GET(ri);
-        GET(id);
-        GET(ct);
-        GET(ety);
-        GET(exc);
-        GET(nu);
-        GET(nfu);
-        GET(gi);
-        GET(bn);
-        GET(ln);
-        GET(nct);
-        GET(cr);
-        GET(su);
+        NJSON_DESERIALIZE_INIT;
+        {
+            NJSON_NGET(ri);
+            NJSON_NGET(id);
+            NJSON_NGET(ct);
+            NJSON_NGET(ety);
+            NJSON_NGET(exc);
+            NJSON_NGET(nu);
+            NJSON_NGET(nfu);
+            NJSON_NGET(gi);
+            NJSON_NGET(bn);
+            NJSON_NGET(ln);
+            NJSON_NGET(nct);
+            NJSON_NGET(cr);
+            NJSON_NGET(su);
+        }
     }
 };
 

@@ -3,11 +3,11 @@
 #ifndef _CRMS_JSON_SUPPORT_BASE_H_
 #define _CRMS_JSON_SUPPORT_BASE_H_
 
-#include "../../utility/nJson/nJson.h"
+#include "../../utility/nJson/DEF.h"
 
-#define SET(M) _NJSON_SET(njson_val,#M,njson_var.get_##M())
-#define GET(M) _NJSON_GET(njson_val,#M,&(njson_var->get_##M()))
-#define SERIALIZE_SUPER_CLASS(S) _NJSON_SERIALIZE_SUPER_CLASS((S *)&njson_var,njson_val)
-#define DESERIALIZE_SUPER_CLASS(S) _NJSON_DESERIALIZE_SUPER_CLASS((S *)&njson_var,njson_val)
+//#define SET NJSON_NSET
+//#define GET NJSON_NGET
+//#define SERIALIZE_SUPER_CLASS NJSON_NSERIALIZE_SUPER_CLASS
+//#define DESERIALIZE_SUPER_CLASS NJSON_NDESERIALIZE_SUPER_CLASS
 
 #endif //_CRMS_JSON_SUPPORT_BASE_H_

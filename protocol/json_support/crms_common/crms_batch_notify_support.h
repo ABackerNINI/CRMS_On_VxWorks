@@ -4,22 +4,30 @@
 #define _CRMS_JSON_BATCH_NOTIFY_SUPPORT_H_
 
 #include "../support_base.h"
+#include "../../resource/crms_common/CRMS_BatchNotify.h"
 
 template<>
 struct njson_support<crms::protocol::resource::common::CRMS_BatchNotify> {
-    static bool is_default_value(const crms::protocol::resource::common::CRMS_BatchNotify &njson_var) {
+    static bool is_default(const crms::protocol::resource::common::CRMS_BatchNotify &njson_var) {
         return false;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name,
-                          const crms::protocol::resource::common::CRMS_BatchNotify &njson_var) {
-        SET(num);
-        SET(dur);
+    static JSON_Value *serialize(const crms::protocol::resource::common::CRMS_BatchNotify &njson_var) {
+        NJSON_SERIALIZE_INIT;
+        {
+            NJSON_NSET(num);
+            NJSON_NSET(dur);
+        }
+
+        NJSON_RET;
     }
 
     static void deserialize(JSON_Value *njson_val, crms::protocol::resource::common::CRMS_BatchNotify *njson_var) {
-        GET(num);
-        GET(dur);
+        NJSON_DESERIALIZE_INIT;
+        {
+            NJSON_NGET(num);
+            NJSON_NGET(dur);
+        }
     }
 };
 

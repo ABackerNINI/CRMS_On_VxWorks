@@ -8,21 +8,27 @@
 
 template<>
 struct njson_support<crms::protocol::resource::common::CRMS_ChildResourceRef> {
-    static bool is_default_value(const crms::protocol::resource::common::CRMS_ChildResourceRef &njson_var) {
+    static bool is_default(const crms::protocol::resource::common::CRMS_ChildResourceRef &njson_var) {
         return false;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name,
-                          const crms::protocol::resource::common::CRMS_ChildResourceRef &njson_var) {
-        SET(v);
-        SET(ty);
-        SET(rn);
+    static JSON_Value *serialize(const crms::protocol::resource::common::CRMS_ChildResourceRef &njson_var) {
+        NJSON_SERIALIZE_INIT;
+        {
+            NJSON_NSET(v);
+            NJSON_NSET(ty);
+            NJSON_NSET(rn);
+        }
+        NJSON_RET;
     }
 
     static void deserialize(JSON_Value *njson_val, crms::protocol::resource::common::CRMS_ChildResourceRef *njson_var) {
-        GET(v);
-        GET(ty);
-        GET(rn);
+        NJSON_DESERIALIZE_INIT;
+        {
+            NJSON_NGET(v);
+            NJSON_NGET(ty);
+            NJSON_NGET(rn);
+        }
     }
 };
 

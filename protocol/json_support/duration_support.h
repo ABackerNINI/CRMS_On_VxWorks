@@ -8,12 +8,13 @@
 
 template<>
 struct njson_support<Duration> {
-    static bool is_default_value(const Duration &njson_var) {
+    static bool is_default(const Duration &njson_var) {
         return true;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name, const Duration &njson_var) {
+    static JSON_Value *serialize(const Duration &njson_var) {
         //TODO
+        return NULL;
     }
 
     static void deserialize(JSON_Value *njson_val, Duration *njson_var) {

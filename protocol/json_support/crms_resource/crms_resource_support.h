@@ -8,26 +8,32 @@
 
 template<>
 struct njson_support<crms::protocol::resource::resource::CRMS_Resource> {
-    static bool is_default_value(const crms::protocol::resource::resource::CRMS_Resource &njson_var) {
+    static bool is_default(const crms::protocol::resource::resource::CRMS_Resource &njson_var) {
         return false;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name,
-                          const crms::protocol::resource::resource::CRMS_Resource &njson_var) {
-        SET(ri);
-        SET(pa);
-        SET(rn);
-        SET(ty);
-        SET(ct);
-        SET(lt);
-        SET(onto);
-        SET(subs);
+    static JSON_Value *serialize(const crms::protocol::resource::resource::CRMS_Resource &njson_var) {
+        NJSON_SERIALIZE_INIT;
+        {
+            NJSON_NSET(ri);
+            NJSON_NSET(pa);
+            NJSON_NSET(rn);
+            NJSON_NSET(ty);
+            NJSON_NSET(ct);
+            NJSON_NSET(lt);
+            NJSON_NSET(onto);
+            NJSON_NSET(subs);
+        }
+        NJSON_RET;
     }
 
     static void deserialize(JSON_Value *njson_val, crms::protocol::resource::resource::CRMS_Resource *njson_var) {
-        GET(lt);
-        GET(onto);
-        GET(subs);
+        NJSON_DESERIALIZE_INIT;
+        {
+            NJSON_NGET(lt);
+            NJSON_NGET(onto);
+            NJSON_NGET(subs);
+        }
     }
 };
 

@@ -8,29 +8,35 @@
 
 template<>
 struct njson_support<crms::protocol::resource::resource::CRMS_Node> {
-    static bool is_default_value(const crms::protocol::resource::resource::CRMS_Node &njson_var) {
+    static bool is_default(const crms::protocol::resource::resource::CRMS_Node &njson_var) {
         return false;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name,
-                          const crms::protocol::resource::resource::CRMS_Node &njson_var) {
-        SERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Resource);
+    static JSON_Value * serialize(const crms::protocol::resource::resource::CRMS_Node &njson_var) {
+        NJSON_SERIALIZE_INIT;
+        {
+            NJSON_NSERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Resource);
 
-        SET(desc);
-        SET(params);
-        SET(nno);
-        SET(re);
-        SET(st);
+            NJSON_NSET(desc);
+            NJSON_NSET(params);
+            NJSON_NSET(nno);
+            NJSON_NSET(re);
+            NJSON_NSET(st);
+        }
+      NJSON_RET;
     }
 
     static void deserialize(JSON_Value *njson_val, crms::protocol::resource::resource::CRMS_Node *njson_var) {
-        DESERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Resource);
+        NJSON_DESERIALIZE_INIT;
+        {
+            NJSON_NDESERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Resource);
 
-        GET(desc);
-        GET(params);
-        GET(nno);
-        GET(re);
-        GET(st);
+            NJSON_NGET(desc);
+            NJSON_NGET(params);
+            NJSON_NGET(nno);
+            NJSON_NGET(re);
+            NJSON_NGET(st);
+        }
     }
 };
 

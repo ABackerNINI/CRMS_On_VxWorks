@@ -8,25 +8,31 @@
 
 template<>
 struct njson_support<crms::protocol::resource::resource::CRMS_RemoteCommand> {
-    static bool is_default_value(const crms::protocol::resource::resource::CRMS_RemoteCommand &njson_var) {
+    static bool is_default(const crms::protocol::resource::resource::CRMS_RemoteCommand &njson_var) {
         return false;
     }
 
-    static void serialize(JSON_Value *njson_val, const char *njson_name,
-                          const crms::protocol::resource::resource::CRMS_RemoteCommand &njson_var) {
-        SERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Command);
+    static JSON_Value *serialize(const crms::protocol::resource::resource::CRMS_RemoteCommand &njson_var) {
+        NJSON_SERIALIZE_INIT;
+        {
+            NJSON_NSERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Command);
 
-        SET(rm);
-        SET(rri);
-        SET(proxy);
+            NJSON_NSET(rm);
+            NJSON_NSET(rri);
+            NJSON_NSET(proxy);
+        }
+        NJSON_RET;
     }
 
     static void deserialize(JSON_Value *njson_val, crms::protocol::resource::resource::CRMS_RemoteCommand *njson_var) {
-        DESERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Command);
+        NJSON_DESERIALIZE_INIT;
+        {
+            NJSON_NDESERIALIZE_SUPER_CLASS(crms::protocol::resource::resource::CRMS_Command);
 
-        GET(rm);
-        GET(rri);
-        GET(proxy);
+            NJSON_NGET(rm);
+            NJSON_NGET(rri);
+            NJSON_NGET(proxy);
+        }
     }
 };
 

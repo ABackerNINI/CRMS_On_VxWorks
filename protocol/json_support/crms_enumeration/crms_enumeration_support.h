@@ -22,16 +22,16 @@
 #define SUPPORT_ENUMERATION(ENUM)\
 template<>\
 struct njson_support<ENUM> {\
-    static bool is_default_value(const ENUM &njson_var) {\
+    static bool is_default(const ENUM &njson_var) {\
         return njson_var.get_val() == NJSON_DEFAULT_VALUE_SHORT;\
     }\
 \
-    static void serialize(JSON_Value *njson_val, const char *njson_name, const ENUM &njson_var) {\
-        njson_serialize(njson_val, njson_name, njson_var.get_val());\
+    static JSON_Value *serialize(const ENUM &njson_var) {\
+        return njson_support_serialize(njson_var.get_val());\
     }\
 \
     static void deserialize(JSON_Value *njson_val, ENUM *njson_var) {\
-       njson_deserialize(njson_val,&njson_var->get_val());\
+       njson_support_deserialize(njson_val,&njson_var->get_val());\
     }\
 };
 
