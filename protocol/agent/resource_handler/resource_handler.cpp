@@ -10,53 +10,14 @@
 #include "remote_attribute_handler.h"
 #include "remote_command_handler.h"
 
-//#define HANDLE_CRUD(HANDLER, REQ, RSP, RES)                                                                \
-//    switch (_Req->get_op().get_val()){                                                                  \
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Create:                             \
-//            HANDLER::Create(REQ,RSP,RES);                                                               \
-//            break;                                                                                      \
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Retrieve:                           \
-//            HANDLER::Retrieve(REQ,RSP,RES);                                                             \
-//            break;                                                                                      \
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Update:                             \
-//            HANDLER::Update(REQ,RSP,RES);                                                               \
-//            break;                                                                                      \
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Delete:                             \
-//            HANDLER::Delete(REQ,RSP,RES);                                                               \
-//            break;                                                                                      \
-//    }
-//
-//
-//template<typename T>
-//void handle_crud(T *resource_handler, crms::protocol::resource::primitive::CRMS_Req *_Req,
-//                 crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,
-//                 crms::protocol::resource::resource::CRMS_Resource *_Res) {
-//    switch (_Req->get_op().get_val()) {
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Create:
-//            resource_handler->Create(_Req, _Rsp, _Res);
-//            break;
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Retrieve:
-//            resource_handler->Retrieve(_Req, _Rsp, _Res);
-//            break;
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Update:
-//            resource_handler->Update(_Req, _Rsp, _Res);
-//            break;
-//        case crms::protocol::resource::enumeration::CRMS_Operation::Delete:
-//            resource_handler->Delete(_Req, _Rsp, _Res);
-//            break;
-//        default:
-//            break;
-//    }
-//}
-
 void
 crms::protocol::agent::resource_handler::resource_handler::handle_crud(
         crms::protocol::resource::primitive::CRMS_Req *_Req,
         crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,
         crms::protocol::resource::resource::CRMS_Resource *_Res) {
-    typedef void (*handler_crud_type)(crms::protocol::resource::primitive::CRMS_Req *_Req,
-                                      crms::protocol::resource::primitive::CRMS_Rsp *_Rsp,
-                                      crms::protocol::resource::resource::CRMS_Resource *_Res);
+    typedef void (*handler_crud_type)(crms::protocol::resource::primitive::CRMS_Req *,
+                                      crms::protocol::resource::primitive::CRMS_Rsp *,
+                                      crms::protocol::resource::resource::CRMS_Resource *);
     static handler_crud_type handlers[] = {
             root_resource_handler::Create,
             root_resource_handler::Retrieve,

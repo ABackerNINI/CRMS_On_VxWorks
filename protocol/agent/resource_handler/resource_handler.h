@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef _CRMS_RESOURCE_HANDLER_HANDLER_BASE_H_
-#define _CRMS_RESOURCE_HANDLER_HANDLER_BASE_H_
+#ifndef _CRMS_RESOURCE_RESOURCE_HANDLER_H_
+#define _CRMS_RESOURCE_RESOURCE_HANDLER_H_
 
 #include "../../resource/crms_primitive/CRMS_Req.h"
 #include "../../resource/crms_primitive/CRMS_Rsp.h"
@@ -25,4 +25,4 @@ namespace crms {
     }
 }
 
-#endif//_CRMS_RESOURCE_HANDLER_HANDLER_BASE_H_
+#endif//_CRMS_RESOURCE_RESOURCE_HANDLER_H_

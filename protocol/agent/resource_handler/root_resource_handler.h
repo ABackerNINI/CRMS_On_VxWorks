@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef CRMS_ON_VXWORKS_ROOT_RESOURCE_H
-#define CRMS_ON_VXWORKS_ROOT_RESOURCE_H
+#ifndef _CRMS_RESOURCE_ROOT_RESOURCE_HANDLER_H_
+#define _CRMS_RESOURCE_ROOT_RESOURCE_HANDLER_H_
 
 #include "../../resource/crms_primitive/CRMS_Req.h"
 #include "../../resource/crms_primitive/CRMS_Rsp.h"
@@ -17,17 +17,17 @@ namespace crms {
 
                 class root_resource_handler {
                 public:
-                    static void Create(resource::primitive::CRMS_Req *_Req, resource::primitive::CRMS_Rsp *_Rsp,
-                                       resource::resource::CRMS_Resource *_Res);
+                    static void Create(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
+                                       resource::resource::CRMS_Resource *res);
 
-                    static void Retrieve(resource::primitive::CRMS_Req *_Req, resource::primitive::CRMS_Rsp *_Rsp,
-                                         resource::resource::CRMS_Resource *_Res);
+                    static void Retrieve(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
+                                         resource::resource::CRMS_Resource *res);
 
-                    static void Update(resource::primitive::CRMS_Req *_Req, resource::primitive::CRMS_Rsp *_Rsp,
-                                       resource::resource::CRMS_Resource *_Res);
+                    static void Update(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
+                                       resource::resource::CRMS_Resource *res);
 
-                    static void Delete(resource::primitive::CRMS_Req *_Req, resource::primitive::CRMS_Rsp *_Rsp,
-                                       resource::resource::CRMS_Resource *_Res);
+                    static void Delete(resource::primitive::CRMS_Req *req, resource::primitive::CRMS_Rsp *rsp,
+                                       resource::resource::CRMS_Resource *res);
 
                     static void init_root_resource();
                 };
@@ -36,4 +36,4 @@ namespace crms {
     }
 }
 
-#endif //CRMS_ON_VXWORKS_ROOT_RESOURCE_H
+#endif //_CRMS_RESOURCE_ROOT_RESOURCE_HANDLER_H_
