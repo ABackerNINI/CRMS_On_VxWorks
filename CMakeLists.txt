@@ -83,6 +83,8 @@ set(PROTOCOL_AGENT_RESOURCE_HANDLER
         protocol/agent/resource_handler/resource_object_handler.h
         protocol/agent/resource_handler/root_resource_handler.cpp
         protocol/agent/resource_handler/root_resource_handler.h
+        protocol/agent/resource_handler/subscription_handler.cpp
+        protocol/agent/resource_handler/subscription_handler.h
         )
 set(PROTOCOL_AGENT_RESOURCE_OPERATOR
         protocol/agent/resource_operator/resource_operator.cpp
