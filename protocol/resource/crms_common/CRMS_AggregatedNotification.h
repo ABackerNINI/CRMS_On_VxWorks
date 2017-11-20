@@ -16,35 +16,6 @@ namespace crms {
 
                 class CRMS_AggregatedNotification {
                 public:
-                    CRMS_AggregatedNotification() {
-                    }
-
-//                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
-//
-//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-//                        {
-//                            if (_key_ == NULL) {
-//                                SET(nfs);
-//                            } else {
-//                                SET_IF_KEY(nfs) {
-//                                    return false;
-//                                }
-//                            }
-//                        }
-//
-//                        return true;
-//                    }
-//
-//                    void deserialize(JSON_Value *_doc_) {
-//
-//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-//                        {
-//                            GET(nfs);
-//                        }
-//                    }
-
-                    ~CRMS_AggregatedNotification() {
-                    }
 
                 DEFINE_MEMBER(nfs, _LIST < CRMS_Notification >)
                 };

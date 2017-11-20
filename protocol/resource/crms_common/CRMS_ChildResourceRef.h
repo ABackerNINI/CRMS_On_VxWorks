@@ -19,35 +19,6 @@ namespace crms {
                             ty(NJSON_DEFAULT_VALUE_INT) {
                     }
 
-//                    bool serialize(JSON_Value *_doc_, const char *_key_ = NULL) const {
-//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-//                        {
-//                            if (_key_ == NULL) {
-//                                SET(v);
-//                                SET(ty);
-//                                SET(rn);
-//                            } else {
-//                                SET_IF_KEY(v) SET_IF_KEY(ty) SET_IF_KEY(rn) {
-//                                    return false;
-//                                }
-//                            }
-//                        }
-//
-//                        return true;
-//                    }
-//
-//                    void deserialize(JSON_Value *_doc_) {
-//                        JSON_Object *_root_obj_ = json_value_get_object(_doc_);
-//                        {
-//                            GET(v);
-//                            GET(ty);
-//                            GET(rn);
-//                        }
-//                    }
-
-                    ~CRMS_ChildResourceRef() {
-                    }
-
                 DEFINE_MEMBER(v, _STRING)
 
                 DEFINE_MEMBER(ty, _INT)

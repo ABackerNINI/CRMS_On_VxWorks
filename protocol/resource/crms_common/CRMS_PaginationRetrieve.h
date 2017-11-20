@@ -1,7 +1,0 @@
-#pragma once
-
-#ifndef _CRMS_RESOURCE_PAGINATION_H_
-#define _CRMS_RESOURCE_PAGINATION_H_
-
-
-#endif //_CRMS_RESOURCE_PAGINATION_H_

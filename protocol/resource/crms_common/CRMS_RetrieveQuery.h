@@ -51,9 +51,6 @@ namespace crms {
                 DEFINE_MEMBER(pg, CRMS_PaginationRetrieve)
 
                 DEFINE_MEMBER(sr, CRMS_SubscriptionRetrieve)
-//                    CRMS_PartialRetrieve pr;
-//                    CRMS_PaginationRetrieve pg;
-//                    CRMS_SubscriptionRetrieve sr;
                 };
 
                 class CRMS_RetrieveQuery {
