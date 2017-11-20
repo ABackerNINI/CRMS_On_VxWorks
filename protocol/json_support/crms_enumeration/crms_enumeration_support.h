@@ -9,7 +9,6 @@
 #include "../../resource/crms_enumeration/CRMS_MemberType.h"
 #include "../../resource/crms_enumeration/CRMS_NodeExecutionState.h"
 #include "../../resource/crms_enumeration/CRMS_Operation.h"
-#include "../../resource/crms_enumeration/CRMS_PartialRetrieveType.h"
 #include "../../resource/crms_enumeration/CRMS_ResponseStatusCodeType.h"
 #include "../../resource/crms_enumeration/CRMS_ResultContent.h"
 #include "../../resource/crms_enumeration/CRMS_SubscriptionOperation.h"
@@ -17,7 +16,6 @@
 #include "../../resource/crms_enumeration/CRMS_ResourceStatus.h"
 #include "../../resource/crms_enumeration/CRMS_ResourceType.h"
 #include "../../resource/crms_enumeration/CRMS_SubscriptionEventType.h"
-#include "../../resource/crms_enumeration/CRMS_RetrieveQueryType.h"
 
 #define SUPPORT_ENUMERATION(ENUM)\
 template<>\
@@ -45,8 +43,6 @@ SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_NotificationCont
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_Operation)
 
-//SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_PartialRetrieveType)
-
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResourceStatus)
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResourceType)
@@ -54,8 +50,6 @@ SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResourceType)
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResponseStatusCodeType)
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_ResultContent)
-
-//SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_RetrieveQueryType)
 
 SUPPORT_ENUMERATION(crms::protocol::resource::enumeration::CRMS_SubscriptionEventType)
 
